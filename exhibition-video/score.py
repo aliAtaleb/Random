@@ -1,11 +1,14 @@
 """Original soundtrack for the Mira-Clé exhibition video.
 
 Synthesises a warm corporate music bed plus sound accents synced to the
-animation timeline in index.html, and writes soundtrack.wav (44.1 kHz stereo).
-Everything is generated here, so there is no third-party audio to license.
+animation (timeline.js) and to the narration (vo-timing.js), ducks the music
+under voice.wav and writes final-mix.wav (44.1 kHz stereo).
+The music is generated here, so there is no third-party audio to license.
 
-Usage: python3 score.py [output.wav]
+Run voiceover.py first. Usage: python3 score.py [output.wav]
 """
+import json
+import os
 import sys
 import numpy as np
 from scipy.signal import butter, sosfilt, fftconvolve
@@ -14,13 +17,24 @@ from scipy.io import wavfile
 SR = 44100
 rng = np.random.default_rng(7)
 
-# ---- timeline (mirror of index.html) ----
-T_REVEAL = 6.8
-T_OVER = 11.3
-THEME_LENS = [10, 13, 10, 13, 10]
-THEME_STARTS = list(np.cumsum([21] + THEME_LENS[:-1]).astype(float))
-T_CLOSE = 21 + sum(THEME_LENS)
-DURATION = T_CLOSE + 10
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def load_js(name):
+    src = open(os.path.join(HERE, name)).read()
+    return json.loads(src[src.index('=') + 1: src.rindex(';')])
+
+
+TL = load_js('timeline.js')
+VO = load_js('vo-timing.js')
+T_REVEAL = TL['reveal'][0]
+T_OVER = TL['overview'][0]
+THEME_STARTS = [a for a, b in TL['themes']]
+T_CLOSE = TL['close'][0]
+DURATION = TL['close'][1]
+# narration lines in order: intro, logo, overview, five themes, closing lines
+VO_OVER = VO[2]
+VO_THEMES = VO[3:8]
 
 # ---- music grid: 96 BPM, bar lines land on the first practice scene (21 s) ----
 BEAT = 60 / 96
@@ -198,37 +212,36 @@ for bi, b0 in enumerate(bar_starts):
             add(music, b0 + k * BEAT / 2, shaker() * (0.025 if k % 2 else 0.012), 1, 0.35)
 
 # ---- accents synced to the animation ----
+# a soft whoosh under every wipe transition
+for t in [T_REVEAL, T_OVER] + THEME_STARTS + [T_CLOSE]:
+    add(sfx, t - 0.55, whoosh(0.9), 0.05, -0.2)
+
 # logo reveal
-add(sfx, T_REVEAL - 2.2, riser(2.6), 0.10)
+add(sfx, T_REVEAL - 2.2, riser(2.6), 0.09)
 add(sfx, T_REVEAL + 0.4, boom(), 0.30)
 for m, d in ((74, 0), (78, 0.04), (81, 0.08), (86, 0.12)):
     add(sfx, T_REVEAL + 0.4 + d, bell(m) * 0.05, 1, (m - 80) / 10)
     add(send, T_REVEAL + 0.4 + d, bell(m) * 0.06)
-add(sfx, T_REVEAL + 1.3, whoosh(1.0), 0.05, 0.3)
 
-# overview: one note per pillar, rising
+# overview: one rising note as each pillar is named
 for i, m in enumerate((74, 76, 78, 81, 83)):
-    st = T_OVER + 1.3 + i * 0.55
-    add(sfx, st, bell(m, 2.0) * 0.045, 1, -0.6 + 0.3 * i)
-    add(send, st, bell(m, 2.0) * 0.05)
+    st = VO_OVER['marks'][str(i)]
+    add(sfx, st, bell(m, 2.0) * 0.035, 1, -0.6 + 0.3 * i)
+    add(send, st, bell(m, 2.0) * 0.04)
 
-# practice scenes
-for si, s in enumerate(THEME_STARTS):
-    add(sfx, s - 0.35, whoosh(0.9), 0.06, -0.2)
+# practice scenes: a quiet tick as each service is named, a chime for testimonials
+for vo in VO_THEMES:
     for k in range(4):
-        add(sfx, s + 1.7 + k * 0.6, tick((81, 83, 85, 86)[k]) * 0.05, 1, 0.5)
-    if THEME_LENS[si] == 13:
-        add(sfx, s + 4.6, whoosh(1.2, 0.5), 0.035, -0.4)
-        add(sfx, s + 4.8, bell(78, 2.5) * 0.035, 1, -0.4)
-        add(send, s + 4.8, bell(78, 2.5) * 0.04)
-    else:
-        add(sfx, s + 3.6, bell(86, 1.5) * 0.03, 1, -0.5)
+        add(sfx, vo['marks'][str(k)], tick((81, 83, 85, 86)[k]) * 0.03, 1, 0.5)
+    if 'q' in vo['marks']:
+        add(sfx, vo['marks']['q'], bell(78, 2.5) * 0.03, 1, -0.4)
+        add(send, vo['marks']['q'], bell(78, 2.5) * 0.04)
 
 # closing: rise into the tagline, final chord on the logo
-add(sfx, T_CLOSE - 1.6, riser(3.8), 0.09)
-add(sfx, T_CLOSE + 2.2, boom(), 0.32)
+add(sfx, T_CLOSE - 1.6, riser(3.8), 0.08)
+add(sfx, T_CLOSE + 2.2, boom(), 0.30)
 for m in (50, 57, 62, 66, 69, 73, 76):
-    add(music, T_CLOSE + 2.2, pad_note(m, 7.5, 3.0) * 1.3)
+    add(music, T_CLOSE + 2.2, pad_note(m, 8.5, 3.0) * 1.3)
 for m, d in ((74, 0), (78, 0.05), (81, 0.1), (85, 0.15), (86, 0.2)):
     add(sfx, T_CLOSE + 3.6 + d, bell(m, 4.0) * 0.05, 1, (m - 80) / 10)
     add(send, T_CLOSE + 3.6 + d, bell(m, 4.0) * 0.07)
@@ -250,8 +263,22 @@ mix *= (fade_in * fade_out)[:, None]
 rms = np.sqrt(np.mean(mix ** 2))
 mix *= 10 ** (-16 / 20) / rms
 ceiling = 10 ** (-1 / 20)
+
+# voice: duck the music about 8 dB while the narrator speaks, with 250 ms ramps
+_, voice = wavfile.read(os.path.join(HERE, 'voice.wav'))
+voice = voice.astype(np.float64)[:N] / 32767
+voice = np.pad(voice, (0, N - len(voice)))
+active = np.zeros(N)
+for line in VO:
+    active[int(line['start'] * SR): int(line['end'] * SR)] = 1
+k = int(0.25 * SR)
+ramp = np.clip(np.convolve(active, np.ones(2 * k) / k, mode='same'), 0, 1)
+mix *= (1 - ramp * (1 - 10 ** (-8 / 20)))[:, None]
+mix += voice[:, None]
+
+ceiling = 10 ** (-1 / 20)
 mix = np.tanh(mix / ceiling) * ceiling
 
-out = sys.argv[1] if len(sys.argv) > 1 else 'soundtrack.wav'
+out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, 'final-mix.wav')
 wavfile.write(out, SR, (mix * 32767).astype(np.int16))
 print(f'wrote {out}: {DURATION:.1f}s, peak {20*np.log10(np.abs(mix).max()):.1f} dBFS')

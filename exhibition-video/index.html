@@ -21,7 +21,7 @@
   html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
   body { font-family: "Open Sans", sans-serif; color: var(--ink); }
   #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
-  .layer { position: absolute; inset: 0; opacity: 0; }
+  .layer { position: absolute; inset: 0; visibility: hidden; }
   .abs { position: absolute; }
   .head { font-family: "Oswald", sans-serif; text-transform: uppercase; }
 
@@ -38,7 +38,6 @@
   #intro-img { position: absolute; left: 0; top: 0; width: 1920px; height: 1920px; }
 
   /* logo reveal */
-  #reveal { background: var(--bg); }
   .lg { left: 0; right: 0; top: 330px; height: 200px; display: flex; justify-content: center; align-items: center; gap: 14px; }
   .lg .mark { width: 200px; height: 200px; }
   .lg .wm-wrap { width: 473px; height: 109px; overflow: hidden; position: relative; top: 8px; }
@@ -46,37 +45,46 @@
   .rv-line { left: 760px; width: 400px; top: 610px; height: 3px; background: var(--gold); transform-origin: center; }
   .rv-sub { left: 0; right: 0; top: 650px; text-align: center; font-size: 34px; letter-spacing: 10px; color: var(--char); font-weight: 500; }
 
-  /* small header logo */
-  .hdr-logo { right: 110px; top: 60px; height: 64px; }
-  .hdr-rule { left: 120px; right: 110px; top: 150px; height: 1px; background: var(--line); }
-
   /* overview */
-  .ov-title { left: 0; right: 0; top: 200px; text-align: center; }
+  .ov-title { left: 0; right: 0; top: 190px; text-align: center; }
   .ov-title .k { font-size: 26px; letter-spacing: 8px; color: var(--char); text-transform: uppercase; font-weight: 600; }
   .ov-title .h { font-size: 92px; font-weight: 600; color: var(--gold); margin-top: 10px; letter-spacing: 1px; }
-  .ov-node { width: 300px; text-align: center; top: 470px; }
+  .ov-node { width: 300px; text-align: center; top: 450px; }
   .ov-node .ring { width: 160px; height: 160px; margin: 0 auto; border-radius: 50%; background: var(--gold);
-    display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(240,176,40,0.28); }
+    display: flex; align-items: center; justify-content: center; }
   .ov-node .ring svg { width: 78px; height: 78px; }
   .ov-node .w { font-size: 44px; font-weight: 600; margin-top: 30px; color: var(--char); letter-spacing: 1px; }
   .ov-node .t { font-size: 23px; color: var(--muted); margin-top: 8px; line-height: 1.35; padding: 0 10px; }
 
-  /* theme scenes */
-  .num { left: 120px; top: 80px; font-family: "Oswald", sans-serif; font-size: 30px; letter-spacing: 4px; color: var(--muted); }
+  /* header shared by the practice scenes */
+  .num { left: 120px; top: 62px; font-family: "Oswald", sans-serif; font-size: 30px; letter-spacing: 4px; color: var(--muted); }
   .num b { color: var(--gold); font-weight: 600; }
+  .hdr-logo { right: 110px; top: 48px; height: 64px; }
+  #rail { left: 520px; width: 880px; top: 58px; height: 60px; }
+  #rail .track { position: absolute; left: 0; right: 0; top: 11px; height: 2px; background: var(--line); }
+  #rail .fill { position: absolute; left: 0; top: 11px; height: 2px; background: var(--gold); }
+  #rail .rn { position: absolute; top: 0; width: 200px; margin-left: -100px; text-align: center; }
+  #rail .rn .d { width: 24px; height: 24px; border-radius: 50%; margin: 0 auto; background: var(--bg); border: 2px solid var(--line); }
+  #rail .rn .l { font-family: "Oswald", sans-serif; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  #rail .rn.on .d { border-color: var(--gold); background: var(--gold); }
+  #rail .rn.on .l { color: var(--gold-deep); font-weight: 600; }
+  #rail .rn.done .d { border-color: var(--gold); }
+  .hdr-rule { left: 120px; right: 110px; top: 140px; height: 1px; background: var(--line); }
+
+  /* practice scenes */
   .pillar { left: 114px; top: 190px; font-size: 168px; font-weight: 700; color: var(--gold); line-height: 1; letter-spacing: 2px; }
   .theme { left: 120px; top: 395px; width: 780px; font-size: 48px; font-weight: 700; line-height: 1.18; color: var(--char); }
   .rule { left: 120px; top: 540px; height: 5px; width: 160px; background: var(--gold); transform-origin: left center; }
-  .big-icon { left: 120px; top: 610px; width: 260px; height: 260px; border-radius: 50%; background: var(--gold);
-    display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 40px rgba(240,176,40,0.3); }
-  .big-icon svg { width: 130px; height: 130px; }
+  .big-icon { left: 120px; top: 610px; width: 250px; height: 250px; border-radius: 50%; background: var(--gold);
+    display: flex; align-items: center; justify-content: center; }
+  .big-icon svg { width: 125px; height: 125px; }
 
-  .quote { left: 120px; top: 600px; width: 790px; padding: 46px 48px 36px 48px; background: var(--panel); border-radius: 6px; }
+  .quote { left: 120px; top: 585px; width: 790px; padding: 46px 48px 30px 48px; background: var(--panel); border-radius: 6px; }
   .quote .qm { position: absolute; left: 30px; top: -38px; font-family: Georgia, serif; font-size: 150px; line-height: 1; color: var(--gold); font-weight: 700; }
   .quote .q { font-size: 32px; line-height: 1.38; font-weight: 700; color: var(--ink); }
-  .quote .who { margin-top: 24px; font-size: 22px; color: var(--ink); font-weight: 700; font-style: italic; }
+  .quote .who { margin-top: 22px; font-size: 22px; color: var(--ink); font-weight: 700; font-style: italic; }
   .quote .org { margin-top: 4px; font-size: 20px; color: var(--char); }
-  .quote .foot { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+  .quote .foot { margin-top: 12px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
   .quote .tag { display: inline-block; font-family: "Oswald", sans-serif; font-size: 20px; letter-spacing: 3px; text-transform: uppercase;
     color: var(--gold-deep); font-weight: 600; }
   .quote .client { max-height: 70px; max-width: 160px; }
@@ -89,25 +97,30 @@
   .dot { left: 990px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: 3px solid var(--gold); }
   .dot::after { content: ""; position: absolute; left: 7px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
 
-  /* progress rail */
-  #rail { left: 120px; right: 120px; bottom: 50px; height: 60px; }
-  #rail .track { position: absolute; left: 0; right: 0; top: 14px; height: 2px; background: var(--line); }
-  #rail .fill { position: absolute; left: 0; top: 14px; height: 2px; background: var(--gold); }
-  #rail .rn { position: absolute; top: 0; width: 200px; margin-left: -100px; text-align: center; }
-  #rail .rn .d { width: 30px; height: 30px; border-radius: 50%; margin: 0 auto; background: var(--bg); border: 2px solid var(--line); }
-  #rail .rn .l { font-family: "Oswald", sans-serif; font-size: 20px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
-  #rail .rn.on .d { border-color: var(--gold); background: var(--gold); }
-  #rail .rn.on .l { color: var(--gold-deep); font-weight: 600; }
-  #rail .rn.done .d { border-color: var(--gold); }
+  /* captions */
+  #cap { position: absolute; left: 0; right: 0; bottom: 38px; display: flex; justify-content: center; z-index: 5; }
+  #cap span { max-width: 1500px; padding: 12px 30px; border-radius: 8px; background: rgba(46,46,49,0.86);
+    color: #fff; font-size: 32px; font-weight: 600; line-height: 1.3; text-align: center; }
 
   /* closing */
-  .cl-row { left: 0; right: 0; top: 190px; display: flex; justify-content: center; }
+  .cl-row { left: 0; right: 0; top: 150px; display: flex; justify-content: center; }
   .cl-w { font-size: 46px; font-weight: 600; color: var(--char); padding: 0 34px; position: relative; letter-spacing: 2px; }
   .cl-w + .cl-w::before { content: ""; position: absolute; left: -7px; top: 30px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
-  .cl-tag { left: 0; right: 0; top: 330px; text-align: center; font-size: 120px; font-weight: 700; letter-spacing: 2px; color: var(--ink); }
+  .cl-tag { left: 0; right: 0; top: 280px; text-align: center; font-size: 120px; font-weight: 700; letter-spacing: 2px; color: var(--ink); }
   .cl-tag span { color: var(--gold); }
-  .cl-logo { left: 0; right: 0; top: 560px; height: 200px; display: flex; justify-content: center; }
-  .cl-logo img { height: 160px; }
+  .cl-logo { left: 0; right: 0; top: 500px; display: flex; justify-content: center; }
+  .cl-logo img { height: 150px; }
+  .cl-cta { left: 0; right: 0; top: 700px; display: flex; justify-content: center; align-items: center; gap: 26px; }
+  .cl-cta .talk { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 34px; letter-spacing: 4px; color: var(--ink); font-weight: 600;
+    padding: 12px 28px; background: var(--gold); border-radius: 6px; }
+  .cl-cta .ig { display: flex; align-items: center; gap: 12px; font-size: 32px; font-weight: 600; color: var(--char); }
+  .cl-cta .ig svg { width: 40px; height: 40px; }
+
+  /* wipe transition */
+  #wipe { position: absolute; top: 0; left: 0; width: 2472px; height: 1080px; z-index: 10; display: flex; }
+  #wipe .p { flex: 1; background: var(--bg); }
+  #wipe .e1 { width: 10px; background: #f6cf78; }
+  #wipe .e2 { width: 26px; background: var(--gold); }
 </style>
 </head>
 <body>
@@ -119,8 +132,12 @@
     <g id="sparks"></g>
   </svg>
   <div id="scenes"></div>
+  <div id="cap"><span></span></div>
+  <div id="wipe"><div class="e2"></div><div class="e1"></div><div class="p"></div><div class="e1"></div><div class="e2"></div></div>
 </div>
 
+<script src="timeline.js"></script>
+<script src="vo-timing.js"></script>
 <script>
 // ---------- content ----------
 const icon = (body, stroke) => `<svg viewBox="0 0 64 64" fill="none" stroke="${stroke}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
@@ -131,6 +148,7 @@ const ICON_BODY = {
   capability: '<rect x="6" y="10" width="52" height="34" rx="3"/><path d="M22 54h20M32 44v10"/><path d="M20 24l12-6 12 6-12 6z"/><path d="M25 27v5c4 3 10 3 14 0v-5"/>',
   resilience: '<path d="M32 6l22 8v16c0 14-9 23-22 28C19 53 10 44 10 30V14z"/><path d="M22 32l7 7 13-14"/>'
 };
+const IG_ICON = '<svg viewBox="0 0 64 64" fill="none" stroke="#f0b028" stroke-width="5"><rect x="6" y="6" width="52" height="52" rx="15"/><circle cx="32" cy="32" r="12"/><circle cx="48" cy="16" r="2.5" fill="#f0b028" stroke="none"/></svg>';
 
 const THEMES = [
   { key: 'structure', pillar: 'Structure', theme: 'Organizational Transformation',
@@ -150,21 +168,32 @@ const THEMES = [
   { key: 'resilience', pillar: 'Resilience', theme: 'Emergency Preparedness & Resilience',
     services: ['Emergency response frameworks', 'Simulations', 'Business continuity', 'Organizational readiness'] }
 ];
+const INSTAGRAM = '@miracle.lebanon';
 
-// ---------- timeline (seconds) ----------
-const T_INTRO = [0, 7.5];
-const T_REVEAL = [6.8, 12];
-const T_OVER = [11.3, 21];
-const sceneTimes = [];
-let cursor = 21;
-for (const th of THEMES) {
-  const len = th.quote ? 13 : 10;
-  sceneTimes.push([cursor, cursor + len]);
-  cursor += len;
-}
-const T_CLOSE = [cursor, cursor + 10];
-window.DURATION = T_CLOSE[1];
-const FADE = 0.7;
+// ---------- timeline ----------
+const TL = window.TIMELINE;
+const VO = window.VO || [];
+const VO_OVER = VO[2] || { marks: {} };
+const VO_THEMES = VO.slice(3, 8);
+window.DURATION = TL.close[1];
+const BOUNDARIES = [TL.reveal[0], TL.overview[0], ...TL.themes.map(s => s[0]), TL.close[0]];
+const WIPE = 0.9;
+
+// captions: group spoken phrases into short cues
+const CUES = [];
+VO.forEach(line => {
+  if (!line.captions) return;
+  let cur = null;
+  line.segments.forEach(seg => {
+    if (cur && (cur.text.length + seg.text.length > 58 || /[.:]$/.test(cur.text))) { CUES.push(cur); cur = null; }
+    if (!cur) cur = { t: seg.t, text: seg.text };
+    else cur.text += ' ' + seg.text;
+  });
+  if (cur) CUES.push(cur);
+  const last = CUES[CUES.length - 1];
+  last.lineEnd = line.end + 0.4;
+});
+CUES.forEach((c, i) => { c.end = c.lineEnd || CUES[i + 1].t; });
 
 // ---------- helpers ----------
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -172,12 +201,7 @@ const easeOut = x => 1 - Math.pow(1 - x, 3);
 const easeInOut = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 const easeBack = x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
 const prog = (t, start, dur, ease = easeOut) => ease(clamp((t - start) / dur));
-function sceneAlpha(t, [s, e], last = false) {
-  if (t < s || t > e) return 0;
-  const a = s === 0 ? 1 : clamp((t - s) / FADE);
-  const b = last ? 1 : clamp((e - t) / FADE);
-  return Math.min(a, b);
-}
+const within = (t, [s, e]) => t >= s && t < e;
 function el(tag, cls, html, parent) {
   const n = document.createElement(tag);
   if (cls) n.className = cls;
@@ -189,10 +213,7 @@ function rise(node, p, dist = 40) {
   node.style.opacity = p;
   node.style.transform = `translateY(${(1 - p) * dist}px)`;
 }
-function slideX(node, p, dist = 80) {
-  node.style.opacity = p;
-  node.style.transform = `translateX(${(1 - p) * dist}px)`;
-}
+function show(layer, on) { layer.style.visibility = on ? 'visible' : 'hidden'; }
 const images = [];
 function img(src, cls, parent) {
   const n = el('img', cls, null, parent);
@@ -204,14 +225,11 @@ function img(src, cls, parent) {
 // ---------- build ----------
 const root = document.getElementById('scenes');
 
-// intro: key visual
 const intro = el('div', 'layer', null, root);
 const introImg = img('assets/key-visual.jpg', null, intro);
 introImg.id = 'intro-img';
 
-// logo reveal
 const reveal = el('div', 'layer', null, root);
-reveal.id = 'reveal';
 const lg = el('div', 'abs lg', null, reveal);
 const lgMark = img('assets/mira-cle-mark.png', 'mark', lg);
 const wmWrap = el('div', 'wm-wrap', null, lg);
@@ -219,18 +237,16 @@ const lgWord = img('assets/mira-cle-wordmark.png', 'wm', wmWrap);
 const rvLine = el('div', 'abs rv-line', null, reveal);
 const rvSub = el('div', 'abs rv-sub head', 'The intelligence behind progress', reveal);
 
-// overview
 const over = el('div', 'layer', null, root);
 const ovTitle = el('div', 'abs ov-title', '<div class="k">What we deliver</div><div class="h head">Five areas of practice</div>', over);
 const ovLine = el('div', 'abs', null, over);
-Object.assign(ovLine.style, { left: '310px', top: '548px', height: '3px', width: '1300px', background: 'var(--gold)', transformOrigin: 'left center' });
+Object.assign(ovLine.style, { left: '310px', top: '528px', height: '3px', width: '1300px', background: 'var(--gold)', transformOrigin: 'left center' });
 const ovNodes = THEMES.map((th, i) => {
   const n = el('div', 'abs ov-node', `<div class="ring">${icon(ICON_BODY[th.key], '#ffffff')}</div><div class="w head">${th.pillar}</div><div class="t">${th.theme}</div>`, over);
   n.style.left = (160 + i * 325) + 'px';
   return n;
 });
 
-// theme scenes
 const themeScenes = THEMES.map((th, idx) => {
   const L = el('div', 'layer', null, root);
   const num = el('div', 'abs num', `<b>0${idx + 1}</b> / 05`, L);
@@ -258,9 +274,9 @@ const themeScenes = THEMES.map((th, idx) => {
   return { L, num, pillar, theme, rule, side, spine, cards, hasQuote: !!th.quote };
 });
 
-// shared chrome for theme scenes: header logo + progress rail
 const chrome = el('div', 'layer', null, root);
 img('assets/mira-cle-logo.png', 'abs hdr-logo', chrome);
+el('div', 'abs hdr-rule', null, chrome);
 const railBox = el('div', 'abs', null, chrome);
 railBox.id = 'rail';
 el('div', 'track', null, railBox);
@@ -271,15 +287,20 @@ const railNodes = THEMES.map((th, i) => {
   return n;
 });
 
-// closing
 const close = el('div', 'layer', null, root);
 const clRow = el('div', 'abs cl-row', null, close);
 const clWords = THEMES.map(th => el('div', 'cl-w head', th.pillar, clRow));
 const clTag = el('div', 'abs cl-tag head', 'Transform. <span>Evolve.</span> Lead.', close);
 const clLogo = el('div', 'abs cl-logo', null, close);
 img('assets/mira-cle-logo.png', null, clLogo);
+const clCta = el('div', 'abs cl-cta', `<div class="talk">Talk to our team</div><div class="ig">${IG_ICON}<span>${INSTAGRAM}</span></div>`, close);
 
-// background waves + sparks
+const cap = document.querySelector('#cap span');
+const capBox = document.getElementById('cap');
+const wipe = document.getElementById('wipe');
+
+// background waves (kept out of the practice scenes so they never cross content)
+const glow = document.getElementById('glow');
 const wave1 = document.getElementById('wave1');
 const wave2 = document.getElementById('wave2');
 const sparks = document.getElementById('sparks');
@@ -300,107 +321,124 @@ function wavePath(t, amp, base, k, speed) {
 
 // ---------- render ----------
 window.seek = function (t) {
-  // background: lines sit low and dim while content panels are on screen
-  const inThemes = t > sceneTimes[0][0] && t < sceneTimes[4][1];
-  document.getElementById('glow').style.opacity = inThemes ? 0.5 : 1;
-  const base = inThemes ? 960 : 900;
-  wave1.setAttribute('d', wavePath(t, 45, base, 0.0042, 0.5));
-  wave2.setAttribute('d', wavePath(t, 30, base + 50, 0.006, -0.35));
-  sparkNodes.forEach((c, i) => {
-    const x = ((i * 233 + t * 70) % 2100) - 90;
-    c.setAttribute('cx', x);
-    c.setAttribute('cy', waveY(x, t, 45, base, 0.0042, 0.5));
-    c.setAttribute('opacity', 0.55 + 0.35 * Math.sin(t * 2 + i));
-  });
+  // wipe: a background-coloured panel with a gold leading edge sweeps across;
+  // scenes cut underneath it, so two scenes are never on screen together
+  const b = BOUNDARIES.find(x => Math.abs(t - x) < WIPE / 2);
+  if (b !== undefined) {
+    const p = easeInOut(clamp((t - b + WIPE / 2) / WIPE));
+    wipe.style.visibility = 'visible';
+    wipe.style.transform = `translateX(${-2472 + p * 4392}px)`;
+  } else wipe.style.visibility = 'hidden';
 
-  // intro: slow pan from headline down to the meeting
-  const ia = sceneAlpha(t, T_INTRO);
-  intro.style.opacity = ia;
-  if (ia > 0) {
-    const p = prog(t, 0.3, 7.2, easeInOut);
+  const inThemes = t >= TL.themes[0][0] && t < TL.close[0];
+  glow.style.visibility = inThemes || t < TL.reveal[0] ? 'hidden' : 'visible';
+  if (!inThemes) {
+    wave1.setAttribute('d', wavePath(t, 45, 890, 0.0042, 0.5));
+    wave2.setAttribute('d', wavePath(t, 30, 940, 0.006, -0.35));
+    sparkNodes.forEach((c, i) => {
+      const x = ((i * 233 + t * 70) % 2100) - 90;
+      c.setAttribute('cx', x);
+      c.setAttribute('cy', waveY(x, t, 45, 890, 0.0042, 0.5));
+      c.setAttribute('opacity', 0.55 + 0.35 * Math.sin(t * 2 + i));
+    });
+  }
+
+  // intro: slow pan from the headline down to the meeting
+  show(intro, within(t, TL.intro));
+  if (within(t, TL.intro)) {
+    const p = prog(t, 0.3, TL.intro[1] - 0.3, easeInOut);
     introImg.style.transformOrigin = '50% 0%';
     introImg.style.transform = `translateY(${-40 - 760 * p}px) scale(${1 + 0.05 * p})`;
   }
 
-  // logo reveal: mark pops and turns in, wordmark wipes out from behind it
-  const ra = sceneAlpha(t, T_REVEAL);
-  reveal.style.opacity = ra;
-  if (ra > 0) {
-    const s = T_REVEAL[0];
+  // logo reveal
+  show(reveal, within(t, TL.reveal));
+  if (within(t, TL.reveal)) {
+    const s = TL.reveal[0];
     const mp = prog(t, s + 0.4, 1.0, easeBack);
     lgMark.style.opacity = clamp((t - s - 0.4) / 0.4);
     lgMark.style.transform = `scale(${0.3 + 0.7 * mp}) rotate(${(1 - mp) * -120}deg)`;
-    const wp = prog(t, s + 1.3, 1.0, easeInOut);
-    lgWord.style.transform = `translateX(${(1 - wp) * -473}px)`;
+    lgWord.style.transform = `translateX(${(1 - prog(t, s + 1.3, 1.0, easeInOut)) * -473}px)`;
     rvLine.style.transform = `scaleX(${prog(t, s + 2.1, 0.9)})`;
     rise(rvSub, prog(t, s + 2.4, 0.9), 24);
   }
 
-  // overview
-  const oa = sceneAlpha(t, T_OVER);
-  over.style.opacity = oa;
-  if (oa > 0) {
-    const s = T_OVER[0];
-    rise(ovTitle, prog(t, s + 0.3, 1));
-    ovLine.style.transform = `scaleX(${prog(t, s + 0.9, 2.6, easeInOut)})`;
+  // overview: each pillar lands as the narrator names it
+  show(over, within(t, TL.overview));
+  if (within(t, TL.overview)) {
+    const s = TL.overview[0];
+    rise(ovTitle, prog(t, s + 0.5, 1));
+    ovLine.style.transform = `scaleX(${prog(t, s + 1.0, 2.0, easeInOut)})`;
     ovNodes.forEach((n, i) => {
-      const p = prog(t, s + 1.3 + i * 0.55, 0.9, easeBack);
-      n.style.opacity = clamp((t - s - 1.3 - i * 0.55) / 0.4);
+      const at = VO_OVER.marks[i] ?? s + 1.3 + i * 0.55;
+      const p = prog(t, at - 0.1, 0.8, easeBack);
+      n.style.opacity = clamp((t - at + 0.1) / 0.3);
       n.style.transform = `translateY(${(1 - p) * 30}px) scale(${0.85 + 0.15 * p})`;
     });
   }
 
-  // theme scenes
-  let chromeAlpha = 0, activeIdx = -1, activeP = 0;
+  // practice scenes: each service card appears, and is highlighted, as it is spoken
+  let activeIdx = -1, activeP = 0;
   themeScenes.forEach((S, i) => {
-    const span = sceneTimes[i];
-    const a = sceneAlpha(t, span);
-    S.L.style.opacity = a;
-    if (a <= 0) return;
-    activeIdx = i; activeP = clamp((t - span[0]) / (span[1] - span[0]));
+    const span = TL.themes[i];
+    const on = within(t, span);
+    show(S.L, on);
+    if (!on) return;
+    activeIdx = i;
+    activeP = clamp((t - span[0]) / (span[1] - span[0]));
     const s = span[0];
-    rise(S.num, prog(t, s + 0.2, 0.8), 20);
-    const pp = prog(t, s + 0.3, 1.0);
+    const marks = (VO_THEMES[i] || {}).marks || {};
+    rise(S.num, prog(t, s + 0.3, 0.8), 20);
+    const pp = prog(t, s + 0.4, 1.0);
     S.pillar.style.opacity = pp;
     S.pillar.style.transform = `translateX(${(1 - pp) * -60}px)`;
     rise(S.theme, prog(t, s + 0.8, 0.9));
-    S.rule.style.transform = `scaleX(${prog(t, s + 1.2, 0.9)})`;
-    S.spine.style.transform = `scaleY(${prog(t, s + 1.6, 2.4, easeInOut)})`;
+    S.rule.style.transform = `scaleX(${prog(t, s + 1.1, 0.9)})`;
+    const at = S.cards.map((_, k) => marks[k] ?? s + 1.7 + k * 0.6);
+    S.spine.style.transform = `scaleY(${prog(t, at[0], at[3] - at[0] + 0.4, easeInOut)})`;
     S.cards.forEach(({ c, d }, k) => {
-      const cp = prog(t, s + 1.7 + k * 0.6, 0.8);
-      slideX(c, cp);
+      const cp = prog(t, at[k] - 0.15, 0.6);
+      const next = k < 3 ? at[k + 1] : at[3] + 1.8;
+      const hl = prog(t, at[k] - 0.15, 0.3) * (1 - prog(t, next - 0.15, 0.3));
+      c.style.opacity = cp;
+      c.style.transform = `translateX(${(1 - cp) * 80 - hl * 14}px)`;
+      c.style.background = `rgb(${241 + 14 * hl}, ${240 + 15 * hl}, ${237 + 18 * hl})`;
+      c.style.boxShadow = `0 10px 30px rgba(240,176,40,${0.28 * hl})`;
       d.style.opacity = cp;
-      d.style.transform = `scale(${0.4 + 0.6 * cp})`;
+      d.style.transform = `scale(${0.4 + 0.6 * cp + 0.25 * hl})`;
     });
-    if (S.hasQuote) rise(S.side, prog(t, s + 4.6, 1.0), 50);
+    if (S.hasQuote) rise(S.side, prog(t, (marks.q ?? s + 4.6) - 0.3, 0.9), 50);
     else {
-      const ip = prog(t, s + 3.6, 1.0, easeBack);
-      S.side.style.opacity = clamp((t - s - 3.6) / 0.4);
+      const ip = prog(t, at[3] + 0.8, 1.0, easeBack);
+      S.side.style.opacity = clamp((t - at[3] - 0.8) / 0.3);
       S.side.style.transform = `scale(${0.6 + 0.4 * ip})`;
     }
   });
-  if (t >= sceneTimes[0][0] && t <= sceneTimes[4][1]) {
-    chromeAlpha = Math.min(clamp((t - sceneTimes[0][0]) / FADE), clamp((sceneTimes[4][1] - t) / FADE));
-  }
-  chrome.style.opacity = chromeAlpha;
+  show(chrome, activeIdx >= 0);
   if (activeIdx >= 0) {
-    railNodes.forEach((n, i) => {
-      n.className = 'rn' + (i === activeIdx ? ' on' : i < activeIdx ? ' done' : '');
-    });
-    railFill.style.width = (Math.min(4, activeIdx + Math.min(1, activeP * 1.15)) * 25) + '%';
+    railNodes.forEach((n, i) => { n.className = 'rn' + (i === activeIdx ? ' on' : i < activeIdx ? ' done' : ''); });
+    railFill.style.width = (Math.min(4, activeIdx + activeP) * 25) + '%';
   }
 
-  // closing (holds on the logo to the last frame)
-  const ca = sceneAlpha(t, T_CLOSE, true);
-  close.style.opacity = ca;
-  if (ca > 0) {
-    const s = T_CLOSE[0];
-    clWords.forEach((w, i) => rise(w, prog(t, s + 0.3 + i * 0.3, 0.8), 30));
-    const tp = prog(t, s + 2.2, 1.2);
+  // closing: holds on the logo and call to action
+  show(close, t >= TL.close[0]);
+  if (t >= TL.close[0]) {
+    const s = TL.close[0];
+    clWords.forEach((w, i) => rise(w, prog(t, s + 0.5 + i * 0.25, 0.8), 30));
+    const tp = prog(t, s + 2.2, 1.0);
     clTag.style.opacity = tp;
     clTag.style.transform = `scale(${0.94 + 0.06 * tp})`;
     rise(clLogo, prog(t, s + 3.6, 1.0), 30);
+    rise(clCta, prog(t, s + 6.2, 0.9), 30);
   }
+
+  // captions
+  const cue = CUES.find(c => t >= c.t && t < c.end);
+  if (cue) {
+    cap.textContent = cue.text;
+    capBox.style.opacity = Math.min(clamp((t - cue.t) / 0.15), clamp((cue.end - t) / 0.15));
+    capBox.style.visibility = 'visible';
+  } else capBox.style.visibility = 'hidden';
 };
 
 window.ready = Promise.all([
