@@ -17,7 +17,7 @@ window.VO = [
  },
  {
   "start": 7.7,
-  "end": 10.486,
+  "end": 10.434,
   "captions": false,
   "segments": [
    {
@@ -25,7 +25,7 @@ window.VO = [
     "text": "Mira-Clé."
    },
    {
-    "t": 8.68,
+    "t": 8.62,
     "text": "The intelligence behind progress."
    }
   ],
@@ -278,7 +278,7 @@ window.VO = [
  },
  {
   "start": 85.6,
-  "end": 86.383,
+  "end": 86.365,
   "captions": false,
   "segments": [
    {
@@ -290,12 +290,16 @@ window.VO = [
  },
  {
   "start": 87.4,
-  "end": 88.676,
+  "end": 90.186,
   "captions": false,
   "segments": [
    {
     "t": 87.4,
-    "text": "Talk to our team today."
+    "text": "Talk to our team,"
+   },
+   {
+    "t": 88.53,
+    "text": "or visit Mira-Clé dot com."
    }
   ],
   "marks": {}

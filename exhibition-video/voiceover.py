@@ -10,6 +10,7 @@ Model files (not committed, ~350 MB) come from
 https://github.com/thewh1teagle/kokoro-onnx/releases/tag/model-files-v1.0
 
 Usage: python3 voiceover.py MODEL_DIR [voice]
+Then run score.py to build final-mix.wav.
 """
 import json
 import os
@@ -35,8 +36,10 @@ def load_timeline():
 TL = load_timeline()
 TH = TL['themes']
 
-# Brand name spelt phonetically for the voice: "MEE-ra CLAY".
+# Brand name: written as a placeholder, then swapped for exact phonemes so the
+# voice says "MEE-ra CLeh" (/ˈmiːrə klɛ/).
 BRAND = 'Meera Clay'
+BRAND_PHONEMES = ('mˈɪɹə klˈeɪ', 'mˈiːɹə klˈɛ')
 
 # {n} marks the phrase that reveals card/node n on screen, {q} the testimonial.
 # (start, latest end, text, show captions)
@@ -63,7 +66,7 @@ LINES = [
      '{3}and organizational readiness, so a crisis meets a prepared team.', True),
     (TL['close'][0] + 2.3, TL['close'][0] + 4.3, 'Transform. Evolve. Lead.', False),
     (TL['close'][0] + 4.6, TL['close'][0] + 6.0, f'{BRAND}.', False),
-    (TL['close'][0] + 6.4, TL['close'][1] - 1.5, 'Talk to our team today.', False),
+    (TL['close'][0] + 6.4, TL['close'][1] - 1.0, f'Talk to our team, or visit {BRAND} dot com.', False),
 ]
 
 # How captions should spell what the voice is told to say.
@@ -113,7 +116,8 @@ for start, end, marked, captions in LINES:
     text = ' '.join(s['text'] for s in segs)
     speed = SPEED
     for _ in range(6):
-        audio, vsr = kokoro.create(text, voice=VOICE, speed=speed, lang='en-us')
+        phonemes = kokoro.tokenizer.phonemize(text, 'en-us').replace(*BRAND_PHONEMES)
+        audio, vsr = kokoro.create(phonemes, voice=VOICE, speed=speed, lang='en-us', is_phonemes=True)
         if start + len(audio) / vsr <= end:
             break
         speed += 0.05  # tighten delivery slightly if the line overruns its scene

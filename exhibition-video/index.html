@@ -110,7 +110,7 @@
   .cl-tag span { color: var(--gold); }
   .cl-logo { left: 0; right: 0; top: 500px; display: flex; justify-content: center; }
   .cl-logo img { height: 150px; }
-  .cl-cta { left: 0; right: 0; top: 700px; display: flex; justify-content: center; align-items: center; gap: 26px; }
+  .cl-cta { left: 0; right: 0; top: 700px; display: flex; justify-content: center; align-items: center; gap: 44px; }
   .cl-cta .talk { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 34px; letter-spacing: 4px; color: var(--ink); font-weight: 600;
     padding: 12px 28px; background: var(--gold); border-radius: 6px; }
   .cl-cta .ig { display: flex; align-items: center; gap: 12px; font-size: 32px; font-weight: 600; color: var(--char); }
@@ -169,6 +169,8 @@ const THEMES = [
     services: ['Emergency response frameworks', 'Simulations', 'Business continuity', 'Organizational readiness'] }
 ];
 const INSTAGRAM = '@miracle.lebanon';
+const WEBSITE = 'mira-cle.com';
+const WEB_ICON = '<svg viewBox="0 0 64 64" fill="none" stroke="#f0b028" stroke-width="4.5"><circle cx="32" cy="32" r="26"/><path d="M6 32h52M32 6c-9 9-9 43 0 52M32 6c9 9 9 43 0 52"/></svg>';
 
 // ---------- timeline ----------
 const TL = window.TIMELINE;
@@ -293,7 +295,7 @@ const clWords = THEMES.map(th => el('div', 'cl-w head', th.pillar, clRow));
 const clTag = el('div', 'abs cl-tag head', 'Transform. <span>Evolve.</span> Lead.', close);
 const clLogo = el('div', 'abs cl-logo', null, close);
 img('assets/mira-cle-logo.png', null, clLogo);
-const clCta = el('div', 'abs cl-cta', `<div class="talk">Talk to our team</div><div class="ig">${IG_ICON}<span>${INSTAGRAM}</span></div>`, close);
+const clCta = el('div', 'abs cl-cta', `<div class="talk">Talk to our team</div><div class="ig">${WEB_ICON}<span>${WEBSITE}</span></div><div class="ig">${IG_ICON}<span>${INSTAGRAM}</span></div>`, close);
 
 const cap = document.querySelector('#cap span');
 const capBox = document.getElementById('cap');
