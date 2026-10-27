@@ -27,8 +27,13 @@ const FPS = 30;
     return;
   }
 
+  // soundtrack.wav comes from score.py; it is muxed in when present
+  const wav = path.join(__dirname, 'soundtrack.wav');
+  const audio = require('fs').existsSync(wav)
+    ? ['-i', wav, '-map', '0:v', '-map', '1:a', '-c:a', 'aac', '-b:a', '192k']
+    : [];
   const ff = spawn('ffmpeg', [
-    '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
+    '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', ...audio,
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p',
     '-movflags', '+faststart', out
   ], { stdio: ['pipe', 'inherit', 'inherit'] });
