@@ -27,9 +27,10 @@ const FPS = 30;
     return;
   }
 
-  // soundtrack.wav comes from score.py; it is muxed in when present
-  const wav = path.join(__dirname, 'soundtrack.wav');
-  const audio = require('fs').existsSync(wav)
+  // final-mix.wav (voiceover.py) or soundtrack.wav (score.py) is muxed in when present
+  const fs = require('fs');
+  const wav = ['final-mix.wav', 'soundtrack.wav'].map(f => path.join(__dirname, f)).find(f => fs.existsSync(f));
+  const audio = wav
     ? ['-i', wav, '-map', '0:v', '-map', '1:a', '-c:a', 'aac', '-b:a', '192k']
     : [];
   const ff = spawn('ffmpeg', [
