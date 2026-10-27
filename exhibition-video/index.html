@@ -4,112 +4,118 @@
 <meta charset="utf-8">
 <title>Mira-Clé Exhibition Video</title>
 <style>
+  @font-face { font-family: "Oswald"; src: url("assets/fonts/Oswald.woff2") format("woff2"); font-weight: 200 700; }
+  @font-face { font-family: "Open Sans"; src: url("assets/fonts/OpenSans.woff2") format("woff2"); font-weight: 300 800; }
+  /* brand colours sampled from the Mira-Clé logo */
   :root {
-    --bg: #111317;
-    --panel: #1b1e24;
-    --line: #2a2e36;
-    --amber: #f5b21b;
-    --amber-soft: rgba(245, 178, 27, 0.18);
-    --white: #f4f2ee;
-    --muted: #a7abb3;
+    --bg: #fbfaf7;
+    --panel: #f1f0ed;
+    --line: #e2e0db;
+    --gold: #f0b028;
+    --gold-deep: #d99a14;
+    --char: #58585c;
+    --ink: #2e2e31;
+    --muted: #8b8b90;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
-  body { font-family: "Inter", sans-serif; color: var(--white); }
+  body { font-family: "Open Sans", sans-serif; color: var(--ink); }
   #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
   .layer { position: absolute; inset: 0; opacity: 0; }
   .abs { position: absolute; }
-  .display { font-family: "Inter Display", "Inter", sans-serif; }
+  .head { font-family: "Oswald", sans-serif; text-transform: uppercase; }
 
-  /* background texture */
   #grid {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      linear-gradient(rgba(88,88,92,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(88,88,92,0.05) 1px, transparent 1px);
     background-size: 80px 80px;
   }
   #glow { position: absolute; inset: 0; }
 
   /* intro */
   #intro-img { position: absolute; left: 0; top: 0; width: 1920px; height: 1920px; }
-  #intro-shade { position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(17,19,23,0) 55%, rgba(17,19,23,0.92) 100%); }
-  #intro-brand { left: 120px; bottom: 90px; }
-  #intro-brand .name { font-size: 64px; font-weight: 700; letter-spacing: 1px; }
-  #intro-brand .sub { font-size: 26px; color: var(--amber); letter-spacing: 6px; text-transform: uppercase; margin-top: 8px; }
+
+  /* logo reveal */
+  #reveal { background: var(--bg); }
+  .lg { left: 0; right: 0; top: 330px; height: 200px; display: flex; justify-content: center; align-items: center; gap: 14px; }
+  .lg .mark { width: 200px; height: 200px; }
+  .lg .wm-wrap { width: 473px; height: 109px; overflow: hidden; position: relative; top: 8px; }
+  .lg .wm { width: 473px; height: 109px; display: block; }
+  .rv-line { left: 760px; width: 400px; top: 610px; height: 3px; background: var(--gold); transform-origin: center; }
+  .rv-sub { left: 0; right: 0; top: 650px; text-align: center; font-size: 34px; letter-spacing: 10px; color: var(--char); font-weight: 500; }
+
+  /* small header logo */
+  .hdr-logo { right: 110px; top: 60px; height: 64px; }
+  .hdr-rule { left: 120px; right: 110px; top: 150px; height: 1px; background: var(--line); }
 
   /* overview */
-  .ov-title { left: 0; right: 0; top: 150px; text-align: center; }
-  .ov-title .k { font-size: 26px; letter-spacing: 8px; color: var(--amber); text-transform: uppercase; }
-  .ov-title .h { font-size: 76px; font-weight: 700; margin-top: 18px; }
+  .ov-title { left: 0; right: 0; top: 200px; text-align: center; }
+  .ov-title .k { font-size: 26px; letter-spacing: 8px; color: var(--char); text-transform: uppercase; font-weight: 600; }
+  .ov-title .h { font-size: 92px; font-weight: 600; color: var(--gold); margin-top: 10px; letter-spacing: 1px; }
   .ov-node { width: 300px; text-align: center; top: 470px; }
-  .ov-node .ring { width: 150px; height: 150px; margin: 0 auto; border-radius: 50%;
-    border: 3px solid var(--amber); display: flex; align-items: center; justify-content: center;
-    background: var(--panel); }
-  .ov-node .ring svg { width: 72px; height: 72px; }
-  .ov-node .w { font-size: 40px; font-weight: 700; margin-top: 34px; color: var(--amber); }
-  .ov-node .t { font-size: 24px; color: var(--muted); margin-top: 12px; line-height: 1.35; padding: 0 10px; }
+  .ov-node .ring { width: 160px; height: 160px; margin: 0 auto; border-radius: 50%; background: var(--gold);
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(240,176,40,0.28); }
+  .ov-node .ring svg { width: 78px; height: 78px; }
+  .ov-node .w { font-size: 44px; font-weight: 600; margin-top: 30px; color: var(--char); letter-spacing: 1px; }
+  .ov-node .t { font-size: 23px; color: var(--muted); margin-top: 8px; line-height: 1.35; padding: 0 10px; }
 
   /* theme scenes */
-  .num { left: 120px; top: 120px; font-size: 26px; letter-spacing: 6px; color: var(--muted); }
-  .num b { color: var(--amber); font-weight: 700; }
-  .pillar { left: 112px; top: 175px; font-size: 168px; font-weight: 800; color: var(--amber); letter-spacing: -3px; line-height: 1; }
-  .theme { left: 120px; top: 380px; width: 760px; font-size: 52px; font-weight: 700; line-height: 1.15; }
-  .rule { left: 120px; top: 530px; height: 4px; width: 160px; background: var(--amber); transform-origin: left center; }
-  .big-icon { left: 120px; top: 600px; width: 300px; height: 300px; }
-  .big-icon svg { width: 100%; height: 100%; }
+  .num { left: 120px; top: 80px; font-family: "Oswald", sans-serif; font-size: 30px; letter-spacing: 4px; color: var(--muted); }
+  .num b { color: var(--gold); font-weight: 600; }
+  .pillar { left: 114px; top: 190px; font-size: 168px; font-weight: 700; color: var(--gold); line-height: 1; letter-spacing: 2px; }
+  .theme { left: 120px; top: 395px; width: 780px; font-size: 48px; font-weight: 700; line-height: 1.18; color: var(--char); }
+  .rule { left: 120px; top: 540px; height: 5px; width: 160px; background: var(--gold); transform-origin: left center; }
+  .big-icon { left: 120px; top: 610px; width: 260px; height: 260px; border-radius: 50%; background: var(--gold);
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 14px 40px rgba(240,176,40,0.3); }
+  .big-icon svg { width: 130px; height: 130px; }
 
-  .quote { left: 120px; top: 590px; width: 760px; padding: 40px 44px; background: var(--panel);
-    border-left: 6px solid var(--amber); border-radius: 6px; }
-  .quote .q { font-size: 34px; line-height: 1.35; font-weight: 500; }
-  .quote .q::before { content: "\201C"; color: var(--amber); }
-  .quote .q::after { content: "\201D"; color: var(--amber); }
-  .quote .who { margin-top: 26px; font-size: 22px; color: var(--white); font-weight: 600; }
-  .quote .org { margin-top: 6px; font-size: 20px; color: var(--muted); }
-  .quote .tag { margin-top: 18px; display: inline-block; font-size: 18px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--amber); border: 1px solid var(--amber); padding: 8px 14px; border-radius: 4px; }
+  .quote { left: 120px; top: 600px; width: 790px; padding: 46px 48px 36px 48px; background: var(--panel); border-radius: 6px; }
+  .quote .qm { position: absolute; left: 30px; top: -38px; font-family: Georgia, serif; font-size: 150px; line-height: 1; color: var(--gold); font-weight: 700; }
+  .quote .q { font-size: 32px; line-height: 1.38; font-weight: 700; color: var(--ink); }
+  .quote .who { margin-top: 24px; font-size: 22px; color: var(--ink); font-weight: 700; font-style: italic; }
+  .quote .org { margin-top: 4px; font-size: 20px; color: var(--char); }
+  .quote .foot { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+  .quote .tag { display: inline-block; font-family: "Oswald", sans-serif; font-size: 20px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-deep); font-weight: 600; }
+  .quote .client { max-height: 70px; max-width: 160px; }
 
-  .spine { left: 1004px; width: 3px; background: var(--amber); transform-origin: top center; }
-  .card { left: 1060px; width: 740px; height: 130px; background: var(--panel); border: 1px solid var(--line);
-    border-radius: 8px; display: flex; align-items: center; padding: 0 40px; }
-  .card .i { font-size: 22px; color: var(--amber); font-weight: 700; width: 70px; letter-spacing: 2px; }
-  .card .s { font-size: 34px; font-weight: 600; }
-  .dot { left: 990px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: 3px solid var(--amber); }
-  .dot::after { content: ""; position: absolute; left: 7px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--amber); }
+  .spine { left: 1004px; width: 3px; background: var(--gold); transform-origin: top center; }
+  .card { left: 1060px; width: 740px; height: 130px; background: var(--panel); border-radius: 6px;
+    display: flex; align-items: center; padding: 0 40px; border-left: 5px solid var(--gold); }
+  .card .i { font-family: "Oswald", sans-serif; font-size: 26px; color: var(--gold); font-weight: 600; width: 70px; letter-spacing: 1px; }
+  .card .s { font-size: 34px; font-weight: 700; color: var(--char); }
+  .dot { left: 990px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: 3px solid var(--gold); }
+  .dot::after { content: ""; position: absolute; left: 7px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
 
   /* progress rail */
-  #rail { left: 120px; right: 120px; bottom: 56px; height: 60px; }
+  #rail { left: 120px; right: 120px; bottom: 50px; height: 60px; }
   #rail .track { position: absolute; left: 0; right: 0; top: 14px; height: 2px; background: var(--line); }
-  #rail .fill { position: absolute; left: 0; top: 14px; height: 2px; background: var(--amber); }
+  #rail .fill { position: absolute; left: 0; top: 14px; height: 2px; background: var(--gold); }
   #rail .rn { position: absolute; top: 0; width: 200px; margin-left: -100px; text-align: center; }
   #rail .rn .d { width: 30px; height: 30px; border-radius: 50%; margin: 0 auto; background: var(--bg); border: 2px solid var(--line); }
-  #rail .rn .l { font-size: 17px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
-  #rail .rn.on .d { border-color: var(--amber); background: var(--amber); }
-  #rail .rn.on .l { color: var(--amber); font-weight: 700; }
-  #rail .rn.done .d { border-color: var(--amber); }
+  #rail .rn .l { font-family: "Oswald", sans-serif; font-size: 20px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+  #rail .rn.on .d { border-color: var(--gold); background: var(--gold); }
+  #rail .rn.on .l { color: var(--gold-deep); font-weight: 600; }
+  #rail .rn.done .d { border-color: var(--gold); }
 
   /* closing */
-  .cl-row { left: 0; right: 0; top: 250px; display: flex; justify-content: center; gap: 0; }
-  .cl-w { font-size: 46px; font-weight: 700; color: var(--white); padding: 0 34px; position: relative; }
-  .cl-w + .cl-w::before { content: ""; position: absolute; left: -7px; top: 26px; width: 12px; height: 12px; border-radius: 50%; background: var(--amber); }
-  .cl-tag { left: 0; right: 0; top: 420px; text-align: center; font-size: 110px; font-weight: 800; letter-spacing: -2px; }
-  .cl-tag span { color: var(--amber); }
-  .cl-brand { left: 0; right: 0; top: 620px; text-align: center; }
-  .cl-brand .name { font-size: 60px; font-weight: 700; }
-  .cl-brand .sub { font-size: 24px; color: var(--muted); letter-spacing: 6px; text-transform: uppercase; margin-top: 12px; }
+  .cl-row { left: 0; right: 0; top: 190px; display: flex; justify-content: center; }
+  .cl-w { font-size: 46px; font-weight: 600; color: var(--char); padding: 0 34px; position: relative; letter-spacing: 2px; }
+  .cl-w + .cl-w::before { content: ""; position: absolute; left: -7px; top: 30px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
+  .cl-tag { left: 0; right: 0; top: 330px; text-align: center; font-size: 120px; font-weight: 700; letter-spacing: 2px; color: var(--ink); }
+  .cl-tag span { color: var(--gold); }
+  .cl-logo { left: 0; right: 0; top: 560px; height: 200px; display: flex; justify-content: center; }
+  .cl-logo img { height: 160px; }
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="grid"></div>
   <svg id="glow" width="1920" height="1080" viewBox="0 0 1920 1080">
-    <defs>
-      <filter id="blur"><feGaussianBlur stdDeviation="3"/></filter>
-    </defs>
-    <path id="wave1" fill="none" stroke="#f5b21b" stroke-width="2" opacity="0.35"/>
-    <path id="wave1b" fill="none" stroke="#f5b21b" stroke-width="6" opacity="0.18" filter="url(#blur)"/>
-    <path id="wave2" fill="none" stroke="#f5b21b" stroke-width="1.5" opacity="0.18"/>
+    <path id="wave1" fill="none" stroke="#f0b028" stroke-width="3" opacity="0.5"/>
+    <path id="wave2" fill="none" stroke="#58585c" stroke-width="1.5" opacity="0.14"/>
     <g id="sparks"></g>
   </svg>
   <div id="scenes"></div>
@@ -117,12 +123,13 @@
 
 <script>
 // ---------- content ----------
-const ICONS = {
-  structure: '<svg viewBox="0 0 64 64" fill="none" stroke="#f5b21b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="24" y="6" width="16" height="12" rx="2"/><rect x="6" y="44" width="16" height="12" rx="2"/><rect x="24" y="44" width="16" height="12" rx="2"/><rect x="42" y="44" width="16" height="12" rx="2"/><path d="M32 18v12M14 44v-8h36v8M32 30v14"/></svg>',
-  people: '<svg viewBox="0 0 64 64" fill="none" stroke="#f5b21b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"/><path d="M18 52c0-9 6-15 14-15s14 6 14 15"/><circle cx="12" cy="26" r="5"/><path d="M3 50c0-6 4-10 9-10"/><circle cx="52" cy="26" r="5"/><path d="M61 50c0-6-4-10-9-10"/></svg>',
-  performance: '<svg viewBox="0 0 64 64" fill="none" stroke="#f5b21b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 56h52"/><rect x="10" y="38" width="9" height="18"/><rect x="27" y="28" width="9" height="28"/><rect x="44" y="16" width="9" height="40"/><path d="M8 28l14-10 12 6 20-16M46 8h8v8"/></svg>',
-  capability: '<svg viewBox="0 0 64 64" fill="none" stroke="#f5b21b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="52" height="34" rx="3"/><path d="M22 54h20M32 44v10"/><path d="M20 24l12-6 12 6-12 6z"/><path d="M25 27v5c4 3 10 3 14 0v-5"/></svg>',
-  resilience: '<svg viewBox="0 0 64 64" fill="none" stroke="#f5b21b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6l22 8v16c0 14-9 23-22 28C19 53 10 44 10 30V14z"/><path d="M22 32l7 7 13-14"/></svg>'
+const icon = (body, stroke) => `<svg viewBox="0 0 64 64" fill="none" stroke="${stroke}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
+const ICON_BODY = {
+  structure: '<rect x="24" y="6" width="16" height="12" rx="2"/><rect x="6" y="44" width="16" height="12" rx="2"/><rect x="24" y="44" width="16" height="12" rx="2"/><rect x="42" y="44" width="16" height="12" rx="2"/><path d="M32 18v12M14 44v-8h36v8M32 30v14"/>',
+  people: '<circle cx="32" cy="20" r="8"/><path d="M18 52c0-9 6-15 14-15s14 6 14 15"/><circle cx="12" cy="26" r="5"/><path d="M3 50c0-6 4-10 9-10"/><circle cx="52" cy="26" r="5"/><path d="M61 50c0-6-4-10-9-10"/>',
+  performance: '<path d="M6 56h52"/><rect x="10" y="38" width="9" height="18"/><rect x="27" y="28" width="9" height="28"/><rect x="44" y="16" width="9" height="40"/><path d="M8 28l14-10 12 6 20-16M46 8h8v8"/>',
+  capability: '<rect x="6" y="10" width="52" height="34" rx="3"/><path d="M22 54h20M32 44v10"/><path d="M20 24l12-6 12 6-12 6z"/><path d="M25 27v5c4 3 10 3 14 0v-5"/>',
+  resilience: '<path d="M32 6l22 8v16c0 14-9 23-22 28C19 53 10 44 10 30V14z"/><path d="M22 32l7 7 13-14"/>'
 };
 
 const THEMES = [
@@ -132,23 +139,24 @@ const THEMES = [
     services: ['Executive development', 'Team effectiveness', 'Workforce capability', 'Behavioral change'],
     quote: { q: 'A partner who evolves with the organization, not a one-time provider.',
              who: 'Mr. Sami M. Al Sagh', org: 'HR Director, CreditOne Al Sayer Facilities',
-             tag: 'Partner since 2012' } },
+             tag: 'Partner since 2012', logo: 'assets/client-creditone.png' } },
   { key: 'performance', pillar: 'Performance', theme: 'Systems, Processes & Performance',
     services: ['HR systems', 'Performance frameworks', 'Operational alignment', 'Implementation support'] },
   { key: 'capability', pillar: 'Capability', theme: 'Learning, Assessment & Digital Platforms',
     services: ['Custom learning programs', 'Assessments', 'LMS & e-learning content', 'Talent solutions'],
     quote: { q: 'High-quality delivery, strong governance, and a team that delivers under pressure.',
              who: 'Mr. Mohammad Eleiwat', org: 'Learning & Development Specialist, Aramex International LLC',
-             tag: 'LMS & SCORM content, 2019–2022' } },
+             tag: 'LMS & SCORM content, 2019–2022', logo: 'assets/client-aramex.png' } },
   { key: 'resilience', pillar: 'Resilience', theme: 'Emergency Preparedness & Resilience',
     services: ['Emergency response frameworks', 'Simulations', 'Business continuity', 'Organizational readiness'] }
 ];
 
 // ---------- timeline (seconds) ----------
-const T_INTRO = [0, 9];
-const T_OVER = [9, 19];
+const T_INTRO = [0, 7.5];
+const T_REVEAL = [6.8, 12];
+const T_OVER = [11.3, 21];
 const sceneTimes = [];
-let cursor = 19;
+let cursor = 21;
 for (const th of THEMES) {
   const len = th.quote ? 13 : 10;
   sceneTimes.push([cursor, cursor + len]);
@@ -162,11 +170,12 @@ const FADE = 0.7;
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const easeOut = x => 1 - Math.pow(1 - x, 3);
 const easeInOut = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const easeBack = x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
 const prog = (t, start, dur, ease = easeOut) => ease(clamp((t - start) / dur));
-function sceneAlpha(t, [s, e]) {
+function sceneAlpha(t, [s, e], last = false) {
   if (t < s || t > e) return 0;
   const a = s === 0 ? 1 : clamp((t - s) / FADE);
-  const b = clamp((e - t) / FADE);
+  const b = last ? 1 : clamp((e - t) / FADE);
   return Math.min(a, b);
 }
 function el(tag, cls, html, parent) {
@@ -184,26 +193,39 @@ function slideX(node, p, dist = 80) {
   node.style.opacity = p;
   node.style.transform = `translateX(${(1 - p) * dist}px)`;
 }
+const images = [];
+function img(src, cls, parent) {
+  const n = el('img', cls, null, parent);
+  n.src = src;
+  images.push(n);
+  return n;
+}
 
 // ---------- build ----------
 const root = document.getElementById('scenes');
 
-// intro
+// intro: key visual
 const intro = el('div', 'layer', null, root);
-const introImg = el('img', null, null, intro);
+const introImg = img('assets/key-visual.jpg', null, intro);
 introImg.id = 'intro-img';
-introImg.src = 'assets/key-visual.jpg';
-el('div', null, null, intro).id = 'intro-shade';
-const introBrand = el('div', 'abs', '<div class="name">Mira-Clé</div><div class="sub">Portfolio 2026</div>', intro);
-introBrand.id = 'intro-brand';
+
+// logo reveal
+const reveal = el('div', 'layer', null, root);
+reveal.id = 'reveal';
+const lg = el('div', 'abs lg', null, reveal);
+const lgMark = img('assets/mira-cle-mark.png', 'mark', lg);
+const wmWrap = el('div', 'wm-wrap', null, lg);
+const lgWord = img('assets/mira-cle-wordmark.png', 'wm', wmWrap);
+const rvLine = el('div', 'abs rv-line', null, reveal);
+const rvSub = el('div', 'abs rv-sub head', 'The intelligence behind progress', reveal);
 
 // overview
 const over = el('div', 'layer', null, root);
-const ovTitle = el('div', 'abs ov-title', '<div class="k">What we deliver</div><div class="h display">Five areas of practice</div>', over);
+const ovTitle = el('div', 'abs ov-title', '<div class="k">What we deliver</div><div class="h head">Five areas of practice</div>', over);
 const ovLine = el('div', 'abs', null, over);
-Object.assign(ovLine.style, { left: '310px', top: '544px', height: '3px', width: '1300px', background: 'var(--amber)', transformOrigin: 'left center' });
+Object.assign(ovLine.style, { left: '310px', top: '548px', height: '3px', width: '1300px', background: 'var(--gold)', transformOrigin: 'left center' });
 const ovNodes = THEMES.map((th, i) => {
-  const n = el('div', 'abs ov-node', `<div class="ring">${ICONS[th.key]}</div><div class="w display">${th.pillar}</div><div class="t">${th.theme}</div>`, over);
+  const n = el('div', 'abs ov-node', `<div class="ring">${icon(ICON_BODY[th.key], '#ffffff')}</div><div class="w head">${th.pillar}</div><div class="t">${th.theme}</div>`, over);
   n.style.left = (160 + i * 325) + 'px';
   return n;
 });
@@ -212,16 +234,17 @@ const ovNodes = THEMES.map((th, i) => {
 const themeScenes = THEMES.map((th, idx) => {
   const L = el('div', 'layer', null, root);
   const num = el('div', 'abs num', `<b>0${idx + 1}</b> / 05`, L);
-  const pillar = el('div', 'abs pillar display', th.pillar, L);
-  const theme = el('div', 'abs theme display', th.theme, L);
+  const pillar = el('div', 'abs pillar head', th.pillar, L);
+  const theme = el('div', 'abs theme', th.theme, L);
   const rule = el('div', 'abs rule', null, L);
   let side;
   if (th.quote) {
-    side = el('div', 'abs quote', `<div class="q">${th.quote.q}</div><div class="who">${th.quote.who}</div><div class="org">${th.quote.org}</div><div class="tag">${th.quote.tag}</div>`, L);
+    side = el('div', 'abs quote', `<div class="qm">“</div><div class="q">${th.quote.q}</div><div class="who">${th.quote.who}</div><div class="org">${th.quote.org}</div><div class="foot"><div class="tag">${th.quote.tag}</div></div>`, L);
+    img(th.quote.logo, 'client', side.querySelector('.foot'));
   } else {
-    side = el('div', 'abs big-icon', ICONS[th.key], L);
+    side = el('div', 'abs big-icon', icon(ICON_BODY[th.key], '#ffffff'), L);
   }
-  const top0 = 170, gap = 168;
+  const top0 = 200, gap = 168;
   const spine = el('div', 'abs spine', null, L);
   spine.style.top = (top0 + 65) + 'px';
   spine.style.height = (gap * 3) + 'px';
@@ -235,9 +258,10 @@ const themeScenes = THEMES.map((th, idx) => {
   return { L, num, pillar, theme, rule, side, spine, cards, hasQuote: !!th.quote };
 });
 
-// progress rail (shared over theme scenes)
-const rail = el('div', 'layer', null, root);
-const railBox = el('div', 'abs', null, rail);
+// shared chrome for theme scenes: header logo + progress rail
+const chrome = el('div', 'layer', null, root);
+img('assets/mira-cle-logo.png', 'abs hdr-logo', chrome);
+const railBox = el('div', 'abs', null, chrome);
 railBox.id = 'rail';
 el('div', 'track', null, railBox);
 const railFill = el('div', 'fill', null, railBox);
@@ -250,18 +274,18 @@ const railNodes = THEMES.map((th, i) => {
 // closing
 const close = el('div', 'layer', null, root);
 const clRow = el('div', 'abs cl-row', null, close);
-const clWords = THEMES.map(th => el('div', 'cl-w display', th.pillar, clRow));
-const clTag = el('div', 'abs cl-tag display', 'Transform. Evolve. <span>Lead.</span>', close);
-const clBrand = el('div', 'abs cl-brand', '<div class="name">Mira-Clé</div><div class="sub">The intelligence behind progress</div>', close);
+const clWords = THEMES.map(th => el('div', 'cl-w head', th.pillar, clRow));
+const clTag = el('div', 'abs cl-tag head', 'Transform. <span>Evolve.</span> Lead.', close);
+const clLogo = el('div', 'abs cl-logo', null, close);
+img('assets/mira-cle-logo.png', null, clLogo);
 
 // background waves + sparks
 const wave1 = document.getElementById('wave1');
-const wave1b = document.getElementById('wave1b');
 const wave2 = document.getElementById('wave2');
 const sparks = document.getElementById('sparks');
 const sparkNodes = Array.from({ length: 9 }, () => {
   const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  c.setAttribute('r', 5); c.setAttribute('fill', '#f5b21b');
+  c.setAttribute('r', 5); c.setAttribute('fill', '#f0b028');
   sparks.appendChild(c);
   return c;
 });
@@ -276,16 +300,16 @@ function wavePath(t, amp, base, k, speed) {
 
 // ---------- render ----------
 window.seek = function (t) {
-  // background: dim the lines while content panels are on screen
+  // background: lines sit low and dim while content panels are on screen
   const inThemes = t > sceneTimes[0][0] && t < sceneTimes[4][1];
-  document.getElementById('glow').style.opacity = inThemes ? 0.45 : 1;
-  wave1.setAttribute('d', wavePath(t, 60, 860, 0.0042, 0.5));
-  wave1b.setAttribute('d', wavePath(t, 60, 860, 0.0042, 0.5));
-  wave2.setAttribute('d', wavePath(t, 40, 930, 0.006, -0.35));
+  document.getElementById('glow').style.opacity = inThemes ? 0.5 : 1;
+  const base = inThemes ? 960 : 900;
+  wave1.setAttribute('d', wavePath(t, 45, base, 0.0042, 0.5));
+  wave2.setAttribute('d', wavePath(t, 30, base + 50, 0.006, -0.35));
   sparkNodes.forEach((c, i) => {
     const x = ((i * 233 + t * 70) % 2100) - 90;
     c.setAttribute('cx', x);
-    c.setAttribute('cy', waveY(x, t, 60, 860, 0.0042, 0.5));
+    c.setAttribute('cy', waveY(x, t, 45, base, 0.0042, 0.5));
     c.setAttribute('opacity', 0.55 + 0.35 * Math.sin(t * 2 + i));
   });
 
@@ -293,12 +317,23 @@ window.seek = function (t) {
   const ia = sceneAlpha(t, T_INTRO);
   intro.style.opacity = ia;
   if (ia > 0) {
-    const p = prog(t, 0.3, 7.6, easeInOut);
-    const scale = 1.0 + 0.05 * p;
-    const y = -40 - 760 * p;
-    introImg.style.transform = `translateY(${y}px) scale(${scale})`;
+    const p = prog(t, 0.3, 7.2, easeInOut);
     introImg.style.transformOrigin = '50% 0%';
-    rise(introBrand, prog(t, 5.2, 1.2));
+    introImg.style.transform = `translateY(${-40 - 760 * p}px) scale(${1 + 0.05 * p})`;
+  }
+
+  // logo reveal: mark pops and turns in, wordmark wipes out from behind it
+  const ra = sceneAlpha(t, T_REVEAL);
+  reveal.style.opacity = ra;
+  if (ra > 0) {
+    const s = T_REVEAL[0];
+    const mp = prog(t, s + 0.4, 1.0, easeBack);
+    lgMark.style.opacity = clamp((t - s - 0.4) / 0.4);
+    lgMark.style.transform = `scale(${0.3 + 0.7 * mp}) rotate(${(1 - mp) * -120}deg)`;
+    const wp = prog(t, s + 1.3, 1.0, easeInOut);
+    lgWord.style.transform = `translateX(${(1 - wp) * -473}px)`;
+    rvLine.style.transform = `scaleX(${prog(t, s + 2.1, 0.9)})`;
+    rise(rvSub, prog(t, s + 2.4, 0.9), 24);
   }
 
   // overview
@@ -306,24 +341,23 @@ window.seek = function (t) {
   over.style.opacity = oa;
   if (oa > 0) {
     const s = T_OVER[0];
-    rise(ovTitle, prog(t, s + 0.2, 1));
-    ovLine.style.transform = `scaleX(${prog(t, s + 0.8, 2.6, easeInOut)})`;
+    rise(ovTitle, prog(t, s + 0.3, 1));
+    ovLine.style.transform = `scaleX(${prog(t, s + 0.9, 2.6, easeInOut)})`;
     ovNodes.forEach((n, i) => {
-      const p = prog(t, s + 1.2 + i * 0.55, 0.9);
-      n.style.opacity = p;
-      n.style.transform = `translateY(${(1 - p) * 30}px) scale(${0.9 + 0.1 * p})`;
+      const p = prog(t, s + 1.3 + i * 0.55, 0.9, easeBack);
+      n.style.opacity = clamp((t - s - 1.3 - i * 0.55) / 0.4);
+      n.style.transform = `translateY(${(1 - p) * 30}px) scale(${0.85 + 0.15 * p})`;
     });
   }
 
   // theme scenes
-  let railAlpha = 0, activeIdx = -1, activeP = 0;
+  let chromeAlpha = 0, activeIdx = -1, activeP = 0;
   themeScenes.forEach((S, i) => {
     const span = sceneTimes[i];
     const a = sceneAlpha(t, span);
     S.L.style.opacity = a;
     if (a <= 0) return;
     activeIdx = i; activeP = clamp((t - span[0]) / (span[1] - span[0]));
-    railAlpha = Math.max(railAlpha, i === 0 ? clamp((t - span[0]) / FADE) : 1);
     const s = span[0];
     rise(S.num, prog(t, s + 0.2, 0.8), 20);
     const pp = prog(t, s + 0.3, 1.0);
@@ -340,13 +374,15 @@ window.seek = function (t) {
     });
     if (S.hasQuote) rise(S.side, prog(t, s + 4.6, 1.0), 50);
     else {
-      const ip = prog(t, s + 3.6, 1.2);
-      S.side.style.opacity = 0.9 * ip;
-      S.side.style.transform = `translateY(${(1 - ip) * 30}px)`;
+      const ip = prog(t, s + 3.6, 1.0, easeBack);
+      S.side.style.opacity = clamp((t - s - 3.6) / 0.4);
+      S.side.style.transform = `scale(${0.6 + 0.4 * ip})`;
     }
   });
-  if (t >= sceneTimes[4][1] - FADE) railAlpha = clamp((sceneTimes[4][1] - t) / FADE);
-  rail.style.opacity = activeIdx >= 0 ? railAlpha : 0;
+  if (t >= sceneTimes[0][0] && t <= sceneTimes[4][1]) {
+    chromeAlpha = Math.min(clamp((t - sceneTimes[0][0]) / FADE), clamp((sceneTimes[4][1] - t) / FADE));
+  }
+  chrome.style.opacity = chromeAlpha;
   if (activeIdx >= 0) {
     railNodes.forEach((n, i) => {
       n.className = 'rn' + (i === activeIdx ? ' on' : i < activeIdx ? ' done' : '');
@@ -354,8 +390,8 @@ window.seek = function (t) {
     railFill.style.width = (Math.min(4, activeIdx + Math.min(1, activeP * 1.15)) * 25) + '%';
   }
 
-  // closing
-  const ca = sceneAlpha(t, T_CLOSE);
+  // closing (holds on the logo to the last frame)
+  const ca = sceneAlpha(t, T_CLOSE, true);
   close.style.opacity = ca;
   if (ca > 0) {
     const s = T_CLOSE[0];
@@ -363,14 +399,15 @@ window.seek = function (t) {
     const tp = prog(t, s + 2.2, 1.2);
     clTag.style.opacity = tp;
     clTag.style.transform = `scale(${0.94 + 0.06 * tp})`;
-    rise(clBrand, prog(t, s + 3.6, 1.0), 30);
+    rise(clLogo, prog(t, s + 3.6, 1.0), 30);
   }
 };
 
 window.ready = Promise.all([
-  document.fonts.ready,
-  new Promise(r => introImg.complete ? r() : introImg.onload = r)
-]);
+  document.fonts.load('600 40px Oswald'),
+  document.fonts.load('700 40px "Open Sans"'),
+  ...images.map(n => n.complete ? Promise.resolve() : new Promise(r => { n.onload = r; n.onerror = r; }))
+]).then(() => document.fonts.ready);
 window.seek(0);
 </script>
 </body>
