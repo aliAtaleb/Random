@@ -6,6 +6,7 @@
 <style>
   @font-face { font-family: "Oswald"; src: url("assets/fonts/Oswald.woff2") format("woff2"); font-weight: 200 700; }
   @font-face { font-family: "Open Sans"; src: url("assets/fonts/OpenSans.woff2") format("woff2"); font-weight: 300 800; }
+  @font-face { font-family: "Cairo"; src: url("assets/fonts/Cairo-Arabic.woff2") format("woff2"); font-weight: 200 1000; }
   /* brand colours sampled from the Mira-Clé logo */
   :root {
     --bg: #fbfaf7;
@@ -101,6 +102,7 @@
   #cap { position: absolute; left: 0; right: 0; bottom: 38px; display: flex; justify-content: center; z-index: 5; }
   #cap span { max-width: 1500px; padding: 12px 30px; border-radius: 8px; background: rgba(46,46,49,0.86);
     color: #fff; font-size: 32px; font-weight: 600; line-height: 1.3; text-align: center; }
+  #cap.ar span { font-family: "Cairo", "Open Sans", sans-serif; font-size: 36px; font-weight: 700; line-height: 1.45; padding: 8px 32px 12px; }
 
   /* closing */
   .cl-row { left: 0; right: 0; top: 150px; display: flex; justify-content: center; }
@@ -138,6 +140,7 @@
 
 <script src="timeline.js"></script>
 <script src="vo-timing.js"></script>
+<script src="subtitles-ar.js"></script>
 <script>
 // ---------- content ----------
 const icon = (body, stroke) => `<svg viewBox="0 0 64 64" fill="none" stroke="${stroke}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
@@ -181,10 +184,21 @@ window.DURATION = TL.close[1];
 const BOUNDARIES = [TL.reveal[0], TL.overview[0], ...TL.themes.map(s => s[0]), TL.close[0]];
 const WIPE = 0.9;
 
-// captions: group spoken phrases into short cues
+// captions: ?lang=ar uses the Arabic cues in subtitles-ar.js, otherwise English
+// cues are built by grouping the spoken phrases
+const LANG = new URLSearchParams(location.search).get('lang') === 'ar' ? 'ar' : 'en';
 const CUES = [];
-VO.forEach(line => {
+VO.forEach((line, li) => {
   if (!line.captions) return;
+  if (LANG === 'ar') {
+    const subs = window.SUBS_AR[li];
+    subs.forEach(([seg, text], k) => {
+      const c = { t: line.segments[seg].t, text };
+      if (k === subs.length - 1) c.lineEnd = line.end + 0.4;
+      CUES.push(c);
+    });
+    return;
+  }
   let cur = null;
   line.segments.forEach(seg => {
     if (cur && (cur.text.length + seg.text.length > 58 || /[.:]$/.test(cur.text))) { CUES.push(cur); cur = null; }
@@ -299,6 +313,7 @@ const clCta = el('div', 'abs cl-cta', `<div class="talk">Talk to our team</div><
 
 const cap = document.querySelector('#cap span');
 const capBox = document.getElementById('cap');
+if (LANG === 'ar') { capBox.classList.add('ar'); cap.dir = 'rtl'; cap.lang = 'ar'; }
 const wipe = document.getElementById('wipe');
 
 // background waves (kept out of the practice scenes so they never cross content)
@@ -443,11 +458,27 @@ window.seek = function (t) {
   } else capBox.style.visibility = 'hidden';
 };
 
+// one size for every pillar heading, small enough that the longest one
+// ("Performance") stays clear of the service cards
+function fitPillars() {
+  const maxW = 820;
+  let size = 168;
+  themeScenes.forEach(S => {
+    S.pillar.style.fontSize = size + 'px';
+    while (S.pillar.offsetWidth > maxW && size > 80) S.pillar.style.fontSize = (--size) + 'px';
+  });
+  themeScenes.forEach(S => {
+    S.pillar.style.fontSize = size + 'px';
+    S.pillar.style.top = (190 + (168 - size) * 0.5) + 'px';
+  });
+}
+
 window.ready = Promise.all([
   document.fonts.load('600 40px Oswald'),
   document.fonts.load('700 40px "Open Sans"'),
+  document.fonts.load('700 36px Cairo', 'عربي'),
   ...images.map(n => n.complete ? Promise.resolve() : new Promise(r => { n.onload = r; n.onerror = r; }))
-]).then(() => document.fonts.ready);
+]).then(() => document.fonts.ready).then(fitPillars);
 window.seek(0);
 </script>
 </body>
