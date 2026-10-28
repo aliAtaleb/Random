@@ -13,25 +13,39 @@
     --panel: #f1f0ed;
     --line: #e2e0db;
     --gold: #f0b028;
+    --gold-soft: #f6cf78;
     --gold-deep: #d99a14;
     --char: #58585c;
     --ink: #2e2e31;
+    --dark: #2b2b2e;
+    --dark-2: #38383c;
     --muted: #8b8b90;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
   body { font-family: "Open Sans", sans-serif; color: var(--ink); }
   #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
-  .layer { position: absolute; inset: 0; visibility: hidden; }
+  .layer { position: absolute; inset: 0; visibility: hidden; overflow: hidden; }
   .abs { position: absolute; }
   .head { font-family: "Oswald", sans-serif; text-transform: uppercase; }
-
-  #grid {
-    position: absolute; inset: 0;
+  .grid-light {
+    background-color: var(--bg);
     background-image:
       linear-gradient(rgba(88,88,92,0.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(88,88,92,0.05) 1px, transparent 1px);
     background-size: 80px 80px;
+  }
+  .grid-dark {
+    background-color: var(--dark);
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .grid-gold {
+    background-color: var(--gold);
+    background-image: radial-gradient(rgba(255,255,255,0.22) 2px, transparent 2.5px);
+    background-size: 40px 40px;
   }
   #glow { position: absolute; inset: 0; }
 
@@ -57,51 +71,140 @@
   .ov-node .w { font-size: 44px; font-weight: 600; margin-top: 30px; color: var(--char); letter-spacing: 1px; }
   .ov-node .t { font-size: 23px; color: var(--muted); margin-top: 8px; line-height: 1.35; padding: 0 10px; }
 
-  /* header shared by the practice scenes */
+  /* header for the practice scenes, in three tones */
   .num { left: 120px; top: 62px; font-family: "Oswald", sans-serif; font-size: 30px; letter-spacing: 4px; color: var(--muted); }
   .num b { color: var(--gold); font-weight: 600; }
   .hdr-logo { right: 110px; top: 48px; height: 64px; }
-  #rail { left: 520px; width: 880px; top: 58px; height: 60px; }
-  #rail .track { position: absolute; left: 0; right: 0; top: 11px; height: 2px; background: var(--line); }
-  #rail .fill { position: absolute; left: 0; top: 11px; height: 2px; background: var(--gold); }
-  #rail .rn { position: absolute; top: 0; width: 200px; margin-left: -100px; text-align: center; }
-  #rail .rn .d { width: 24px; height: 24px; border-radius: 50%; margin: 0 auto; background: var(--bg); border: 2px solid var(--line); }
-  #rail .rn .l { font-family: "Oswald", sans-serif; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
-  #rail .rn.on .d { border-color: var(--gold); background: var(--gold); }
-  #rail .rn.on .l { color: var(--gold-deep); font-weight: 600; }
-  #rail .rn.done .d { border-color: var(--gold); }
+  .rail { left: 520px; width: 880px; top: 58px; height: 60px; }
+  .rail .track { position: absolute; left: 0; right: 0; top: 11px; height: 2px; background: var(--line); }
+  .rail .fill { position: absolute; left: 0; top: 11px; height: 2px; background: var(--gold); }
+  .rail .rn { position: absolute; top: 0; width: 200px; margin-left: -100px; text-align: center; }
+  .rail .rn .d { width: 24px; height: 24px; border-radius: 50%; margin: 0 auto; background: var(--bg); border: 2px solid var(--line); }
+  .rail .rn .l { font-family: "Oswald", sans-serif; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .rail .rn.on .d { border-color: var(--gold); background: var(--gold); }
+  .rail .rn.on .l { color: var(--gold-deep); font-weight: 600; }
+  .rail .rn.done .d { border-color: var(--gold); }
   .hdr-rule { left: 120px; right: 110px; top: 140px; height: 1px; background: var(--line); }
 
-  /* practice scenes */
-  .pillar { left: 114px; top: 190px; font-size: 168px; font-weight: 700; color: var(--gold); line-height: 1; letter-spacing: 2px; }
-  .theme { left: 120px; top: 395px; width: 780px; font-size: 48px; font-weight: 700; line-height: 1.18; color: var(--char); }
-  .rule { left: 120px; top: 540px; height: 5px; width: 160px; background: var(--gold); transform-origin: left center; }
-  .big-icon { left: 120px; top: 610px; width: 250px; height: 250px; border-radius: 50%; background: var(--gold);
-    display: flex; align-items: center; justify-content: center; }
-  .big-icon svg { width: 125px; height: 125px; }
+  .tone-dark .num { color: rgba(255,255,255,0.55); }
+  .tone-dark .rail .track { background: rgba(255,255,255,0.16); }
+  .tone-dark .rail .rn .d { background: var(--dark); border-color: rgba(255,255,255,0.25); }
+  .tone-dark .rail .rn .l { color: rgba(255,255,255,0.5); }
+  .tone-dark .rail .rn.on .d { background: var(--gold); border-color: var(--gold); }
+  .tone-dark .rail .rn.on .l { color: var(--gold); }
+  .tone-dark .rail .rn.done .d { border-color: var(--gold); }
+  .tone-dark .hdr-rule { background: rgba(255,255,255,0.12); }
 
-  .quote { left: 120px; top: 585px; width: 790px; padding: 46px 48px 30px 48px; background: var(--panel); border-radius: 6px; }
-  .quote .qm { position: absolute; left: 30px; top: -38px; font-family: Georgia, serif; font-size: 150px; line-height: 1; color: var(--gold); font-weight: 700; }
-  .quote .q { font-size: 32px; line-height: 1.38; font-weight: 700; color: var(--ink); }
-  .quote .who { margin-top: 22px; font-size: 22px; color: var(--ink); font-weight: 700; font-style: italic; }
-  .quote .org { margin-top: 4px; font-size: 20px; color: var(--char); }
-  .quote .foot { margin-top: 12px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
-  .quote .tag { display: inline-block; font-family: "Oswald", sans-serif; font-size: 20px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--gold-deep); font-weight: 600; }
-  .quote .client { max-height: 70px; max-width: 160px; }
+  .tone-gold .num, .tone-gold .num b { color: var(--ink); }
+  .tone-gold .rail .track { background: rgba(46,46,49,0.22); }
+  .tone-gold .rail .fill { background: var(--ink); }
+  .tone-gold .rail .rn .d { background: var(--gold); border-color: rgba(46,46,49,0.35); }
+  .tone-gold .rail .rn .l { color: rgba(46,46,49,0.6); }
+  .tone-gold .rail .rn.on .d { background: var(--ink); border-color: var(--ink); }
+  .tone-gold .rail .rn.on .l { color: var(--ink); font-weight: 700; }
+  .tone-gold .rail .rn.done .d { border-color: var(--ink); }
+  .tone-gold .hdr-rule { background: rgba(46,46,49,0.18); }
 
-  .spine { left: 1004px; width: 3px; background: var(--gold); transform-origin: top center; }
-  .card { left: 1060px; width: 740px; height: 130px; background: var(--panel); border-radius: 6px;
-    display: flex; align-items: center; padding: 0 40px; border-left: 5px solid var(--gold); }
-  .card .i { font-family: "Oswald", sans-serif; font-size: 26px; color: var(--gold); font-weight: 600; width: 70px; letter-spacing: 1px; }
-  .card .s { font-size: 34px; font-weight: 700; color: var(--char); }
-  .dot { left: 990px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: 3px solid var(--gold); }
-  .dot::after { content: ""; position: absolute; left: 7px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
+  /* shared scene typography */
+  .pillar { font-weight: 700; line-height: 1; letter-spacing: 2px; white-space: nowrap; }
+  .theme { font-size: 38px; font-weight: 700; line-height: 1.2; }
+  .rule { height: 5px; width: 140px; background: var(--gold); transform-origin: left center; }
+  .ghost { font-family: "Oswald", sans-serif; font-weight: 700; font-size: 400px; line-height: 1; color: transparent; }
+  .ico svg { width: 100%; height: 100%; }
+
+  /* 01 structure: org chart */
+  .s1 .pillar { left: 120px; top: 190px; color: var(--gold); }
+  .s1 .theme { left: 120px; top: 360px; width: 560px; color: var(--char); }
+  .s1 .rule { left: 120px; top: 480px; }
+  .s1 .ghost { left: 96px; top: 520px; -webkit-text-stroke: 3px rgba(240,176,40,0.35); }
+  .s1 .root { left: 1020px; top: 200px; width: 520px; height: 104px; background: var(--ink); color: #fff; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 32px; letter-spacing: 2px; font-weight: 600; }
+  .s1 .root .ico { width: 46px; height: 46px; }
+  .s1 svg.wires { left: 0; top: 0; }
+  .s1 .node { top: 440px; width: 230px; height: 300px; background: #fff; border-radius: 10px; border-top: 6px solid var(--gold);
+    box-shadow: 0 8px 24px rgba(46,46,49,0.08); padding: 22px 20px; display: flex; flex-direction: column; }
+  .s1 .node .n { font-family: "Oswald", sans-serif; font-size: 24px; color: var(--gold-deep); font-weight: 600; }
+  .s1 .node .ico { width: 76px; height: 76px; margin: 18px 0 20px; }
+  .s1 .node .s { font-size: 29px; font-weight: 700; line-height: 1.2; color: var(--ink); }
+  .s1 .twig { width: 24px; height: 24px; border-radius: 50%; background: var(--bg); border: 3px solid var(--gold); }
+
+  /* 02 people: team network + testimonial */
+  .s2 .pillar { left: 120px; top: 165px; color: var(--ink); }
+  .s2 .theme { left: 120px; top: 330px; color: rgba(46,46,49,0.8); white-space: nowrap; font-size: 36px; }
+  .s2 .ghost { left: 1460px; top: 560px; -webkit-text-stroke: 3px rgba(255,255,255,0.5); }
+  .s2 .net { left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 655px; }
+  .s2 .hub { left: 875px; top: 570px; width: 170px; height: 170px; border-radius: 50%; background: var(--ink);
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 14px rgba(46,46,49,0.12); }
+  .s2 .hub svg { width: 86px; height: 86px; }
+  .s2 .bub { width: 210px; height: 210px; border-radius: 50%; background: #fff; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; padding: 26px; box-shadow: 0 12px 30px rgba(46,46,49,0.15); }
+  .s2 .bub .n { font-family: "Oswald", sans-serif; font-size: 24px; color: var(--gold-deep); font-weight: 600; }
+  .s2 .bub .s { font-size: 25px; font-weight: 700; line-height: 1.2; color: var(--ink); margin-top: 6px; }
+  .s2 .qcard { left: 1010px; top: 200px; width: 790px; padding: 54px 56px 44px; background: #fff; border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(46,46,49,0.22); }
+  .s2 .qcard .qm { position: absolute; left: 40px; top: -46px; font-family: Georgia, serif; font-size: 170px; line-height: 1; color: var(--ink); font-weight: 700; }
+  .s2 .qcard .q { font-size: 40px; line-height: 1.3; font-weight: 700; color: var(--ink); }
+  .s2 .qcard .who { margin-top: 26px; font-size: 24px; font-weight: 700; font-style: italic; }
+  .s2 .qcard .org { margin-top: 4px; font-size: 21px; color: var(--char); }
+  .s2 .qcard .stat { margin-top: 30px; padding-top: 24px; border-top: 2px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
+  .s2 .qcard .stat .k { font-family: "Oswald", sans-serif; font-size: 22px; letter-spacing: 4px; text-transform: uppercase; color: var(--char); }
+  .s2 .qcard .stat .v { font-family: "Oswald", sans-serif; font-size: 96px; line-height: 0.9; font-weight: 700; color: var(--gold-deep); }
+  .s2 .qcard .stat img { height: 92px; }
+
+  /* 03 performance: staircase chart */
+  .s3 .pillar { left: 120px; top: 190px; color: var(--gold); }
+  .s3 .theme { left: 120px; top: 330px; width: 560px; color: #fff; }
+  .s3 .rule { left: 120px; top: 450px; }
+  .s3 .ghost { left: 96px; top: 520px; -webkit-text-stroke: 3px rgba(240,176,40,0.28); }
+  .s3 svg.chart { left: 0; top: 0; }
+  .s3 .bar { width: 236px; border-radius: 10px 10px 0 0; background: linear-gradient(180deg, #f6c75a 0%, #e6a420 100%);
+    transform-origin: bottom center; overflow: hidden; }
+  .s3 .bar .in { position: absolute; left: 0; right: 0; top: 0; padding: 20px 16px; }
+  .s3 .bar .n { font-family: "Oswald", sans-serif; font-size: 26px; font-weight: 700; color: rgba(46,46,49,0.7); }
+  .s3 .bar .s { font-size: 25px; font-weight: 800; line-height: 1.2; color: var(--ink); margin-top: 6px; }
+
+  /* 04 capability: photo panel + tiles */
+  .s4 .photo { left: 0; top: 141px; width: 900px; height: 939px; overflow: hidden; }
+  .s4 .photo img { position: absolute; width: 2400px; height: 2400px; left: -1470px; top: -600px; transform-origin: 1920px 1070px; }
+  .s4 .photo .shade { position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(43,43,46,0.15) 0%, rgba(43,43,46,0.35) 40%, rgba(43,43,46,0.92) 82%); }
+  .s4 .photo .edge { position: absolute; right: 0; top: 0; bottom: 0; width: 8px; background: var(--gold); }
+  .s4 .pillar { left: 70px; top: 680px; color: var(--gold); }
+  .s4 .theme { left: 70px; top: 820px; color: #fff; font-size: 34px; white-space: nowrap; }
+  .s4 .tile { width: 400px; height: 320px; border-radius: 12px; background: #fff; box-shadow: 0 10px 30px rgba(46,46,49,0.08);
+    padding: 34px 36px; display: flex; flex-direction: column; justify-content: space-between; }
+  .s4 .tile .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .s4 .tile .ic { width: 96px; height: 96px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; }
+  .s4 .tile .ic svg { width: 52px; height: 52px; }
+  .s4 .tile .n { font-family: "Oswald", sans-serif; font-size: 34px; color: var(--gold-deep); font-weight: 600; }
+  .s4 .tile .s { font-size: 33px; font-weight: 800; line-height: 1.2; color: var(--ink); }
+  .s4 .qcard { left: 70px; top: 200px; width: 760px; padding: 40px 44px 30px; background: #fff; border-radius: 12px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3); border-left: 8px solid var(--gold); }
+  .s4 .qcard .q { font-size: 32px; line-height: 1.32; font-weight: 700; color: var(--ink); }
+  .s4 .qcard .q::before { content: "\201C"; color: var(--gold); }
+  .s4 .qcard .q::after { content: "\201D"; color: var(--gold); }
+  .s4 .qcard .who { margin-top: 20px; font-size: 22px; font-weight: 700; font-style: italic; }
+  .s4 .qcard .org { margin-top: 2px; font-size: 19px; color: var(--char); }
+  .s4 .qcard .foot { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; }
+  .s4 .qcard .tag { font-family: "Oswald", sans-serif; font-size: 20px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; }
+  .s4 .qcard img { height: 62px; }
+
+  /* 05 resilience: shield and stations */
+  .s5 .pillar { left: 0; right: 0; top: 168px; text-align: center; color: var(--gold); }
+  .s5 .theme { left: 0; right: 0; top: 300px; text-align: center; color: #fff; font-size: 36px; }
+  .s5 svg.radar { left: 0; top: 0; }
+  .s5 .shield { left: 860px; top: 530px; width: 200px; height: 220px; }
+  .s5 .stn { width: 500px; height: 120px; border-radius: 10px; background: var(--dark-2); display: flex; align-items: center; gap: 22px; padding: 0 30px; }
+  .s5 .stn.l { border-left: 6px solid var(--gold); }
+  .s5 .stn.r { border-right: 6px solid var(--gold); flex-direction: row-reverse; text-align: right; }
+  .s5 .stn .n { font-family: "Oswald", sans-serif; font-size: 28px; color: var(--gold); font-weight: 600; }
+  .s5 .stn .s { font-size: 29px; font-weight: 700; color: #fff; line-height: 1.2; }
 
   /* captions */
   #cap { position: absolute; left: 0; right: 0; bottom: 38px; display: flex; justify-content: center; z-index: 5; }
-  #cap span { max-width: 1500px; padding: 12px 30px; border-radius: 8px; background: rgba(46,46,49,0.86);
+  #cap span { max-width: 1500px; padding: 12px 30px; border-radius: 8px; background: rgba(46,46,49,0.88);
     color: #fff; font-size: 32px; font-weight: 600; line-height: 1.3; text-align: center; }
+  #cap.dark span { background: rgba(255,255,255,0.14); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); }
   #cap.ar span { font-family: "Cairo", "Open Sans", sans-serif; font-size: 36px; font-weight: 700; line-height: 1.45; padding: 8px 32px 12px; }
 
   /* closing */
@@ -118,16 +221,15 @@
   .cl-cta .ig { display: flex; align-items: center; gap: 12px; font-size: 32px; font-weight: 600; color: var(--char); }
   .cl-cta .ig svg { width: 40px; height: 40px; }
 
-  /* wipe transition */
+  /* wipe transition: its panel takes the colour of the incoming scene */
   #wipe { position: absolute; top: 0; left: 0; width: 2472px; height: 1080px; z-index: 10; display: flex; }
   #wipe .p { flex: 1; background: var(--bg); }
-  #wipe .e1 { width: 10px; background: #f6cf78; }
+  #wipe .e1 { width: 10px; background: var(--gold-soft); }
   #wipe .e2 { width: 26px; background: var(--gold); }
 </style>
 </head>
 <body>
-<div id="stage">
-  <div id="grid"></div>
+<div id="stage" class="grid-light">
   <svg id="glow" width="1920" height="1080" viewBox="0 0 1920 1080">
     <path id="wave1" fill="none" stroke="#f0b028" stroke-width="3" opacity="0.5"/>
     <path id="wave2" fill="none" stroke="#58585c" stroke-width="1.5" opacity="0.14"/>
@@ -143,37 +245,49 @@
 <script src="subtitles-ar.js"></script>
 <script>
 // ---------- content ----------
-const icon = (body, stroke) => `<svg viewBox="0 0 64 64" fill="none" stroke="${stroke}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
+const icon = (body, stroke, w = 3.2) => `<svg viewBox="0 0 64 64" fill="none" stroke="${stroke}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
 const ICON_BODY = {
   structure: '<rect x="24" y="6" width="16" height="12" rx="2"/><rect x="6" y="44" width="16" height="12" rx="2"/><rect x="24" y="44" width="16" height="12" rx="2"/><rect x="42" y="44" width="16" height="12" rx="2"/><path d="M32 18v12M14 44v-8h36v8M32 30v14"/>',
   people: '<circle cx="32" cy="20" r="8"/><path d="M18 52c0-9 6-15 14-15s14 6 14 15"/><circle cx="12" cy="26" r="5"/><path d="M3 50c0-6 4-10 9-10"/><circle cx="52" cy="26" r="5"/><path d="M61 50c0-6-4-10-9-10"/>',
   performance: '<path d="M6 56h52"/><rect x="10" y="38" width="9" height="18"/><rect x="27" y="28" width="9" height="28"/><rect x="44" y="16" width="9" height="40"/><path d="M8 28l14-10 12 6 20-16M46 8h8v8"/>',
   capability: '<rect x="6" y="10" width="52" height="34" rx="3"/><path d="M22 54h20M32 44v10"/><path d="M20 24l12-6 12 6-12 6z"/><path d="M25 27v5c4 3 10 3 14 0v-5"/>',
-  resilience: '<path d="M32 6l22 8v16c0 14-9 23-22 28C19 53 10 44 10 30V14z"/><path d="M22 32l7 7 13-14"/>'
+  resilience: '<path d="M32 6l22 8v16c0 14-9 23-22 28C19 53 10 44 10 30V14z"/><path d="M22 32l7 7 13-14"/>',
+  // service icons
+  restructure: '<path d="M50 24A20 20 0 0 0 14 22"/><path d="M14 10v12h12"/><path d="M14 40a20 20 0 0 0 36 2"/><path d="M50 54V42H38"/>',
+  gear: '<circle cx="32" cy="32" r="8"/><circle cx="32" cy="32" r="18"/><path d="M32 6v8M32 50v8M6 32h8M50 32h8M13.6 13.6l5.7 5.7M44.7 44.7l5.7 5.7M13.6 50.4l5.7-5.7M44.7 19.3l5.7-5.7"/>',
+  target: '<circle cx="32" cy="32" r="24"/><circle cx="32" cy="32" r="14"/><circle cx="32" cy="32" r="4"/><path d="M32 2v10M32 52v10M2 32h10M52 32h10"/>',
+  heart: '<path d="M32 54S8 40 8 23a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 17-24 31-24 31z"/>',
+  book: '<path d="M32 16c-6-5-16-6-24-4v38c8-2 18-1 24 4 6-5 16-6 24-4V12c-8-2-18-1-24 4z"/><path d="M32 16v38"/>',
+  check: '<rect x="12" y="8" width="40" height="50" rx="4"/><path d="M20 22l4 4 8-8M20 40l4 4 8-8M38 24h8M38 42h8"/>',
+  play: '<rect x="6" y="10" width="52" height="34" rx="3"/><path d="M22 54h20M32 44v10"/><path d="M27 20l12 7-12 7z"/>',
+  talent: '<circle cx="28" cy="20" r="9"/><path d="M10 56c0-10 8-18 18-18s18 8 18 18"/><path d="M50 8l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/>'
 };
 const IG_ICON = '<svg viewBox="0 0 64 64" fill="none" stroke="#f0b028" stroke-width="5"><rect x="6" y="6" width="52" height="52" rx="15"/><circle cx="32" cy="32" r="12"/><circle cx="48" cy="16" r="2.5" fill="#f0b028" stroke="none"/></svg>';
+const WEB_ICON = '<svg viewBox="0 0 64 64" fill="none" stroke="#f0b028" stroke-width="4.5"><circle cx="32" cy="32" r="26"/><path d="M6 32h52M32 6c-9 9-9 43 0 52M32 6c9 9 9 43 0 52"/></svg>';
 
 const THEMES = [
-  { key: 'structure', pillar: 'Structure', theme: 'Organizational Transformation',
-    services: ['Restructuring', 'Operating models', 'Organizational alignment', 'Culture change'] },
-  { key: 'people', pillar: 'People', theme: 'Leadership & Workforce Development',
+  { key: 'structure', pillar: 'Structure', theme: 'Organizational Transformation', tone: 'light',
+    services: ['Restructuring', 'Operating models', 'Organizational alignment', 'Culture change'],
+    icons: ['restructure', 'gear', 'target', 'heart'] },
+  { key: 'people', pillar: 'People', theme: 'Leadership & Workforce Development', tone: 'gold',
     services: ['Executive development', 'Team effectiveness', 'Workforce capability', 'Behavioral change'],
     quote: { q: 'A partner who evolves with the organization, not a one-time provider.',
              who: 'Mr. Sami M. Al Sagh', org: 'HR Director, CreditOne Al Sayer Facilities',
-             tag: 'Partner since 2012', logo: 'assets/client-creditone.png' } },
-  { key: 'performance', pillar: 'Performance', theme: 'Systems, Processes & Performance',
+             stat: ['Partner since', '2012'], logo: 'assets/client-creditone.png' } },
+  { key: 'performance', pillar: 'Performance', theme: 'Systems, Processes & Performance', tone: 'dark',
     services: ['HR systems', 'Performance frameworks', 'Operational alignment', 'Implementation support'] },
-  { key: 'capability', pillar: 'Capability', theme: 'Learning, Assessment & Digital Platforms',
+  { key: 'capability', pillar: 'Capability', theme: 'Learning, Assessment & Digital Platforms', tone: 'light',
     services: ['Custom learning programs', 'Assessments', 'LMS & e-learning content', 'Talent solutions'],
+    icons: ['book', 'check', 'play', 'talent'],
     quote: { q: 'High-quality delivery, strong governance, and a team that delivers under pressure.',
              who: 'Mr. Mohammad Eleiwat', org: 'Learning & Development Specialist, Aramex International LLC',
              tag: 'LMS & SCORM content, 2019–2022', logo: 'assets/client-aramex.png' } },
-  { key: 'resilience', pillar: 'Resilience', theme: 'Emergency Preparedness & Resilience',
+  { key: 'resilience', pillar: 'Resilience', theme: 'Emergency Preparedness & Resilience', tone: 'dark',
     services: ['Emergency response frameworks', 'Simulations', 'Business continuity', 'Organizational readiness'] }
 ];
+const TONE_BG = { light: '#fbfaf7', gold: '#f0b028', dark: '#2b2b2e' };
 const INSTAGRAM = '@miracle.lebanon';
 const WEBSITE = 'mira-cle.com';
-const WEB_ICON = '<svg viewBox="0 0 64 64" fill="none" stroke="#f0b028" stroke-width="4.5"><circle cx="32" cy="32" r="26"/><path d="M6 32h52M32 6c-9 9-9 43 0 52M32 6c9 9 9 43 0 52"/></svg>';
 
 // ---------- timeline ----------
 const TL = window.TIMELINE;
@@ -181,8 +295,12 @@ const VO = window.VO || [];
 const VO_OVER = VO[2] || { marks: {} };
 const VO_THEMES = VO.slice(3, 8);
 window.DURATION = TL.close[1];
-const BOUNDARIES = [TL.reveal[0], TL.overview[0], ...TL.themes.map(s => s[0]), TL.close[0]];
 const WIPE = 0.9;
+const TRANSITIONS = [
+  [TL.reveal[0], 'light'], [TL.overview[0], 'light'],
+  ...TL.themes.map((s, i) => [s[0], THEMES[i].tone]),
+  [TL.close[0], 'light']
+];
 
 // captions: ?lang=ar uses the Arabic cues in subtitles-ar.js, otherwise English
 // cues are built by grouping the spoken phrases
@@ -217,7 +335,10 @@ const easeOut = x => 1 - Math.pow(1 - x, 3);
 const easeInOut = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 const easeBack = x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
 const prog = (t, start, dur, ease = easeOut) => ease(clamp((t - start) / dur));
+const fade = (t, start, dur = 0.3) => clamp((t - start) / dur);
 const within = (t, [s, e]) => t >= s && t < e;
+const lerp = (a, b, p) => a + (b - a) * p;
+const mixRGB = (a, b, p) => `rgb(${a.map((v, i) => Math.round(lerp(v, b[i], p))).join(',')})`;
 function el(tag, cls, html, parent) {
   const n = document.createElement(tag);
   if (cls) n.className = cls;
@@ -225,9 +346,34 @@ function el(tag, cls, html, parent) {
   if (parent) parent.appendChild(n);
   return n;
 }
+const SVGNS = 'http://www.w3.org/2000/svg';
+function svgEl(tag, attrs, parent) {
+  const n = document.createElementNS(SVGNS, tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+function canvasSvg(cls, parent) {
+  return svgEl('svg', { class: 'abs ' + cls, width: 1920, height: 1080, viewBox: '0 0 1920 1080' }, parent);
+}
+// a path that draws itself as p goes 0 -> 1
+function wire(svg, d, stroke, width) {
+  return svgEl('path', { d, fill: 'none', stroke, 'stroke-width': width, 'stroke-linecap': 'round', pathLength: 1, 'stroke-dasharray': 1, 'stroke-dashoffset': 1 }, svg);
+}
+const draw = (path, p) => path.setAttribute('stroke-dashoffset', 1 - p);
+function place(n, x, y, w, h) {
+  Object.assign(n.style, { left: x + 'px', top: y + 'px' });
+  if (w) n.style.width = w + 'px';
+  if (h) n.style.height = h + 'px';
+  return n;
+}
 function rise(node, p, dist = 40) {
   node.style.opacity = p;
   node.style.transform = `translateY(${(1 - p) * dist}px)`;
+}
+function pop(node, p, from = 0.6) {
+  node.style.opacity = clamp(p * 3);
+  node.style.transform = `scale(${from + (1 - from) * p})`;
 }
 function show(layer, on) { layer.style.visibility = on ? 'visible' : 'hidden'; }
 const images = [];
@@ -236,6 +382,11 @@ function img(src, cls, parent) {
   n.src = src;
   images.push(n);
   return n;
+}
+// highlight weight for item k while it is being spoken
+function spoken(t, at, k, hold = 1.8) {
+  const next = k < at.length - 1 ? at[k + 1] : at[k] + hold;
+  return prog(t, at[k] - 0.15, 0.3) * (1 - prog(t, next - 0.15, 0.3));
 }
 
 // ---------- build ----------
@@ -263,44 +414,270 @@ const ovNodes = THEMES.map((th, i) => {
   return n;
 });
 
-const themeScenes = THEMES.map((th, idx) => {
-  const L = el('div', 'layer', null, root);
+// header (number, progress rail, logo) in the scene's tone
+function header(L, idx, tone) {
+  L.classList.add('tone-' + tone);
+  const logo = { light: 'mira-cle-logo.png', dark: 'mira-cle-logo-light.png', gold: 'mira-cle-logo-white.png' }[tone];
   const num = el('div', 'abs num', `<b>0${idx + 1}</b> / 05`, L);
-  const pillar = el('div', 'abs pillar head', th.pillar, L);
-  const theme = el('div', 'abs theme', th.theme, L);
-  const rule = el('div', 'abs rule', null, L);
-  let side;
-  if (th.quote) {
-    side = el('div', 'abs quote', `<div class="qm">“</div><div class="q">${th.quote.q}</div><div class="who">${th.quote.who}</div><div class="org">${th.quote.org}</div><div class="foot"><div class="tag">${th.quote.tag}</div></div>`, L);
-    img(th.quote.logo, 'client', side.querySelector('.foot'));
-  } else {
-    side = el('div', 'abs big-icon', icon(ICON_BODY[th.key], '#ffffff'), L);
-  }
-  const top0 = 200, gap = 168;
-  const spine = el('div', 'abs spine', null, L);
-  spine.style.top = (top0 + 65) + 'px';
-  spine.style.height = (gap * 3) + 'px';
-  const cards = th.services.map((s, i) => {
-    const c = el('div', 'abs card', `<div class="i">0${i + 1}</div><div class="s">${s}</div>`, L);
-    c.style.top = (top0 + i * gap) + 'px';
-    const d = el('div', 'abs dot', null, L);
-    d.style.top = (top0 + i * gap + 49) + 'px';
-    return { c, d };
+  img('assets/' + logo, 'abs hdr-logo', L);
+  el('div', 'abs hdr-rule', null, L);
+  const rail = el('div', 'abs rail', null, L);
+  el('div', 'track', null, rail);
+  const fill = el('div', 'fill', null, rail);
+  THEMES.forEach((th, i) => {
+    const n = el('div', 'rn' + (i === idx ? ' on' : i < idx ? ' done' : ''), `<div class="d"></div><div class="l">${th.pillar}</div>`, rail);
+    n.style.left = (i * 25) + '%';
   });
-  return { L, num, pillar, theme, rule, side, spine, cards, hasQuote: !!th.quote };
-});
+  return (t, s, e) => {
+    rise(num, prog(t, s + 0.3, 0.8), 20);
+    fill.style.width = (Math.min(4, idx + clamp((t - s) / (e - s))) * 25) + '%';
+  };
+}
+function titleBlock(L, th, withRule = true) {
+  return {
+    pillar: el('div', 'abs pillar head', th.pillar, L),
+    theme: el('div', 'abs theme', th.theme, L),
+    rule: withRule ? el('div', 'abs rule', null, L) : null
+  };
+}
+function animateTitle(T, t, s, dx = -60) {
+  const pp = prog(t, s + 0.4, 1.0);
+  T.pillar.style.opacity = pp;
+  T.pillar.style.transform = `translateX(${(1 - pp) * dx}px)`;
+  rise(T.theme, prog(t, s + 0.8, 0.9));
+  if (T.rule) T.rule.style.transform = `scaleX(${prog(t, s + 1.1, 0.9)})`;
+}
 
-const chrome = el('div', 'layer', null, root);
-img('assets/mira-cle-logo.png', 'abs hdr-logo', chrome);
-el('div', 'abs hdr-rule', null, chrome);
-const railBox = el('div', 'abs', null, chrome);
-railBox.id = 'rail';
-el('div', 'track', null, railBox);
-const railFill = el('div', 'fill', null, railBox);
-const railNodes = THEMES.map((th, i) => {
-  const n = el('div', 'rn', `<div class="d"></div><div class="l">${th.pillar}</div>`, railBox);
-  n.style.left = (i * 25) + '%';
-  return n;
+// 01 structure: an org chart that grows as each service is named
+function buildStructure(th, idx) {
+  const L = el('div', 'layer grid-light s1', null, root);
+  const ghost = el('div', 'abs ghost', '01', L);
+  const hdr = header(L, idx, th.tone);
+  const T = titleBlock(L, th);
+  const wires = canvasSvg('wires', L);
+  const rootBox = el('div', 'abs root head', `<span class="ico">${icon(ICON_BODY.structure, '#f0b028', 3.6)}</span>Organization`, L);
+  const cx = [896, 1152, 1408, 1664];
+  const trunk = wire(wires, 'M1280 304 V380', '#f0b028', 4);
+  const bar = wire(wires, 'M896 380 H1664', '#f0b028', 4);
+  const drops = cx.map(x => wire(wires, `M${x} 380 V440`, '#f0b028', 4));
+  const nodes = th.services.map((s, k) => place(el('div', 'abs node',
+    `<div class="n">0${k + 1}</div><div class="ico">${icon(ICON_BODY[th.icons[k]], '#2e2e31', 3)}</div><div class="s">${s}</div>`, L), cx[k] - 115, 440));
+  // a small team under each unit
+  const teams = cx.map(x => {
+    const stem = wire(wires, `M${x} 740 V780 M${x - 70} 780 H${x + 70} M${x - 70} 780 V798 M${x} 780 V798 M${x + 70} 780 V798`, '#d8d5ce', 3);
+    const twigs = [-70, 0, 70].map(dx => place(el('div', 'abs twig', null, L), x + dx - 12, 798));
+    return { stem, twigs };
+  });
+  return (t, s, e, marks) => {
+    hdr(t, s, e);
+    animateTitle(T, t, s);
+    ghost.style.opacity = 0.9 * fade(t, s + 0.6, 1.2);
+    ghost.style.transform = `translateY(${(1 - prog(t, s + 0.6, 1.5)) * 40}px)`;
+    const at = th.services.map((_, k) => marks[k] ?? s + 1.7 + k * 0.6);
+    const rp = prog(t, s + 0.7, 0.8, easeBack);
+    rootBox.style.opacity = fade(t, s + 0.7);
+    rootBox.style.transform = `translateY(${(1 - rp) * -40}px)`;
+    draw(trunk, prog(t, s + 1.2, 0.5));
+    draw(bar, prog(t, at[0] - 0.9, 0.8, easeInOut));
+    nodes.forEach((n, k) => {
+      draw(drops[k], prog(t, at[k] - 0.3, 0.3));
+      const p = prog(t, at[k] - 0.1, 0.6, easeBack);
+      const hl = spoken(t, at, k);
+      n.style.opacity = fade(t, at[k] - 0.1, 0.25);
+      n.style.transform = `translateY(${(1 - p) * 30 - hl * 14}px) scale(${0.85 + 0.15 * p})`;
+      n.style.background = mixRGB([255, 255, 255], [255, 244, 214], hl);
+      n.style.boxShadow = `0 ${8 + 14 * hl}px ${24 + 16 * hl}px rgba(${hl > 0.01 ? '240,176,40' : '46,46,49'},${0.08 + 0.22 * hl})`;
+      draw(teams[k].stem, prog(t, at[k] + 0.4, 0.5));
+      teams[k].twigs.forEach((tw, j) => pop(tw, prog(t, at[k] + 0.7 + j * 0.08, 0.4, easeBack), 0.2));
+    });
+  };
+}
+
+// 02 people: a team network that steps aside for the testimonial
+function buildPeople(th, idx) {
+  const L = el('div', 'layer grid-gold s2', null, root);
+  const ghost = el('div', 'abs ghost', '02', L);
+  const hdr = header(L, idx, th.tone);
+  const T = titleBlock(L, th, false);
+  const net = el('div', 'abs net', null, L);
+  const links = canvasSvg('links', net);
+  const C = [960, 655];
+  const pos = [[620, 505], [1300, 505], [1300, 805], [620, 805]];
+  const spokes = pos.map(([x, y]) => wire(links, `M${C[0]} ${C[1]} L${x} ${y}`, '#ffffff', 4));
+  const ring = svgEl('circle', { cx: C[0], cy: C[1], r: 250, fill: 'none', stroke: 'rgba(255,255,255,0.45)', 'stroke-width': 2, 'stroke-dasharray': '6 10' }, links);
+  const hub = el('div', 'abs hub', icon(ICON_BODY.people, '#f0b028', 3), net);
+  const bubs = th.services.map((s, k) => place(el('div', 'abs bub', `<div class="n">0${k + 1}</div><div class="s">${s}</div>`, net), pos[k][0] - 105, pos[k][1] - 105));
+  const q = th.quote;
+  const card = el('div', 'abs qcard', `<div class="qm">“</div><div class="q">${q.q}</div><div class="who">${q.who}</div><div class="org">${q.org}</div>
+    <div class="stat"><img src="${q.logo}"><div style="text-align:right"><div class="k">${q.stat[0]}</div><div class="v">${q.stat[1]}</div></div></div>`, L);
+  images.push(card.querySelector('img'));
+  return (t, s, e, marks) => {
+    hdr(t, s, e);
+    animateTitle(T, t, s);
+    const at = th.services.map((_, k) => marks[k] ?? s + 1.7 + k * 0.6);
+    const qt = marks.q ?? s + 9;
+    ghost.style.opacity = fade(t, s + 0.6, 1.2) * (1 - fade(t, qt - 0.6, 0.4));
+    pop(hub, prog(t, s + 0.9, 0.7, easeBack), 0.3);
+    ring.setAttribute('opacity', fade(t, s + 1.2, 0.6));
+    ring.setAttribute('transform', `rotate(${t * 8} ${C[0]} ${C[1]})`);
+    bubs.forEach((b, k) => {
+      draw(spokes[k], prog(t, at[k] - 0.45, 0.4));
+      const hl = spoken(t, at, k, qt - at[k] - 0.3);
+      const p = prog(t, at[k] - 0.1, 0.6, easeBack);
+      b.style.opacity = fade(t, at[k] - 0.1, 0.25);
+      b.style.transform = `scale(${(0.5 + 0.5 * p) * (1 + 0.08 * hl)})`;
+      b.style.boxShadow = `0 12px 30px rgba(46,46,49,0.15), 0 0 0 ${10 * hl}px rgba(46,46,49,0.85)`;
+    });
+    // the network steps left and shrinks, the testimonial slides in
+    const m = prog(t, qt - 1.0, 0.9, easeInOut);
+    net.style.transform = `translateX(${-360 * m}px) scale(${1 - 0.2 * m})`;
+    const cp = prog(t, qt - 0.2, 0.9);
+    card.style.opacity = fade(t, qt - 0.2, 0.3);
+    card.style.transform = `translateX(${(1 - cp) * 140}px)`;
+  };
+}
+
+// 03 performance: a staircase chart, one rising bar per service
+function buildPerformance(th, idx) {
+  const L = el('div', 'layer grid-dark s3', null, root);
+  const ghost = el('div', 'abs ghost', '03', L);
+  const hdr = header(L, idx, th.tone);
+  const T = titleBlock(L, th);
+  const chart = canvasSvg('chart', L);
+  [380, 480, 580, 680, 780].forEach(y => svgEl('line', { x1: 740, x2: 1800, y1: y, y2: y, stroke: 'rgba(255,255,255,0.07)', 'stroke-width': 2 }, chart));
+  const base = wire(chart, 'M740 880 H1800', 'rgba(255,255,255,0.35)', 3);
+  const xs = [750, 1006, 1262, 1518], hs = [230, 330, 430, 530];
+  const bars = th.services.map((s, k) => place(el('div', 'abs bar', `<div class="in"><div class="n">0${k + 1}</div><div class="s">${s}</div></div>`, L), xs[k], 880 - hs[k], 236, hs[k]));
+  const pts = xs.map((x, k) => [x + 118, 880 - hs[k] - 46]);
+  const trend = wire(chart, 'M' + pts.map(p => p.join(' ')).join(' L') + ' L1790 300', '#f0b028', 5);
+  const arrow = svgEl('path', { d: 'M1772 296 L1800 292 L1790 318', fill: 'none', stroke: '#f0b028', 'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, chart);
+  const dots = pts.map(([x, y]) => svgEl('circle', { cx: x, cy: y, r: 10, fill: '#2b2b2e', stroke: '#f0b028', 'stroke-width': 5 }, chart));
+  // how far along the trend line each point sits, so it draws in step with the bars
+  const seg = [0];
+  for (let k = 1; k < pts.length; k++) seg.push(seg[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]));
+  const total = seg[3] + Math.hypot(1790 - pts[3][0], 300 - pts[3][1]);
+  return (t, s, e, marks) => {
+    hdr(t, s, e);
+    animateTitle(T, t, s);
+    ghost.style.opacity = fade(t, s + 0.6, 1.2);
+    const at = th.services.map((_, k) => marks[k] ?? s + 1.7 + k * 0.6);
+    draw(base, prog(t, s + 0.9, 0.9, easeInOut));
+    let line = 0;
+    bars.forEach((b, k) => {
+      const p = prog(t, at[k] - 0.15, 0.7);
+      const hl = spoken(t, at, k);
+      b.style.transform = `scaleY(${p})`;
+      b.style.opacity = p > 0 ? 1 : 0;
+      b.style.boxShadow = `0 0 ${40 * hl}px rgba(240,176,40,${0.55 * hl})`;
+      b.style.filter = `brightness(${1 + 0.12 * hl})`;
+      b.querySelector('.in').style.opacity = fade(t, at[k] + 0.35, 0.3);
+      dots[k].setAttribute('opacity', fade(t, at[k] + 0.4, 0.2));
+      if (t >= at[k] + 0.3) line = Math.max(line, seg[k] / total);
+      if (k > 0) line = Math.max(line, lerp(seg[k - 1], seg[k], prog(t, at[k] - 0.2, 0.6)) / total);
+    });
+    line = Math.max(line, lerp(seg[3], total, prog(t, at[3] + 0.6, 0.6)) / total);
+    draw(trend, line);
+    arrow.setAttribute('opacity', fade(t, at[3] + 1.1, 0.3));
+  };
+}
+
+// 04 capability: photo panel, service tiles, then the Aramex testimonial
+function buildCapability(th, idx) {
+  const L = el('div', 'layer grid-light s4', null, root);
+  const hdr = header(L, idx, th.tone);
+  const photo = el('div', 'abs photo', null, L);
+  const pimg = img('assets/key-visual.jpg', null, photo);
+  el('div', 'shade', null, photo);
+  el('div', 'edge', null, photo);
+  const T = titleBlock(L, th, false);
+  const tx = [960, 1400], ty = [200, 560];
+  const tiles = th.services.map((s, k) => place(el('div', 'abs tile',
+    `<div class="top"><div class="ic">${icon(ICON_BODY[th.icons[k]], '#ffffff', 3.4)}</div><div class="n">0${k + 1}</div></div><div class="s">${s}</div>`, L), tx[k % 2], ty[k >> 1]));
+  const q = th.quote;
+  const card = el('div', 'abs qcard', `<div class="q">${q.q}</div><div class="who">${q.who}</div><div class="org">${q.org}</div>
+    <div class="foot"><div class="tag">${q.tag}</div><img src="${q.logo}"></div>`, L);
+  images.push(card.querySelector('img'));
+  return (t, s, e, marks) => {
+    hdr(t, s, e);
+    const pp = prog(t, s, 0.9, easeInOut);
+    photo.style.clipPath = `inset(0 ${(1 - pp) * 100}% 0 0)`;
+    pimg.style.transform = `scale(${1.08 - 0.06 * clamp((t - s) / (e - s))})`;
+    animateTitle(T, t, s + 0.3, -40);
+    const at = th.services.map((_, k) => marks[k] ?? s + 1.7 + k * 0.6);
+    tiles.forEach((tile, k) => {
+      const p = prog(t, at[k] - 0.1, 0.6, easeBack);
+      const hl = spoken(t, at, k);
+      tile.style.opacity = fade(t, at[k] - 0.1, 0.25);
+      tile.style.transform = `translateY(${(1 - p) * 40 - 10 * hl}px) scale(${0.9 + 0.1 * p})`;
+      tile.style.background = mixRGB([255, 255, 255], [240, 176, 40], hl);
+      tile.querySelector('.ic').style.background = mixRGB([240, 176, 40], [46, 46, 49], hl);
+      tile.querySelector('.n').style.color = mixRGB([217, 154, 20], [46, 46, 49], hl);
+    });
+    const qt = marks.q ?? s + 7.5;
+    const cp = prog(t, qt - 0.25, 0.9);
+    card.style.opacity = fade(t, qt - 0.25, 0.3);
+    card.style.transform = `translateY(${(1 - cp) * 60}px)`;
+  };
+}
+
+// 05 resilience: a shield with pulse rings, the services as stations around it
+function buildResilience(th, idx) {
+  const L = el('div', 'layer grid-dark s5', null, root);
+  const hdr = header(L, idx, th.tone);
+  const T = titleBlock(L, th, false);
+  const radar = canvasSvg('radar', L);
+  const C = [960, 640];
+  const rings = [0, 1, 2].map(() => svgEl('circle', { cx: C[0], cy: C[1], r: 120, fill: 'none', stroke: '#f0b028', 'stroke-width': 3 }, radar));
+  const halo = svgEl('circle', { cx: C[0], cy: C[1], r: 130, fill: 'rgba(240,176,40,0.08)', stroke: 'rgba(240,176,40,0.35)', 'stroke-width': 2 }, radar);
+  const spots = [[150, 430, 'l'], [150, 700, 'l'], [1270, 430, 'r'], [1270, 700, 'r']];
+  const links = spots.map(([x, y, side]) => {
+    const cy = y + 60, ex = side === 'l' ? x + 500 : x;
+    const sx = side === 'l' ? C[0] - 110 : C[0] + 110;
+    return wire(radar, `M${sx} ${C[1] + (cy < C[1] ? -40 : 40)} L${ex} ${cy}`, 'rgba(240,176,40,0.7)', 3);
+  });
+  const shield = el('div', 'abs shield', `<svg viewBox="0 0 200 220"><path d="M100 8l84 30v62c0 54-36 90-84 112C52 190 16 154 16 100V38z" fill="#f0b028"/>
+    <path class="tick" d="M62 112l28 28 52-56" fill="none" stroke="#2b2b2e" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>`, L);
+  const tick = shield.querySelector('.tick');
+  const stns = th.services.map((s, k) => place(el('div', 'abs stn ' + spots[k][2], `<div class="n">0${k + 1}</div><div class="s">${s}</div>`, L), spots[k][0], spots[k][1]));
+  return (t, s, e, marks) => {
+    hdr(t, s, e);
+    const pp = prog(t, s + 0.4, 1.0);
+    T.pillar.style.opacity = pp;
+    T.pillar.style.transform = `scale(${0.9 + 0.1 * pp})`;
+    rise(T.theme, prog(t, s + 0.8, 0.9));
+    const at = th.services.map((_, k) => marks[k] ?? s + 1.7 + k * 0.6);
+    const vo = VO_THEMES[idx] || { segments: [] };
+    const ready = vo.segments[5] ? vo.segments[5].t : at[3] + 2;
+    pop(shield, prog(t, s + 0.9, 0.8, easeBack), 0.4);
+    halo.setAttribute('opacity', fade(t, s + 1.1, 0.5));
+    const pulse = fade(t, s + 1.4, 0.6);
+    rings.forEach((r, j) => {
+      const ph = ((t - s) / 2.4 + j / 3) % 1;
+      r.setAttribute('r', 120 + 170 * ph);
+      r.setAttribute('opacity', (1 - ph) * 0.55 * pulse);
+    });
+    stns.forEach((st, k) => {
+      draw(links[k], prog(t, at[k] - 0.4, 0.4));
+      const p = prog(t, at[k] - 0.1, 0.6, easeBack);
+      const hl = Math.max(spoken(t, at, k, ready - at[k]), prog(t, ready - 0.1, 0.4));
+      const dir = spots[k][2] === 'l' ? -1 : 1;
+      st.style.opacity = fade(t, at[k] - 0.1, 0.25);
+      st.style.transform = `translateX(${(1 - p) * 60 * dir}px)`;
+      st.style.background = mixRGB([56, 56, 60], [74, 66, 44], hl);
+      st.style.boxShadow = `0 0 ${30 * hl}px rgba(240,176,40,${0.35 * hl})`;
+    });
+    // "so a crisis meets a prepared team": the shield locks in
+    tick.setAttribute('stroke-dashoffset', 1 - prog(t, ready, 0.6, easeInOut));
+    const lock = prog(t, ready, 0.5, easeBack) * (1 - prog(t, ready + 0.5, 0.6));
+    shield.style.transform = `scale(${1 + 0.08 * lock})`;
+  };
+}
+
+const builders = [buildStructure, buildPeople, buildPerformance, buildCapability, buildResilience];
+const themeScenes = THEMES.map((th, i) => {
+  const update = builders[i](th, i);
+  const L = root.lastElementChild;
+  return { L, update, th };
 });
 
 const close = el('div', 'layer', null, root);
@@ -315,18 +692,14 @@ const cap = document.querySelector('#cap span');
 const capBox = document.getElementById('cap');
 if (LANG === 'ar') { capBox.classList.add('ar'); cap.dir = 'rtl'; cap.lang = 'ar'; }
 const wipe = document.getElementById('wipe');
+const wipePanel = wipe.querySelector('.p');
 
-// background waves (kept out of the practice scenes so they never cross content)
+// background waves for the opening, overview and closing
 const glow = document.getElementById('glow');
 const wave1 = document.getElementById('wave1');
 const wave2 = document.getElementById('wave2');
 const sparks = document.getElementById('sparks');
-const sparkNodes = Array.from({ length: 9 }, () => {
-  const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  c.setAttribute('r', 5); c.setAttribute('fill', '#f0b028');
-  sparks.appendChild(c);
-  return c;
-});
+const sparkNodes = Array.from({ length: 9 }, () => svgEl('circle', { r: 5, fill: '#f0b028' }, sparks));
 function waveY(x, t, amp, base, k, speed) {
   return base + amp * Math.sin(x * k + t * speed) + amp * 0.4 * Math.sin(x * k * 2.3 - t * speed * 0.7);
 }
@@ -338,13 +711,14 @@ function wavePath(t, amp, base, k, speed) {
 
 // ---------- render ----------
 window.seek = function (t) {
-  // wipe: a background-coloured panel with a gold leading edge sweeps across;
+  // wipe: a panel in the incoming scene's colour, with gold edges, sweeps across;
   // scenes cut underneath it, so two scenes are never on screen together
-  const b = BOUNDARIES.find(x => Math.abs(t - x) < WIPE / 2);
-  if (b !== undefined) {
-    const p = easeInOut(clamp((t - b + WIPE / 2) / WIPE));
+  const tr = TRANSITIONS.find(([x]) => Math.abs(t - x) < WIPE / 2);
+  if (tr) {
+    const p = easeInOut(clamp((t - tr[0] + WIPE / 2) / WIPE));
     wipe.style.visibility = 'visible';
     wipe.style.transform = `translateX(${-2472 + p * 4392}px)`;
+    wipePanel.style.background = TONE_BG[tr[1]];
   } else wipe.style.visibility = 'hidden';
 
   const inThemes = t >= TL.themes[0][0] && t < TL.close[0];
@@ -360,7 +734,6 @@ window.seek = function (t) {
     });
   }
 
-  // intro: slow pan from the headline down to the meeting
   show(intro, within(t, TL.intro));
   if (within(t, TL.intro)) {
     const p = prog(t, 0.3, TL.intro[1] - 0.3, easeInOut);
@@ -368,7 +741,6 @@ window.seek = function (t) {
     introImg.style.transform = `translateY(${-40 - 760 * p}px) scale(${1 + 0.05 * p})`;
   }
 
-  // logo reveal
   show(reveal, within(t, TL.reveal));
   if (within(t, TL.reveal)) {
     const s = TL.reveal[0];
@@ -380,7 +752,6 @@ window.seek = function (t) {
     rise(rvSub, prog(t, s + 2.4, 0.9), 24);
   }
 
-  // overview: each pillar lands as the narrator names it
   show(over, within(t, TL.overview));
   if (within(t, TL.overview)) {
     const s = TL.overview[0];
@@ -394,50 +765,16 @@ window.seek = function (t) {
     });
   }
 
-  // practice scenes: each service card appears, and is highlighted, as it is spoken
-  let activeIdx = -1, activeP = 0;
+  let tone = 'light';
   themeScenes.forEach((S, i) => {
     const span = TL.themes[i];
     const on = within(t, span);
     show(S.L, on);
     if (!on) return;
-    activeIdx = i;
-    activeP = clamp((t - span[0]) / (span[1] - span[0]));
-    const s = span[0];
-    const marks = (VO_THEMES[i] || {}).marks || {};
-    rise(S.num, prog(t, s + 0.3, 0.8), 20);
-    const pp = prog(t, s + 0.4, 1.0);
-    S.pillar.style.opacity = pp;
-    S.pillar.style.transform = `translateX(${(1 - pp) * -60}px)`;
-    rise(S.theme, prog(t, s + 0.8, 0.9));
-    S.rule.style.transform = `scaleX(${prog(t, s + 1.1, 0.9)})`;
-    const at = S.cards.map((_, k) => marks[k] ?? s + 1.7 + k * 0.6);
-    S.spine.style.transform = `scaleY(${prog(t, at[0], at[3] - at[0] + 0.4, easeInOut)})`;
-    S.cards.forEach(({ c, d }, k) => {
-      const cp = prog(t, at[k] - 0.15, 0.6);
-      const next = k < 3 ? at[k + 1] : at[3] + 1.8;
-      const hl = prog(t, at[k] - 0.15, 0.3) * (1 - prog(t, next - 0.15, 0.3));
-      c.style.opacity = cp;
-      c.style.transform = `translateX(${(1 - cp) * 80 - hl * 14}px)`;
-      c.style.background = `rgb(${241 + 14 * hl}, ${240 + 15 * hl}, ${237 + 18 * hl})`;
-      c.style.boxShadow = `0 10px 30px rgba(240,176,40,${0.28 * hl})`;
-      d.style.opacity = cp;
-      d.style.transform = `scale(${0.4 + 0.6 * cp + 0.25 * hl})`;
-    });
-    if (S.hasQuote) rise(S.side, prog(t, (marks.q ?? s + 4.6) - 0.3, 0.9), 50);
-    else {
-      const ip = prog(t, at[3] + 0.8, 1.0, easeBack);
-      S.side.style.opacity = clamp((t - at[3] - 0.8) / 0.3);
-      S.side.style.transform = `scale(${0.6 + 0.4 * ip})`;
-    }
+    tone = S.th.tone;
+    S.update(t, span[0], span[1], (VO_THEMES[i] || {}).marks || {});
   });
-  show(chrome, activeIdx >= 0);
-  if (activeIdx >= 0) {
-    railNodes.forEach((n, i) => { n.className = 'rn' + (i === activeIdx ? ' on' : i < activeIdx ? ' done' : ''); });
-    railFill.style.width = (Math.min(4, activeIdx + activeP) * 25) + '%';
-  }
 
-  // closing: holds on the logo and call to action
   show(close, t >= TL.close[0]);
   if (t >= TL.close[0]) {
     const s = TL.close[0];
@@ -449,8 +786,8 @@ window.seek = function (t) {
     rise(clCta, prog(t, s + 6.2, 0.9), 30);
   }
 
-  // captions
   const cue = CUES.find(c => t >= c.t && t < c.end);
+  capBox.classList.toggle('dark', tone === 'dark');
   if (cue) {
     cap.textContent = cue.text;
     capBox.style.opacity = Math.min(clamp((t - cue.t) / 0.15), clamp((cue.end - t) / 0.15));
@@ -458,18 +795,18 @@ window.seek = function (t) {
   } else capBox.style.visibility = 'hidden';
 };
 
-// one size for every pillar heading, small enough that the longest one
-// ("Performance") stays clear of the service cards
+// fit each pillar heading to the space its layout gives it
+const PILLAR_FIT = [[600, 150], [720, 150], [600, 150], [760, 130], [1100, 130]];
 function fitPillars() {
-  const maxW = 820;
-  let size = 168;
-  themeScenes.forEach(S => {
-    S.pillar.style.fontSize = size + 'px';
-    while (S.pillar.offsetWidth > maxW && size > 80) S.pillar.style.fontSize = (--size) + 'px';
-  });
-  themeScenes.forEach(S => {
-    S.pillar.style.fontSize = size + 'px';
-    S.pillar.style.top = (190 + (168 - size) * 0.5) + 'px';
+  themeScenes.forEach((S, i) => {
+    const p = S.L.querySelector('.pillar');
+    let [maxW, size] = PILLAR_FIT[i];
+    p.style.fontSize = size + 'px';
+    const measure = () => { const r = document.createRange(); r.selectNodeContents(p); return r.getBoundingClientRect().width; };
+    const vis = S.L.style.visibility;
+    S.L.style.visibility = 'visible';
+    while (measure() > maxW && size > 70) p.style.fontSize = (--size) + 'px';
+    S.L.style.visibility = vis;
   });
 }
 
