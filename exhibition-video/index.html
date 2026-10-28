@@ -49,26 +49,37 @@
   }
   #glow { position: absolute; inset: 0; }
 
-  /* intro */
-  #intro-img { position: absolute; left: 0; top: 0; width: 1920px; height: 1920px; }
+  /* opening: the logo file is 2000x602; its three parts sit at their original offsets */
+  .logo2 { width: 2000px; height: 602px; transform-origin: 0 0; }
+  .logo2 .l-mark { left: 0; top: 0; width: 620px; height: 602px; }
+  .logo2 .l-word { left: 620px; top: 100px; width: 1380px; height: 330px; }
+  .logo2 .l-tag { left: 620px; top: 460px; width: 1380px; height: 120px; }
+  .layer > .logo2 { left: 260px; top: 300px; transform: scale(0.7); }
 
-  /* logo reveal */
-  .lg { left: 0; right: 0; top: 330px; height: 200px; display: flex; justify-content: center; align-items: center; gap: 14px; }
-  .lg .mark { width: 200px; height: 200px; }
-  .lg .wm-wrap { width: 473px; height: 109px; overflow: hidden; position: relative; top: 8px; }
-  .lg .wm { width: 473px; height: 109px; display: block; }
-  .rv-line { left: 760px; width: 400px; top: 610px; height: 3px; background: var(--gold); transform-origin: center; }
-  .rv-sub { left: 0; right: 0; top: 650px; text-align: center; font-size: 34px; letter-spacing: 10px; color: var(--char); font-weight: 500; }
+  /* title */
+  .t-glow { left: 360px; top: 140px; width: 1200px; height: 800px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(240,176,40,0.22), rgba(240,176,40,0)); }
+  .t-mark { left: 900px; top: 150px; width: 120px; height: 117px; }
+  .t-line { left: 0; right: 0; text-align: center; font-weight: 700; line-height: 1.05; white-space: nowrap; }
+  .t-line span { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 4px; }
+  .t-line i { display: inline-block; font-style: normal; }
+  .t1 { top: 320px; font-size: 140px; color: #fff; letter-spacing: 4px; }
+  .t2 { top: 480px; font-size: 176px; color: #fff; letter-spacing: 4px; }
+  .t2 .prog { color: var(--gold);
+    background: linear-gradient(100deg, #f0b028 0%, #f0b028 40%, #fff3cf 50%, #f0b028 60%, #f0b028 100%);
+    background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
   /* overview */
-  .ov-title { left: 0; right: 0; top: 190px; text-align: center; }
+  .ov-title { left: 0; right: 0; top: 150px; text-align: center; }
+  .ov-title .ar { font-family: "Cairo", sans-serif; font-size: 50px; font-weight: 700; color: var(--char); margin-top: 2px; }
   .ov-title .k { font-size: 26px; letter-spacing: 8px; color: var(--char); text-transform: uppercase; font-weight: 600; }
   .ov-title .h { font-size: 92px; font-weight: 600; color: var(--gold); margin-top: 10px; letter-spacing: 1px; }
-  .ov-node { width: 300px; text-align: center; top: 450px; }
+  .ov-node { width: 300px; text-align: center; top: 470px; }
+  .ov-node .a { font-family: "Cairo", sans-serif; font-size: 32px; font-weight: 700; color: var(--gold-deep); margin-top: 2px; }
   .ov-node .ring { width: 160px; height: 160px; margin: 0 auto; border-radius: 50%; background: var(--gold);
     display: flex; align-items: center; justify-content: center; }
   .ov-node .ring svg { width: 78px; height: 78px; }
-  .ov-node .w { font-size: 44px; font-weight: 600; margin-top: 30px; color: var(--char); letter-spacing: 1px; }
+  .ov-node .w { font-size: 44px; font-weight: 600; margin-top: 24px; color: var(--char); letter-spacing: 1px; }
   .ov-node .t { font-size: 23px; color: var(--muted); margin-top: 8px; line-height: 1.35; padding: 0 10px; }
 
   /* header for the practice scenes, in three tones */
@@ -133,24 +144,31 @@
   .s2 .theme { left: 120px; top: 330px; color: rgba(46,46,49,0.8); white-space: nowrap; font-size: 36px; }
   .s2 .ghost { left: 1460px; top: 560px; -webkit-text-stroke: 3px rgba(255,255,255,0.5); }
   .s2 .net { left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 655px; }
-  .s2 .hub { left: 875px; top: 570px; width: 170px; height: 170px; border-radius: 50%; background: var(--ink);
+  .s2 .hub { width: 170px; height: 170px; border-radius: 50%; background: var(--ink);
     display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 14px rgba(46,46,49,0.12); }
   .s2 .hub svg { width: 86px; height: 86px; }
-  .s2 .bub { width: 210px; height: 210px; border-radius: 50%; background: #fff; display: flex; flex-direction: column;
+  .s2 .bub { width: 220px; height: 220px; border-radius: 50%; background: #fff; display: flex; flex-direction: column;
     align-items: center; justify-content: center; text-align: center; padding: 26px; box-shadow: 0 12px 30px rgba(46,46,49,0.15); }
   .s2 .bub .n { font-family: "Oswald", sans-serif; font-size: 24px; color: var(--gold-deep); font-weight: 600; }
   .s2 .bub .s { font-size: 25px; font-weight: 700; line-height: 1.2; color: var(--ink); margin-top: 6px; }
-  .s2 .qcard { left: 1010px; top: 200px; width: 790px; padding: 54px 56px 44px; background: #fff; border-radius: 14px;
-    box-shadow: 0 24px 60px rgba(46,46,49,0.22); }
-  .s2 .qcard .qm { position: absolute; left: 40px; top: -46px; font-family: Georgia, serif; font-size: 170px; line-height: 1; color: var(--ink); font-weight: 700; }
-  .s2 .qcard .q { font-size: 40px; line-height: 1.3; font-weight: 700; color: var(--ink); }
-  .s2 .qcard .who { margin-top: 26px; font-size: 24px; font-weight: 700; font-style: italic; }
-  .s2 .qcard .org { margin-top: 4px; font-size: 21px; color: var(--char); }
-  .s2 .qcard .stat { margin-top: 30px; padding-top: 24px; border-top: 2px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
-  .s2 .qcard .stat .k { font-family: "Oswald", sans-serif; font-size: 22px; letter-spacing: 4px; text-transform: uppercase; color: var(--char); }
-  .s2 .qcard .stat .v { font-family: "Oswald", sans-serif; font-size: 96px; line-height: 0.9; font-weight: 700; color: var(--gold-deep); }
-  .s2 .qcard .stat img { height: 92px; }
-
+  .s2 .bub.lm { background: var(--ink); }
+  .s2 .bub.lm .s { color: #fff; font-size: 22px; }
+  .s2 .bub .bf { width: 54px; height: 54px; }
+  .s2 .bub .bf svg { width: 100%; height: 100%; }
+  sup.tm { font-size: 0.42em; vertical-align: super; line-height: 0; margin-left: 2px; letter-spacing: 0; }
+  .s2 .meta { left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+  .s2 .sky { inset: 0; background: linear-gradient(180deg, #1c1d29 0%, #3b2d3a 38%, #9a5a2c 68%, #e7a43a 88%, #f0b028 100%); }
+  .s2 .sun { left: 1260px; top: 560px; width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle, #fff3cf 0%, #f6c75a 35%, rgba(240,176,40,0) 70%); }
+  .s2 .meta-logo { right: 110px; top: 48px; height: 64px; }
+  .s2 .meta-text { left: 120px; top: 150px; width: 860px; }
+  .s2 .meta-text .k { font-size: 30px; letter-spacing: 10px; color: var(--gold); font-weight: 600; }
+  .s2 .meta-text .h { font-size: 118px; line-height: 1.0; color: #fff; font-weight: 700; margin-top: 8px; letter-spacing: 2px; }
+  .s2 .meta-text .h sup.tm { color: var(--gold); }
+  .s2 .meta-text .p { font-size: 66px; color: var(--gold); font-weight: 600; letter-spacing: 8px; margin-top: 6px; }
+  .s2 .meta-text .d { font-size: 34px; line-height: 1.35; color: #fff; font-style: italic; margin-top: 22px; width: 780px;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.5); }
+  .s2 .fly { left: 0; top: 0; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35)); }
   /* 03 performance: staircase chart */
   .s3 .pillar { left: 120px; top: 190px; color: var(--gold); }
   .s3 .theme { left: 120px; top: 330px; width: 560px; color: #fff; }
@@ -161,7 +179,7 @@
     transform-origin: bottom center; overflow: hidden; }
   .s3 .bar .in { position: absolute; left: 0; right: 0; top: 0; padding: 20px 16px; }
   .s3 .bar .n { font-family: "Oswald", sans-serif; font-size: 26px; font-weight: 700; color: rgba(46,46,49,0.7); }
-  .s3 .bar .s { font-size: 25px; font-weight: 800; line-height: 1.2; color: var(--ink); margin-top: 6px; }
+  .s3 .bar .s { font-size: 24px; font-weight: 800; line-height: 1.2; color: var(--ink); margin-top: 6px; }
 
   /* 04 capability: photo panel + tiles */
   .s4 .photo { left: 0; top: 141px; width: 900px; height: 939px; overflow: hidden; }
@@ -177,17 +195,15 @@
   .s4 .tile .ic { width: 96px; height: 96px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; }
   .s4 .tile .ic svg { width: 52px; height: 52px; }
   .s4 .tile .n { font-family: "Oswald", sans-serif; font-size: 34px; color: var(--gold-deep); font-weight: 600; }
-  .s4 .tile .s { font-size: 33px; font-weight: 800; line-height: 1.2; color: var(--ink); }
-  .s4 .qcard { left: 70px; top: 200px; width: 760px; padding: 40px 44px 30px; background: #fff; border-radius: 12px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.3); border-left: 8px solid var(--gold); }
-  .s4 .qcard .q { font-size: 32px; line-height: 1.32; font-weight: 700; color: var(--ink); }
-  .s4 .qcard .q::before { content: "\201C"; color: var(--gold); }
-  .s4 .qcard .q::after { content: "\201D"; color: var(--gold); }
-  .s4 .qcard .who { margin-top: 20px; font-size: 22px; font-weight: 700; font-style: italic; }
-  .s4 .qcard .org { margin-top: 2px; font-size: 19px; color: var(--char); }
-  .s4 .qcard .foot { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; }
-  .s4 .qcard .tag { font-family: "Oswald", sans-serif; font-size: 20px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; }
-  .s4 .qcard img { height: 62px; }
+  .s4 .tile .s { font-size: 30px; font-weight: 800; line-height: 1.2; color: var(--ink); }
+  .s4 .qcard { left: 230px; top: 200px; width: 1460px; padding: 56px 70px 40px; background: #fff; border-radius: 14px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35); border-top: 8px solid var(--gold); }
+  .s4 .qcard .qm { position: absolute; left: 40px; top: -40px; font-family: Georgia, serif; font-size: 170px; line-height: 1; color: var(--gold); font-weight: 700; }
+  .s4 .qcard .q { font-size: 31px; line-height: 1.45; font-weight: 600; color: var(--ink); }
+  .s4 .qcard .who { font-size: 24px; font-weight: 700; font-style: italic; }
+  .s4 .qcard .org { margin-top: 2px; font-size: 21px; color: var(--char); }
+  .s4 .qcard .foot { margin-top: 28px; padding-top: 22px; border-top: 2px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+  .s4 .qcard img { height: 74px; }
 
   /* 05 resilience: shield and stations */
   .s5 .pillar { left: 0; right: 0; top: 168px; text-align: center; color: var(--gold); }
@@ -208,14 +224,13 @@
   #cap.ar span { font-family: "Cairo", "Open Sans", sans-serif; font-size: 36px; font-weight: 700; line-height: 1.45; padding: 8px 32px 12px; }
 
   /* closing */
-  .cl-row { left: 0; right: 0; top: 150px; display: flex; justify-content: center; }
+  .layer > .cl-logo2 { left: 210px; top: 250px; transform: scale(0.75); }
+  .cl-row { left: 0; right: 0; top: 120px; display: flex; justify-content: center; }
   .cl-w { font-size: 46px; font-weight: 600; color: var(--char); padding: 0 34px; position: relative; letter-spacing: 2px; }
   .cl-w + .cl-w::before { content: ""; position: absolute; left: -7px; top: 30px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
-  .cl-tag { left: 0; right: 0; top: 280px; text-align: center; font-size: 120px; font-weight: 700; letter-spacing: 2px; color: var(--ink); }
-  .cl-tag span { color: var(--gold); }
   .cl-logo { left: 0; right: 0; top: 500px; display: flex; justify-content: center; }
   .cl-logo img { height: 150px; }
-  .cl-cta { left: 0; right: 0; top: 700px; display: flex; justify-content: center; align-items: center; gap: 44px; }
+  .cl-cta { left: 0; right: 0; top: 760px; display: flex; justify-content: center; align-items: center; gap: 44px; }
   .cl-cta .talk { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 34px; letter-spacing: 4px; color: var(--ink); font-weight: 600;
     padding: 12px 28px; background: var(--gold); border-radius: 6px; }
   .cl-cta .ig { display: flex; align-items: center; gap: 12px; font-size: 32px; font-weight: 600; color: var(--char); }
@@ -265,25 +280,25 @@ const ICON_BODY = {
 const IG_ICON = '<svg viewBox="0 0 64 64" fill="none" stroke="#f0b028" stroke-width="5"><rect x="6" y="6" width="52" height="52" rx="15"/><circle cx="32" cy="32" r="12"/><circle cx="48" cy="16" r="2.5" fill="#f0b028" stroke="none"/></svg>';
 const WEB_ICON = '<svg viewBox="0 0 64 64" fill="none" stroke="#f0b028" stroke-width="4.5"><circle cx="32" cy="32" r="26"/><path d="M6 32h52M32 6c-9 9-9 43 0 52M32 6c9 9 9 43 0 52"/></svg>';
 
+const TM = '<sup class="tm">TM</sup>';
 const THEMES = [
-  { key: 'structure', pillar: 'Structure', theme: 'Organizational Transformation', tone: 'light',
-    services: ['Restructuring', 'Operating models', 'Organizational alignment', 'Culture change'],
+  { key: 'structure', pillar: 'Structure', ar: 'الهيكلة', theme: 'Organizational Transformation', tone: 'light',
+    services: ['Restructuring', 'Operating Models', 'Organizational Alignment', 'Cultural Change'],
     icons: ['restructure', 'gear', 'target', 'heart'] },
-  { key: 'people', pillar: 'People', theme: 'Leadership & Workforce Development', tone: 'gold',
-    services: ['Executive development', 'Team effectiveness', 'Workforce capability', 'Behavioral change'],
-    quote: { q: 'A partner who evolves with the organization, not a one-time provider.',
-             who: 'Mr. Sami M. Al Sagh', org: 'HR Director, CreditOne Al Sayer Facilities',
-             stat: ['Partner since', '2012'], logo: 'assets/client-creditone.png' } },
-  { key: 'performance', pillar: 'Performance', theme: 'Systems, Processes & Performance', tone: 'dark',
-    services: ['HR systems', 'Performance frameworks', 'Operational alignment', 'Implementation support'] },
-  { key: 'capability', pillar: 'Capability', theme: 'Learning, Assessment & Digital Platforms', tone: 'light',
-    services: ['Custom learning programs', 'Assessments', 'LMS & e-learning content', 'Talent solutions'],
+  { key: 'people', pillar: 'People', ar: 'الأفراد', theme: 'Leadership & Workforce Development', tone: 'gold',
+    services: ['Leadership Metamorphosis' + TM, 'Executive Development', 'Team Effectiveness', 'Workforce Capability', 'Behavioral Change'] },
+  { key: 'performance', pillar: 'Performance', ar: 'الأداء', theme: 'Systems, Processes & Performance', tone: 'dark',
+    services: ['HR Systems', 'Performance Frameworks & Reward Systems', 'Operational Alignment', 'Implementation Support'] },
+  { key: 'capability', pillar: 'Capability', ar: 'بناء القدرات', theme: 'Learning, Assessment & Digital Platforms', tone: 'light',
+    services: ['Bespoke Learning Programs', 'Psychometric & Technical Assessments', 'LMS & e-Learning Curriculum Development', 'Talent Succession'],
     icons: ['book', 'check', 'play', 'talent'],
-    quote: { q: 'High-quality delivery, strong governance, and a team that delivers under pressure.',
-             who: 'Mr. Mohammad Eleiwat', org: 'Learning & Development Specialist, Aramex International LLC',
-             tag: 'LMS & SCORM content, 2019–2022', logo: 'assets/client-aramex.png' } },
-  { key: 'resilience', pillar: 'Resilience', theme: 'Emergency Preparedness & Resilience', tone: 'dark',
-    services: ['Emergency response frameworks', 'Simulations', 'Business continuity', 'Organizational readiness'] }
+    quote: { q: 'We partnered with Mira-Clé to design and deliver bespoke e-learning modules and digital training content for our customer service teams. '
+               + 'The team demonstrated exceptional project management, responsiveness, and attention to detail throughout the engagement. '
+               + 'From content development to technical delivery, they consistently went above expectations and delivered high-quality outcomes within tight timelines. '
+               + 'Mira-Clé proved to be a customer-centric and dependable partner.',
+             who: 'Mr. Mohammad Eleiwat', org: 'Learning & Development Specialist, Aramex International LLC', logo: 'assets/client-aramex.png' } },
+  { key: 'resilience', pillar: 'Resilience', ar: 'المرونة المؤسسية', theme: 'Emergency Preparedness & Resilience', tone: 'dark',
+    services: ['Emergency Response Planning', 'Drills & Simulations', 'Business Continuity', 'Organizational Readiness'] }
 ];
 const TONE_BG = { light: '#fbfaf7', gold: '#f0b028', dark: '#2b2b2e' };
 const INSTAGRAM = '@miracle.lebanon';
@@ -292,12 +307,13 @@ const WEBSITE = 'mira-cle.com';
 // ---------- timeline ----------
 const TL = window.TIMELINE;
 const VO = window.VO || [];
-const VO_OVER = VO[2] || { marks: {} };
-const VO_THEMES = VO.slice(3, 8);
+const VO_BY_ID = Object.fromEntries(VO.map(l => [l.id, l]));
+const VO_OVER = VO_BY_ID.overview || { marks: {} };
+const VO_THEMES = THEMES.map(th => VO_BY_ID[th.key] || { marks: {}, segments: [] });
 window.DURATION = TL.close[1];
 const WIPE = 0.9;
 const TRANSITIONS = [
-  [TL.reveal[0], 'light'], [TL.overview[0], 'light'],
+  [TL.title[0], 'dark'], [TL.overview[0], 'light'],
   ...TL.themes.map((s, i) => [s[0], THEMES[i].tone]),
   [TL.close[0], 'light']
 ];
@@ -306,10 +322,10 @@ const TRANSITIONS = [
 // cues are built by grouping the spoken phrases
 const LANG = new URLSearchParams(location.search).get('lang') === 'ar' ? 'ar' : 'en';
 const CUES = [];
-VO.forEach((line, li) => {
+VO.forEach(line => {
   if (!line.captions) return;
   if (LANG === 'ar') {
-    const subs = window.SUBS_AR[li];
+    const subs = window.SUBS_AR[line.id];
     subs.forEach(([seg, text], k) => {
       const c = { t: line.segments[seg].t, text };
       if (k === subs.length - 1) c.lineEnd = line.end + 0.4;
@@ -392,24 +408,29 @@ function spoken(t, at, k, hold = 1.8) {
 // ---------- build ----------
 const root = document.getElementById('scenes');
 
-const intro = el('div', 'layer', null, root);
-const introImg = img('assets/key-visual.jpg', null, intro);
-introImg.id = 'intro-img';
-
+// opening: the full logo assembles, mark first, then wordmark, then slogan
 const reveal = el('div', 'layer', null, root);
-const lg = el('div', 'abs lg', null, reveal);
-const lgMark = img('assets/mira-cle-mark.png', 'mark', lg);
-const wmWrap = el('div', 'wm-wrap', null, lg);
-const lgWord = img('assets/mira-cle-wordmark.png', 'wm', wmWrap);
-const rvLine = el('div', 'abs rv-line', null, reveal);
-const rvSub = el('div', 'abs rv-sub head', 'The intelligence behind progress', reveal);
+const lg = el('div', 'abs logo2', null, reveal);
+const lgMark = img('assets/logo2-mark.png', 'abs l-mark', lg);
+const lgWord = img('assets/logo2-word.png', 'abs l-word', lg);
+const lgTag = img('assets/logo2-tag.png', 'abs l-tag', lg);
 
+// title: "The Intelligence Behind Progress"
+const titleL = el('div', 'layer grid-dark', null, root);
+const tGlow = el('div', 'abs t-glow', null, titleL);
+const tMark = img('assets/logo2-mark.png', 'abs t-mark', titleL);
+const tLine1 = el('div', 'abs t-line t1 head', '<span><i>The</i></span> <span><i>Intelligence</i></span>', titleL);
+const tLine2 = el('div', 'abs t-line t2 head', '<span><i>Behind</i></span> <span><i class="prog">Progress</i></span>', titleL);
+const tWords = [...titleL.querySelectorAll('.t-line i')];
+const tProg = titleL.querySelector('.prog');
+
+// overview, in English and Arabic
 const over = el('div', 'layer', null, root);
-const ovTitle = el('div', 'abs ov-title', '<div class="k">What we deliver</div><div class="h head">Five areas of practice</div>', over);
+const ovTitle = el('div', 'abs ov-title', '<div class="k">What We Deliver</div><div class="h head">Five Areas of Practice</div><div class="ar" dir="rtl" lang="ar">مجالات الاختصاص الخمسة</div>', over);
 const ovLine = el('div', 'abs', null, over);
-Object.assign(ovLine.style, { left: '310px', top: '528px', height: '3px', width: '1300px', background: 'var(--gold)', transformOrigin: 'left center' });
+Object.assign(ovLine.style, { left: '310px', top: '548px', height: '3px', width: '1300px', background: 'var(--gold)', transformOrigin: 'left center' });
 const ovNodes = THEMES.map((th, i) => {
-  const n = el('div', 'abs ov-node', `<div class="ring">${icon(ICON_BODY[th.key], '#ffffff')}</div><div class="w head">${th.pillar}</div><div class="t">${th.theme}</div>`, over);
+  const n = el('div', 'abs ov-node', `<div class="ring">${icon(ICON_BODY[th.key], '#ffffff')}</div><div class="w head">${th.pillar}</div><div class="a" dir="rtl" lang="ar">${th.ar}</div><div class="t">${th.theme}</div>`, over);
   n.style.left = (160 + i * 325) + 'px';
   return n;
 });
@@ -493,7 +514,38 @@ function buildStructure(th, idx) {
   };
 }
 
-// 02 people: a team network that steps aside for the testimonial
+// 02 people: a five-part team network, then the Leadership Metamorphosis feature,
+// a butterfly crossing a developed city at dusk
+let seed = 11;
+const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+function skyline(svg, { fill, maxH, minH, windows, cap }) {
+  const g = svgEl('g', {}, svg);
+  let x = -40;
+  while (x < 2000) {
+    const w = 60 + rnd() * 90;
+    let h = minH + rnd() * (maxH - minH);
+    if (cap) h = Math.min(h, cap(x));
+    const top = 1080 - h;
+    svgEl('rect', { x, y: top, width: w, height: h + 2, fill }, g);
+    const r = rnd();
+    if (r < 0.25) svgEl('rect', { x: x + w * 0.2, y: top - 30, width: w * 0.6, height: 32, fill }, g);       // stepped crown
+    else if (r < 0.45) svgEl('rect', { x: x + w / 2 - 2, y: top - 70, width: 4, height: 72, fill }, g);     // spire
+    else if (r < 0.6) svgEl('path', { d: `M${x} ${top} L${x + w / 2} ${top - 40} L${x + w} ${top}Z`, fill }, g);
+    if (windows) {
+      for (let wy = top + 16; wy < 1070; wy += 22)
+        for (let wx = x + 10; wx < x + w - 12; wx += 16)
+          if (rnd() < windows) svgEl('rect', { x: wx, y: wy, width: 7, height: 10, fill: rnd() < 0.8 ? '#f6c75a' : '#fff3cf', opacity: 0.35 + rnd() * 0.6 }, g);
+    }
+    x += w + 6 + rnd() * 18;
+  }
+  return g;
+}
+const BUTTERFLY_ICON = '<path d="M32 30C26 14 10 8 6 16s6 18 24 18z"/><path d="M32 30C38 14 54 8 58 16s-6 18-24 18z"/><path d="M30 34c-12 2-18 10-14 16s12 0 16-14z"/><path d="M34 34c12 2 18 10 14 16s-12 0-16-14z"/><path d="M32 22v26M32 22l-4-8M32 22l4-8"/>';
+const WING = `<path d="M0 -6 C -28 -72 -96 -78 -92 -30 C -88 6 -40 10 0 0 Z" fill="url(#wingG)" stroke="#2e2e31" stroke-width="4"/>
+  <path d="M0 2 C -40 10 -78 36 -62 64 C -46 82 -10 46 0 8 Z" fill="url(#wingG)" stroke="#2e2e31" stroke-width="4"/>
+  <path d="M-8 -6 C -30 -40 -60 -52 -78 -36" fill="none" stroke="#2e2e31" stroke-width="2.5" opacity="0.6"/>
+  <circle cx="-70" cy="-38" r="7" fill="#fff"/><circle cx="-52" cy="-52" r="4" fill="#fff"/><circle cx="-48" cy="50" r="5" fill="#fff"/>`;
+
 function buildPeople(th, idx) {
   const L = el('div', 'layer grid-gold s2', null, root);
   const ghost = el('div', 'abs ghost', '02', L);
@@ -501,39 +553,94 @@ function buildPeople(th, idx) {
   const T = titleBlock(L, th, false);
   const net = el('div', 'abs net', null, L);
   const links = canvasSvg('links', net);
-  const C = [960, 655];
-  const pos = [[620, 505], [1300, 505], [1300, 805], [620, 805]];
+  const C = [960, 665];
+  const pos = [-90, -18, 54, 126, 198].map(a => [C[0] + 330 * Math.cos(a * Math.PI / 180), C[1] + 220 * Math.sin(a * Math.PI / 180)]);
   const spokes = pos.map(([x, y]) => wire(links, `M${C[0]} ${C[1]} L${x} ${y}`, '#ffffff', 4));
-  const ring = svgEl('circle', { cx: C[0], cy: C[1], r: 250, fill: 'none', stroke: 'rgba(255,255,255,0.45)', 'stroke-width': 2, 'stroke-dasharray': '6 10' }, links);
-  const hub = el('div', 'abs hub', icon(ICON_BODY.people, '#f0b028', 3), net);
-  const bubs = th.services.map((s, k) => place(el('div', 'abs bub', `<div class="n">0${k + 1}</div><div class="s">${s}</div>`, net), pos[k][0] - 105, pos[k][1] - 105));
-  const q = th.quote;
-  const card = el('div', 'abs qcard', `<div class="qm">“</div><div class="q">${q.q}</div><div class="who">${q.who}</div><div class="org">${q.org}</div>
-    <div class="stat"><img src="${q.logo}"><div style="text-align:right"><div class="k">${q.stat[0]}</div><div class="v">${q.stat[1]}</div></div></div>`, L);
-  images.push(card.querySelector('img'));
+  const ring = svgEl('ellipse', { cx: C[0], cy: C[1], rx: 330, ry: 220, fill: 'none', stroke: 'rgba(255,255,255,0.5)', 'stroke-width': 2, 'stroke-dasharray': '6 10' }, links);
+  const hub = place(el('div', 'abs hub', icon(ICON_BODY.people, '#f0b028', 3), net), C[0] - 85, C[1] - 85);
+  const bubs = th.services.map((s, k) => place(el('div', 'abs bub' + (k === 0 ? ' lm' : ''),
+    (k === 0 ? `<div class="bf">${icon(BUTTERFLY_ICON, '#f0b028', 3)}</div>` : `<div class="n">0${k + 1}</div>`) + `<div class="s">${s}</div>`, net),
+    pos[k][0] - 110, pos[k][1] - 110));
+
+  // Leadership Metamorphosis feature
+  const meta = el('div', 'abs meta', null, L);
+  const sky = el('div', 'abs sky', null, meta);
+  const sun = el('div', 'abs sun', null, meta);
+  const city = canvasSvg('city', meta);
+  seed = 11;
+  const far = skyline(city, { fill: '#5a4038', minH: 260, maxH: 560, windows: 0 });
+  const mid = skyline(city, { fill: '#3a2c2c', minH: 200, maxH: 470, windows: 0.18, cap: x => x < 980 ? 340 : 470 });
+  const near = skyline(city, { fill: '#221d20', minH: 110, maxH: 300, windows: 0.32, cap: x => x < 980 ? 230 : 300 });
+  const metaLogo = img('assets/mira-cle-logo-white.png', 'abs meta-logo', meta);
+  const mText = el('div', 'abs meta-text', `<div class="k head">Explore</div>
+    <div class="h head"><div>Leadership</div><div>Metamorphosis${TM}</div></div><div class="p head">Program</div>
+    <div class="d">An executive leadership journey inspired by nature’s most profound transformation.</div>`, meta);
+  const [mk, mh, mp, md] = ['.k', '.h', '.p', '.d'].map(q => mText.querySelector(q));
+  const trail = canvasSvg('trail', meta);
+  const dust = Array.from({ length: 18 }, () => svgEl('circle', { r: 4, fill: '#fff3cf' }, trail));
+  const fly = svgEl('svg', { class: 'abs fly', width: 200, height: 160, viewBox: '-100 -80 200 160' }, meta);
+  fly.innerHTML = `<defs><linearGradient id="wingG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6c75a"/><stop offset="1" stop-color="#d99a14"/></linearGradient></defs>
+    <g class="wl">${WING}</g><g class="wr"><g transform="scale(-1,1)">${WING}</g></g>
+    <ellipse cx="0" cy="4" rx="7" ry="34" fill="#2e2e31"/><path d="M0 -26 L-12 -52 M0 -26 L12 -52" stroke="#2e2e31" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  const wl = fly.querySelector('.wl'), wr = fly.querySelector('.wr');
+  const path = u => {
+    const e = easeInOut(clamp(u));
+    return [lerp(880, 1470, e) + 40 * Math.sin(u * Math.PI * 2), lerp(1010, 320, e) + 50 * Math.sin(u * Math.PI * 3)];
+  };
+
   return (t, s, e, marks) => {
     hdr(t, s, e);
     animateTitle(T, t, s);
     const at = th.services.map((_, k) => marks[k] ?? s + 1.7 + k * 0.6);
-    const qt = marks.q ?? s + 9;
-    ghost.style.opacity = fade(t, s + 0.6, 1.2) * (1 - fade(t, qt - 0.6, 0.4));
+    const mt = marks.m ?? s + 12;
+    ghost.style.opacity = fade(t, s + 0.6, 1.2);
     pop(hub, prog(t, s + 0.9, 0.7, easeBack), 0.3);
     ring.setAttribute('opacity', fade(t, s + 1.2, 0.6));
-    ring.setAttribute('transform', `rotate(${t * 8} ${C[0]} ${C[1]})`);
     bubs.forEach((b, k) => {
       draw(spokes[k], prog(t, at[k] - 0.45, 0.4));
-      const hl = spoken(t, at, k, qt - at[k] - 0.3);
+      const hl = spoken(t, at, k);
       const p = prog(t, at[k] - 0.1, 0.6, easeBack);
       b.style.opacity = fade(t, at[k] - 0.1, 0.25);
       b.style.transform = `scale(${(0.5 + 0.5 * p) * (1 + 0.08 * hl)})`;
-      b.style.boxShadow = `0 12px 30px rgba(46,46,49,0.15), 0 0 0 ${10 * hl}px rgba(46,46,49,0.85)`;
+      b.style.boxShadow = `0 12px 30px rgba(46,46,49,0.15), 0 0 0 ${10 * hl}px rgba(${k === 0 ? '255,255,255' : '46,46,49'},0.85)`;
     });
-    // the network steps left and shrinks, the testimonial slides in
-    const m = prog(t, qt - 1.0, 0.9, easeInOut);
-    net.style.transform = `translateX(${-360 * m}px) scale(${1 - 0.2 * m})`;
-    const cp = prog(t, qt - 0.2, 0.9);
-    card.style.opacity = fade(t, qt - 0.2, 0.3);
-    card.style.transform = `translateX(${(1 - cp) * 140}px)`;
+
+    // the feature opens as a circle growing out of the first bubble
+    const op = prog(t, mt - 0.6, 1.1, easeInOut);
+    meta.style.display = op > 0 ? 'block' : 'none';
+    meta.style.clipPath = `circle(${op * 2300}px at ${pos[0][0]}px ${pos[0][1]}px)`;
+    if (op <= 0) return;
+    const ft = t - (mt - 0.6);
+    far.setAttribute('transform', `translate(${-ft * 6} 0)`);
+    mid.setAttribute('transform', `translate(${-ft * 12} 0)`);
+    near.setAttribute('transform', `translate(${-ft * 22} 0)`);
+    sun.style.transform = `translateY(${-ft * 4}px)`;
+    rise(mk, prog(t, mt - 0.1, 0.6), 20);
+    rise(mh, prog(t, mt + 0.2, 0.8), 40);
+    rise(mp, prog(t, mt + 0.6, 0.7), 30);
+    const segs = (VO_THEMES[idx].segments || []);
+    rise(md, prog(t, (segs[8] ? segs[8].t : mt + 2.8) - 0.2, 0.8), 24);
+    metaLogo.style.opacity = fade(t, mt + 0.4, 0.5);
+    // flight across the city, then a hover
+    const u = (t - mt) / 6.5;
+    let [x, y] = path(u);
+    if (u > 1) { x += 18 * Math.sin((t - mt) * 1.3); y += 14 * Math.sin((t - mt) * 1.9); }
+    const [x2, y2] = path(Math.min(u, 1) + 0.01);
+    const tilt = u < 1 ? Math.atan2(y2 - y, x2 - x) * 180 / Math.PI * 0.35 : 4 * Math.sin(t * 2);
+    const flap = 0.2 + 0.8 * Math.abs(Math.cos((t - mt) * Math.PI * 4.2));
+    fly.style.opacity = fade(t, mt, 0.3);
+    fly.style.transform = `translate(${x - 100}px, ${y - 80}px) rotate(${tilt + 12}deg) scale(${0.9 + 0.25 * clamp(u)})`;
+    wl.setAttribute('transform', `scale(${flap} 1)`);
+    wr.setAttribute('transform', `scale(${flap} 1)`);
+    dust.forEach((d, k) => {
+      const back = (k + 1) * 0.022;
+      const [dx, dy] = path(Math.min(u, 1) - back);
+      const live = u - back > 0 ? 1 : 0;
+      d.setAttribute('cx', dx + 6 * Math.sin(k * 2.1 + t * 3));
+      d.setAttribute('cy', dy + 18 + 6 * Math.cos(k * 1.7 + t * 3));
+      d.setAttribute('opacity', live * (1 - k / dust.length) * 0.8);
+      d.setAttribute('r', 4.5 - k * 0.18);
+    });
   };
 }
 
@@ -549,13 +656,13 @@ function buildPerformance(th, idx) {
   const xs = [750, 1006, 1262, 1518], hs = [230, 330, 430, 530];
   const bars = th.services.map((s, k) => place(el('div', 'abs bar', `<div class="in"><div class="n">0${k + 1}</div><div class="s">${s}</div></div>`, L), xs[k], 880 - hs[k], 236, hs[k]));
   const pts = xs.map((x, k) => [x + 118, 880 - hs[k] - 46]);
-  const trend = wire(chart, 'M' + pts.map(p => p.join(' ')).join(' L') + ' L1790 300', '#f0b028', 5);
-  const arrow = svgEl('path', { d: 'M1772 296 L1800 292 L1790 318', fill: 'none', stroke: '#f0b028', 'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, chart);
+  const END = [1930, 168];
+  const trend = wire(chart, 'M' + pts.map(p => p.join(' ')).join(' L') + ` L${END[0]} ${END[1]}`, '#f0b028', 5);
   const dots = pts.map(([x, y]) => svgEl('circle', { cx: x, cy: y, r: 10, fill: '#2b2b2e', stroke: '#f0b028', 'stroke-width': 5 }, chart));
   // how far along the trend line each point sits, so it draws in step with the bars
   const seg = [0];
   for (let k = 1; k < pts.length; k++) seg.push(seg[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]));
-  const total = seg[3] + Math.hypot(1790 - pts[3][0], 300 - pts[3][1]);
+  const total = seg[3] + Math.hypot(END[0] - pts[3][0], END[1] - pts[3][1]);
   return (t, s, e, marks) => {
     hdr(t, s, e);
     animateTitle(T, t, s);
@@ -573,11 +680,10 @@ function buildPerformance(th, idx) {
       b.querySelector('.in').style.opacity = fade(t, at[k] + 0.35, 0.3);
       dots[k].setAttribute('opacity', fade(t, at[k] + 0.4, 0.2));
       if (t >= at[k] + 0.3) line = Math.max(line, seg[k] / total);
-      if (k > 0) line = Math.max(line, lerp(seg[k - 1], seg[k], prog(t, at[k] - 0.2, 0.6)) / total);
+      if (k > 0 && t >= at[k] - 0.2) line = Math.max(line, lerp(seg[k - 1], seg[k], prog(t, at[k] - 0.2, 0.6)) / total);
     });
-    line = Math.max(line, lerp(seg[3], total, prog(t, at[3] + 0.6, 0.6)) / total);
+    if (t >= at[3] + 0.3) line = Math.max(line, lerp(seg[3], total, prog(t, at[3] + 0.6, 1.0)) / total);
     draw(trend, line);
-    arrow.setAttribute('opacity', fade(t, at[3] + 1.1, 0.3));
   };
 }
 
@@ -588,14 +694,14 @@ function buildCapability(th, idx) {
   const photo = el('div', 'abs photo', null, L);
   const pimg = img('assets/key-visual.jpg', null, photo);
   el('div', 'shade', null, photo);
-  el('div', 'edge', null, photo);
+  const edge = el('div', 'edge', null, photo);
   const T = titleBlock(L, th, false);
   const tx = [960, 1400], ty = [200, 560];
   const tiles = th.services.map((s, k) => place(el('div', 'abs tile',
     `<div class="top"><div class="ic">${icon(ICON_BODY[th.icons[k]], '#ffffff', 3.4)}</div><div class="n">0${k + 1}</div></div><div class="s">${s}</div>`, L), tx[k % 2], ty[k >> 1]));
   const q = th.quote;
-  const card = el('div', 'abs qcard', `<div class="q">${q.q}</div><div class="who">${q.who}</div><div class="org">${q.org}</div>
-    <div class="foot"><div class="tag">${q.tag}</div><img src="${q.logo}"></div>`, L);
+  const card = el('div', 'abs qcard', `<div class="qm">\u201C</div><div class="q">${q.q}</div>
+    <div class="foot"><div><div class="who">${q.who}</div><div class="org">${q.org}</div></div><img src="${q.logo}"></div>`, L);
   images.push(card.querySelector('img'));
   return (t, s, e, marks) => {
     hdr(t, s, e);
@@ -613,9 +719,17 @@ function buildCapability(th, idx) {
       tile.querySelector('.ic').style.background = mixRGB([240, 176, 40], [46, 46, 49], hl);
       tile.querySelector('.n').style.color = mixRGB([217, 154, 20], [46, 46, 49], hl);
     });
-    const qt = marks.q ?? s + 7.5;
-    const cp = prog(t, qt - 0.25, 0.9);
-    card.style.opacity = fade(t, qt - 0.25, 0.3);
+    // the tiles and heading clear, the photo opens to full width, the testimonial rises
+    const qt = marks.q ?? s + 9;
+    const out = prog(t, qt - 0.7, 0.7, easeInOut);
+    tiles.forEach((tile, k) => { if (out > 0) { tile.style.opacity = 1 - out; tile.style.transform += ` translateX(${out * 120}px)`; } });
+    [T.pillar, T.theme].forEach(n => { if (out > 0) n.style.opacity = Math.min(parseFloat(n.style.opacity || 1), 1 - out); });
+    const wide = prog(t, qt - 0.5, 1.0, easeInOut);
+    photo.style.width = lerp(900, 1920, wide) + 'px';
+    pimg.style.left = lerp(-1470, -240, wide) + 'px';
+    edge.style.opacity = 1 - wide;
+    const cp = prog(t, qt + 0.2, 0.9);
+    card.style.opacity = fade(t, qt + 0.2, 0.3);
     card.style.transform = `translateY(${(1 - cp) * 60}px)`;
   };
 }
@@ -683,9 +797,10 @@ const themeScenes = THEMES.map((th, i) => {
 const close = el('div', 'layer', null, root);
 const clRow = el('div', 'abs cl-row', null, close);
 const clWords = THEMES.map(th => el('div', 'cl-w head', th.pillar, clRow));
-const clTag = el('div', 'abs cl-tag head', 'Transform. <span>Evolve.</span> Lead.', close);
-const clLogo = el('div', 'abs cl-logo', null, close);
-img('assets/mira-cle-logo.png', null, clLogo);
+const clLogo = el('div', 'abs logo2 cl-logo2', null, close);
+const clMark = img('assets/logo2-mark.png', 'abs l-mark', clLogo);
+const clWord = img('assets/logo2-word.png', 'abs l-word', clLogo);
+const clSlogan = img('assets/logo2-tag.png', 'abs l-tag', clLogo);
 const clCta = el('div', 'abs cl-cta', `<div class="talk">Talk to our team</div><div class="ig">${WEB_ICON}<span>${WEBSITE}</span></div><div class="ig">${IG_ICON}<span>${INSTAGRAM}</span></div>`, close);
 
 const cap = document.querySelector('#cap span');
@@ -724,32 +839,43 @@ window.seek = function (t) {
   const inThemes = t >= TL.themes[0][0] && t < TL.close[0];
   glow.style.visibility = inThemes || t < TL.reveal[0] ? 'hidden' : 'visible';
   if (!inThemes) {
-    wave1.setAttribute('d', wavePath(t, 45, 890, 0.0042, 0.5));
-    wave2.setAttribute('d', wavePath(t, 30, 940, 0.006, -0.35));
+    wave1.setAttribute('d', wavePath(t, 40, 945, 0.0042, 0.5));
+    wave2.setAttribute('d', wavePath(t, 26, 990, 0.006, -0.35));
     sparkNodes.forEach((c, i) => {
       const x = ((i * 233 + t * 70) % 2100) - 90;
       c.setAttribute('cx', x);
-      c.setAttribute('cy', waveY(x, t, 45, 890, 0.0042, 0.5));
+      c.setAttribute('cy', waveY(x, t, 40, 945, 0.0042, 0.5));
       c.setAttribute('opacity', 0.55 + 0.35 * Math.sin(t * 2 + i));
     });
-  }
-
-  show(intro, within(t, TL.intro));
-  if (within(t, TL.intro)) {
-    const p = prog(t, 0.3, TL.intro[1] - 0.3, easeInOut);
-    introImg.style.transformOrigin = '50% 0%';
-    introImg.style.transform = `translateY(${-40 - 760 * p}px) scale(${1 + 0.05 * p})`;
   }
 
   show(reveal, within(t, TL.reveal));
   if (within(t, TL.reveal)) {
     const s = TL.reveal[0];
-    const mp = prog(t, s + 0.4, 1.0, easeBack);
-    lgMark.style.opacity = clamp((t - s - 0.4) / 0.4);
+    const mp = prog(t, s + 0.3, 1.0, easeBack);
+    lgMark.style.opacity = fade(t, s + 0.3, 0.4);
+    lgMark.style.transformOrigin = '300px 301px';
     lgMark.style.transform = `scale(${0.3 + 0.7 * mp}) rotate(${(1 - mp) * -120}deg)`;
-    lgWord.style.transform = `translateX(${(1 - prog(t, s + 1.3, 1.0, easeInOut)) * -473}px)`;
-    rvLine.style.transform = `scaleX(${prog(t, s + 2.1, 0.9)})`;
-    rise(rvSub, prog(t, s + 2.4, 0.9), 24);
+    lgWord.style.clipPath = `inset(0 ${(1 - prog(t, s + 1.1, 1.0, easeInOut)) * 100}% 0 0)`;
+    const st = (VO_BY_ID.slogan || { start: s + 2.6 }).start;
+    lgTag.style.clipPath = `inset(0 ${(1 - prog(t, st - 0.1, 1.7, x => x)) * 100}% 0 0)`;
+  }
+
+  show(titleL, within(t, TL.title));
+  if (within(t, TL.title)) {
+    const s = TL.title[0];
+    const t0 = (VO_BY_ID.title || { start: s + 0.6 }).start;
+    pop(tMark, prog(t, s + 0.2, 0.8, easeBack), 0.4);
+    tGlow.style.opacity = fade(t, s + 0.2, 1.0) * (0.8 + 0.2 * Math.sin(t * 1.5));
+    tWords.forEach((w, k) => {
+      const p = prog(t, t0 - 0.15 + k * 0.38, 0.7);
+      w.style.transform = `translateY(${(1 - p) * 105}%)`;
+    });
+    // a light sweep across "Progress" once the title has landed
+    const sw = prog(t, t0 + 1.8, 1.4, easeInOut);
+    tProg.style.backgroundPosition = `${100 - sw * 100}% 0`;
+    const z = prog(t, s, TL.title[1] - s, x => x);
+    tLine1.style.transform = tLine2.style.transform = `scale(${1 + 0.03 * z})`;
   }
 
   show(over, within(t, TL.overview));
@@ -765,7 +891,7 @@ window.seek = function (t) {
     });
   }
 
-  let tone = 'light';
+  let tone = within(t, TL.title) ? 'dark' : 'light';
   themeScenes.forEach((S, i) => {
     const span = TL.themes[i];
     const on = within(t, span);
@@ -779,10 +905,13 @@ window.seek = function (t) {
   if (t >= TL.close[0]) {
     const s = TL.close[0];
     clWords.forEach((w, i) => rise(w, prog(t, s + 0.5 + i * 0.25, 0.8), 30));
-    const tp = prog(t, s + 2.2, 1.0);
-    clTag.style.opacity = tp;
-    clTag.style.transform = `scale(${0.94 + 0.06 * tp})`;
-    rise(clLogo, prog(t, s + 3.6, 1.0), 30);
+    const mp = prog(t, s + 1.0, 0.9, easeBack);
+    clMark.style.opacity = fade(t, s + 1.0, 0.3);
+    clMark.style.transformOrigin = '300px 301px';
+    clMark.style.transform = `scale(${0.4 + 0.6 * mp}) rotate(${(1 - mp) * -90}deg)`;
+    clWord.style.clipPath = `inset(0 ${(1 - prog(t, s + 1.5, 0.9, easeInOut)) * 100}% 0 0)`;
+    const st = (VO_BY_ID['close-slogan'] || { start: s + 2.3 }).start;
+    clSlogan.style.clipPath = `inset(0 ${(1 - prog(t, st - 0.1, 1.7, x => x)) * 100}% 0 0)`;
     rise(clCta, prog(t, s + 6.2, 0.9), 30);
   }
 

@@ -28,18 +28,19 @@ def load_js(name):
 TL = load_js('timeline.js')
 VO = load_js('vo-timing.js')
 T_REVEAL = TL['reveal'][0]
+T_TITLE = TL['title'][0]
 T_OVER = TL['overview'][0]
 THEME_STARTS = [a for a, b in TL['themes']]
 T_CLOSE = TL['close'][0]
 DURATION = TL['close'][1]
-# narration lines in order: intro, logo, overview, five themes, closing lines
-VO_OVER = VO[2]
-VO_THEMES = VO[3:8]
+VO_BY_ID = {line['id']: line for line in VO}
+VO_OVER = VO_BY_ID['overview']
+VO_THEMES = [VO_BY_ID[k] for k in ('structure', 'people', 'performance', 'capability', 'resilience')]
 
-# ---- music grid: 96 BPM, bar lines land on the first practice scene (21 s) ----
+# ---- music grid: 96 BPM, bar lines land on the first practice scene ----
 BEAT = 60 / 96
 BAR = BEAT * 4
-OFFSET = 21 % BAR
+OFFSET = THEME_STARTS[0] % BAR
 
 N = int(DURATION * SR)
 music = np.zeros((N, 2))
@@ -59,6 +60,8 @@ def add(buf, start, sig, gain=1.0, pan=0.0):
     i = int(start * SR)
     if i >= N:
         return
+    if i < 0:  # an accent that would start before the video does is trimmed
+        sig, i = sig[-i:], 0
     sig = sig[: N - i]
     if sig.ndim == 1:
         l, r = np.cos((pan + 1) * np.pi / 4), np.sin((pan + 1) * np.pi / 4)
@@ -197,7 +200,7 @@ for bi, b0 in enumerate(bar_starts):
             add(music, st, p, 1, -0.45 if k % 2 else 0.45)
             add(send, st, p * 0.7)
     # bass and drums: practice scenes only
-    if 21 - 0.01 <= b0 < T_CLOSE:
+    if THEME_STARTS[0] - 0.01 <= b0 < T_CLOSE:
         for k, d in ((0, 1.5), (1.5, 1.0), (2.5, 1.5)):
             add(music, b0 + k * BEAT, bass(root, d * BEAT + 0.3) * 0.16)
         for k in (0, 2):
@@ -207,21 +210,28 @@ for bi, b0 in enumerate(bar_starts):
             add(send, b0 + k * BEAT, rim() * 0.03)
         for k in range(8):
             add(music, b0 + k * BEAT / 2, shaker() * (0.035 if k % 2 else 0.02), 1, 0.35)
-    elif T_OVER <= b0 < 21:
+    elif T_OVER <= b0 < THEME_STARTS[0]:
         for k in range(8):
             add(music, b0 + k * BEAT / 2, shaker() * (0.025 if k % 2 else 0.012), 1, 0.35)
 
 # ---- accents synced to the animation ----
 # a soft whoosh under every wipe transition
-for t in [T_REVEAL, T_OVER] + THEME_STARTS + [T_CLOSE]:
+for t in [T_TITLE, T_OVER] + THEME_STARTS + [T_CLOSE]:
     add(sfx, t - 0.55, whoosh(0.9), 0.05, -0.2)
 
-# logo reveal
-add(sfx, T_REVEAL - 2.2, riser(2.6), 0.09)
-add(sfx, T_REVEAL + 0.4, boom(), 0.30)
+# opening: the mark lands, then a bell for each word of the slogan
+add(sfx, T_REVEAL + 0.4, boom(), 0.26)
 for m, d in ((74, 0), (78, 0.04), (81, 0.08), (86, 0.12)):
-    add(sfx, T_REVEAL + 0.4 + d, bell(m) * 0.05, 1, (m - 80) / 10)
-    add(send, T_REVEAL + 0.4 + d, bell(m) * 0.06)
+    add(sfx, T_REVEAL + 0.4 + d, bell(m) * 0.045, 1, (m - 80) / 10)
+    add(send, T_REVEAL + 0.4 + d, bell(m) * 0.05)
+for k, seg in enumerate(VO_BY_ID['slogan']['segments']):
+    add(sfx, seg['t'], bell((78, 81, 86)[k % 3], 2.0) * 0.03, 1, -0.4 + 0.4 * k)
+    add(send, seg['t'], bell((78, 81, 86)[k % 3], 2.0) * 0.04)
+
+# title: a low hit as the words rise
+add(sfx, T_TITLE + 0.5, boom(), 0.28)
+add(sfx, VO_BY_ID['title']['start'] + 1.4, bell(86, 3.0) * 0.04, 1, 0.3)
+add(send, VO_BY_ID['title']['start'] + 1.4, bell(86, 3.0) * 0.05)
 
 # overview: one rising note as each pillar is named
 for i, m in enumerate((74, 76, 78, 81, 83)):
@@ -229,22 +239,31 @@ for i, m in enumerate((74, 76, 78, 81, 83)):
     add(sfx, st, bell(m, 2.0) * 0.035, 1, -0.6 + 0.3 * i)
     add(send, st, bell(m, 2.0) * 0.04)
 
-# practice scenes: a quiet tick as each service is named, a chime for testimonials
+# practice scenes: a quiet tick as each service is named, a chime for the testimonial
 for vo in VO_THEMES:
-    for k in range(4):
-        add(sfx, vo['marks'][str(k)], tick((81, 83, 85, 86)[k]) * 0.03, 1, 0.5)
+    ticks = sorted(k for k in vo['marks'] if k.isdigit())
+    for k in ticks:
+        add(sfx, vo['marks'][k], tick((81, 83, 85, 86, 88)[int(k)]) * 0.03, 1, 0.5)
     if 'q' in vo['marks']:
         add(sfx, vo['marks']['q'], bell(78, 2.5) * 0.03, 1, -0.4)
         add(send, vo['marks']['q'], bell(78, 2.5) * 0.04)
 
-# closing: rise into the tagline, final chord on the logo
-add(sfx, T_CLOSE - 1.6, riser(3.8), 0.08)
-add(sfx, T_CLOSE + 2.2, boom(), 0.30)
+# Leadership Metamorphosis: a lift into the feature, then a rising shimmer for the butterfly
+mt = VO_BY_ID['people']['marks']['m']
+add(sfx, mt - 1.6, riser(1.8), 0.06)
+for k, m in enumerate((74, 78, 81, 83, 86, 90, 93)):
+    add(sfx, mt - 0.1 + k * 0.14, bell(m, 2.5) * 0.028, 1, -0.6 + 0.2 * k)
+    add(send, mt - 0.1 + k * 0.14, bell(m, 2.5) * 0.04)
+
+# closing: rise into the logo, final chord as the slogan writes on
+add(sfx, T_CLOSE - 1.6, riser(3.0), 0.07)
+add(sfx, T_CLOSE + 1.0, boom(), 0.30)
 for m in (50, 57, 62, 66, 69, 73, 76):
-    add(music, T_CLOSE + 2.2, pad_note(m, 8.5, 3.0) * 1.3)
+    add(music, T_CLOSE + 1.0, pad_note(m, 9.5, 3.0) * 1.3)
+cs = VO_BY_ID['close-slogan']['start']
 for m, d in ((74, 0), (78, 0.05), (81, 0.1), (85, 0.15), (86, 0.2)):
-    add(sfx, T_CLOSE + 3.6 + d, bell(m, 4.0) * 0.05, 1, (m - 80) / 10)
-    add(send, T_CLOSE + 3.6 + d, bell(m, 4.0) * 0.07)
+    add(sfx, cs + d, bell(m, 4.0) * 0.045, 1, (m - 80) / 10)
+    add(send, cs + d, bell(m, 4.0) * 0.06)
 
 # ---- mix ----
 music = filt(music, 'highpass', 30)

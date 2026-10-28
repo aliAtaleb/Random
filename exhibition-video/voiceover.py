@@ -41,37 +41,40 @@ TH = TL['themes']
 BRAND = 'Meera Clay'
 BRAND_PHONEMES = ('mˈɪɹə klˈeɪ', 'mˈiːɹə klˈɛ')
 
-# {n} marks the phrase that reveals card/node n on screen, {q} the testimonial.
-# (start, latest end, text, show captions)
+# {n} marks the phrase that reveals item n on screen, {q} the testimonial and
+# {m} the Leadership Metamorphosis feature. (id, start, latest end, text, captions)
 LINES = [
-    (0.8, TL['intro'][1] - 0.3,
+    ('brand', TL['reveal'][0] + 0.9, TL['reveal'][0] + 2.3, f'{BRAND}.', False),
+    ('slogan', TL['reveal'][0] + 2.6, TL['reveal'][1] - 0.4, 'Transform. Evolve. Lead.', False),
+    ('title', TL['title'][0] + 0.6, TL['title'][0] + 2.8, 'The intelligence behind progress.', False),
+    ('intro', TL['title'][0] + 3.0, TL['title'][1] - 0.2,
      'Progress depends on the people who lead an organization, and the structure that supports them.', True),
-    (TL['reveal'][0] + 0.7, TL['reveal'][1] - 0.4, f'{BRAND}. The intelligence behind progress.', False),
-    (TL['overview'][0] + 0.6, TL['overview'][1] - 0.4,
+    ('overview', TL['overview'][0] + 0.6, TL['overview'][1] - 0.4,
      'We work across five areas of practice: {0}structure, {1}people, {2}performance, {3}capability, {4}and resilience.', True),
-    (TH[0][0] + 0.7, TH[0][1] - 0.4,
+    ('structure', TH[0][0] + 0.7, TH[0][1] - 0.4,
      'Structure. {0}We restructure organizations, {1}design operating models, {2}align teams behind one direction, '
-     '{3}and shape the culture that sustains it.', True),
-    (TH[1][0] + 0.7, TH[1][1] - 0.4,
-     'People. {0}Executive development, {1}team effectiveness, {2}workforce capability, {3}and behavioral change, '
-     'built with HR and leadership. {q}Credit One Al Sayer has worked with us since twenty twelve.', True),
-    (TH[2][0] + 0.7, TH[2][1] - 0.4,
-     'Performance. {0}We design HR systems, {1}build performance frameworks, {2}align operations around them, '
-     '{3}and stay to support implementation.', True),
-    (TH[3][0] + 0.7, TH[3][1] - 0.4,
-     'Capability. {0}Custom learning programs, {1}assessments, {2}e-learning platforms, {3}and talent solutions. '
-     '{q}For Aramex, we developed L M S and SCORM content from twenty nineteen to twenty twenty-two.', True),
-    (TH[4][0] + 0.7, TH[4][1] - 0.4,
-     'Resilience. {0}Emergency response frameworks, {1}simulations, {2}business continuity, '
+     '{3}and lead cultural change.', True),
+    ('people', TH[1][0] + 0.7, TH[1][1] - 0.4,
+     'People. {0}Leadership Metamorphosis, {1}executive development, {2}team effectiveness, {3}workforce capability, '
+     '{4}and behavioral change, developed by our team of veteran experts. '
+     '{m}Explore the Leadership Metamorphosis program: an executive leadership journey inspired by nature\'s most profound transformation.', True),
+    ('performance', TH[2][0] + 0.7, TH[2][1] - 0.4,
+     'Performance. {0}We design HR systems, {1}build performance frameworks and reward systems, '
+     '{2}align operations around them, {3}and stay to support implementation.', True),
+    ('capability', TH[3][0] + 0.7, TH[3][1] - 0.4,
+     'Capability. {0}Bespoke learning programs, {1}psychometric and technical assessments, '
+     '{2}L M S and e-learning curriculum development, {3}and talent succession. '
+     '{q}For Aramex, we developed a learning management system and SCORM content.', True),
+    ('resilience', TH[4][0] + 0.7, TH[4][1] - 0.4,
+     'Resilience. {0}Emergency response planning, {1}drills and simulations, {2}business continuity, '
      '{3}and organizational readiness, so a crisis meets a prepared team.', True),
-    (TL['close'][0] + 2.3, TL['close'][0] + 4.3, 'Transform. Evolve. Lead.', False),
-    (TL['close'][0] + 4.6, TL['close'][0] + 6.0, f'{BRAND}.', False),
-    (TL['close'][0] + 6.4, TL['close'][1] - 1.0, f'Talk to our team, or visit {BRAND} dot com.', False),
+    ('close-slogan', TL['close'][0] + 2.3, TL['close'][0] + 4.3, 'Transform. Evolve. Lead.', False),
+    ('close-brand', TL['close'][0] + 4.6, TL['close'][0] + 6.0, f'{BRAND}.', False),
+    ('close-cta', TL['close'][0] + 6.4, TL['close'][1] - 1.0, f'Talk to our team, or visit {BRAND} dot com.', False),
 ]
 
 # How captions should spell what the voice is told to say.
-CAPTION_FIX = {BRAND: 'Mira-Clé', 'Credit One': 'CreditOne', 'L M S': 'LMS', 'twenty twelve': '2012',
-               'twenty nineteen to twenty twenty-two': '2019 to 2022'}
+CAPTION_FIX = {BRAND: 'Mira-Clé', 'L M S': 'LMS'}
 
 
 def segments_of(text):
@@ -111,7 +114,7 @@ total = TL['close'][1]
 voice = np.zeros(int(total * SR))
 timing = []
 
-for start, end, marked, captions in LINES:
+for line_id, start, end, marked, captions in LINES:
     segs = segments_of(marked)
     text = ' '.join(s['text'] for s in segs)
     speed = SPEED
@@ -135,7 +138,7 @@ for start, end, marked, captions in LINES:
         starts = list(np.concatenate([[0], np.cumsum(lens)[:-1]]) / lens.sum() * dur)
         how = f'proportional ({len(pauses)} of {len(segs) - 1} pauses found)'
 
-    entry = {'start': start, 'end': round(start + dur, 3), 'captions': captions, 'segments': [], 'marks': {}}
+    entry = {'id': line_id, 'start': start, 'end': round(start + dur, 3), 'captions': captions, 'segments': [], 'marks': {}}
     for k, s in enumerate(segs):
         t0 = round(start + starts[k], 3)
         cap = s['text']

@@ -1,304 +1,354 @@
 window.VO = [
  {
-  "start": 0.8,
-  "end": 6.041,
-  "captions": true,
-  "segments": [
-   {
-    "t": 0.8,
-    "text": "Progress depends on the people who lead an organization,"
-   },
-   {
-    "t": 4.35,
-    "text": "and the structure that supports them."
-   }
-  ],
-  "marks": {}
- },
- {
-  "start": 7.7,
-  "end": 10.434,
+  "id": "brand",
+  "start": 0.9,
+  "end": 1.665,
   "captions": false,
   "segments": [
    {
-    "t": 7.7,
+    "t": 0.9,
     "text": "Mira-Clé."
-   },
-   {
-    "t": 8.62,
-    "text": "The intelligence behind progress."
    }
   ],
   "marks": {}
  },
  {
-  "start": 12.6,
-  "end": 18.609,
-  "captions": true,
-  "segments": [
-   {
-    "t": 12.6,
-    "text": "We work across five areas of practice:"
-   },
-   {
-    "t": 14.33,
-    "text": "structure,"
-   },
-   {
-    "t": 15.05,
-    "text": "people,"
-   },
-   {
-    "t": 15.83,
-    "text": "performance,"
-   },
-   {
-    "t": 16.34,
-    "text": "capability,"
-   },
-   {
-    "t": 17.05,
-    "text": "and resilience."
-   }
-  ],
-  "marks": {
-   "0": 14.33,
-   "1": 15.05,
-   "2": 15.83,
-   "3": 16.34,
-   "4": 17.05
-  }
- },
- {
-  "start": 21.7,
-  "end": 30.347,
-  "captions": true,
-  "segments": [
-   {
-    "t": 21.7,
-    "text": "Structure."
-   },
-   {
-    "t": 22.51,
-    "text": "We restructure organizations,"
-   },
-   {
-    "t": 24.48,
-    "text": "design operating models,"
-   },
-   {
-    "t": 26.17,
-    "text": "align teams behind one direction,"
-   },
-   {
-    "t": 28.44,
-    "text": "and shape the culture that sustains it."
-   }
-  ],
-  "marks": {
-   "0": 22.51,
-   "1": 24.48,
-   "2": 26.17,
-   "3": 28.44
-  }
- },
- {
-  "start": 31.7,
-  "end": 43.582,
-  "captions": true,
-  "segments": [
-   {
-    "t": 31.7,
-    "text": "People."
-   },
-   {
-    "t": 32.31,
-    "text": "Executive development,"
-   },
-   {
-    "t": 33.8,
-    "text": "team effectiveness,"
-   },
-   {
-    "t": 35.14,
-    "text": "workforce capability,"
-   },
-   {
-    "t": 36.56,
-    "text": "and behavioral change,"
-   },
-   {
-    "t": 38.06,
-    "text": "built with HR and leadership."
-   },
-   {
-    "t": 40.51,
-    "text": "CreditOne Al Sayer has worked with us since 2012."
-   }
-  ],
-  "marks": {
-   "0": 32.31,
-   "1": 33.8,
-   "2": 35.14,
-   "3": 36.56,
-   "q": 40.51
-  }
- },
- {
-  "start": 45.7,
-  "end": 54.416,
-  "captions": true,
-  "segments": [
-   {
-    "t": 45.7,
-    "text": "Performance."
-   },
-   {
-    "t": 46.91,
-    "text": "We design HR systems,"
-   },
-   {
-    "t": 48.72,
-    "text": "build performance frameworks,"
-   },
-   {
-    "t": 50.57,
-    "text": "align operations around them,"
-   },
-   {
-    "t": 52.49,
-    "text": "and stay to support implementation."
-   }
-  ],
-  "marks": {
-   "0": 46.91,
-   "1": 48.72,
-   "2": 50.57,
-   "3": 52.49
-  }
- },
- {
-  "start": 55.7,
-  "end": 68.116,
-  "captions": true,
-  "segments": [
-   {
-    "t": 55.7,
-    "text": "Capability."
-   },
-   {
-    "t": 56.91,
-    "text": "Custom learning programs,"
-   },
-   {
-    "t": 58.51,
-    "text": "assessments,"
-   },
-   {
-    "t": 59.44,
-    "text": "e-learning platforms,"
-   },
-   {
-    "t": 60.74,
-    "text": "and talent solutions."
-   },
-   {
-    "t": 62.5,
-    "text": "For Aramex,"
-   },
-   {
-    "t": 63.49,
-    "text": "we developed LMS and SCORM content from 2019 to 2022."
-   }
-  ],
-  "marks": {
-   "0": 56.91,
-   "1": 58.51,
-   "2": 59.44,
-   "3": 60.74,
-   "q": 62.5
-  }
- },
- {
-  "start": 69.7,
-  "end": 79.409,
-  "captions": true,
-  "segments": [
-   {
-    "t": 69.7,
-    "text": "Resilience."
-   },
-   {
-    "t": 70.95,
-    "text": "Emergency response frameworks,"
-   },
-   {
-    "t": 73.17,
-    "text": "simulations,"
-   },
-   {
-    "t": 74.31,
-    "text": "business continuity,"
-   },
-   {
-    "t": 75.4,
-    "text": "and organizational readiness,"
-   },
-   {
-    "t": 77.39,
-    "text": "so a crisis meets a prepared team."
-   }
-  ],
-  "marks": {
-   "0": 70.95,
-   "1": 73.17,
-   "2": 74.31,
-   "3": 75.4
-  }
- },
- {
-  "start": 83.3,
-  "end": 85.139,
+  "id": "slogan",
+  "start": 2.6,
+  "end": 4.511,
   "captions": false,
   "segments": [
    {
-    "t": 83.3,
+    "t": 2.6,
     "text": "Transform."
    },
    {
-    "t": 84.04,
+    "t": 3.37,
     "text": "Evolve."
    },
    {
-    "t": 84.7,
+    "t": 4.06,
     "text": "Lead."
    }
   ],
   "marks": {}
  },
  {
-  "start": 85.6,
-  "end": 86.365,
+  "id": "title",
+  "start": 6.6,
+  "end": 8.47,
   "captions": false,
   "segments": [
    {
-    "t": 85.6,
+    "t": 6.6,
+    "text": "The intelligence behind progress."
+   }
+  ],
+  "marks": {}
+ },
+ {
+  "id": "intro",
+  "start": 9.0,
+  "end": 14.241,
+  "captions": true,
+  "segments": [
+   {
+    "t": 9.0,
+    "text": "Progress depends on the people who lead an organization,"
+   },
+   {
+    "t": 12.55,
+    "text": "and the structure that supports them."
+   }
+  ],
+  "marks": {}
+ },
+ {
+  "id": "overview",
+  "start": 15.6,
+  "end": 21.609,
+  "captions": true,
+  "segments": [
+   {
+    "t": 15.6,
+    "text": "We work across five areas of practice:"
+   },
+   {
+    "t": 17.33,
+    "text": "structure,"
+   },
+   {
+    "t": 18.05,
+    "text": "people,"
+   },
+   {
+    "t": 18.83,
+    "text": "performance,"
+   },
+   {
+    "t": 19.34,
+    "text": "capability,"
+   },
+   {
+    "t": 20.05,
+    "text": "and resilience."
+   }
+  ],
+  "marks": {
+   "0": 17.33,
+   "1": 18.05,
+   "2": 18.83,
+   "3": 19.34,
+   "4": 20.05
+  }
+ },
+ {
+  "id": "structure",
+  "start": 24.7,
+  "end": 33.094,
+  "captions": true,
+  "segments": [
+   {
+    "t": 24.7,
+    "text": "Structure."
+   },
+   {
+    "t": 25.59,
+    "text": "We restructure organizations,"
+   },
+   {
+    "t": 27.66,
+    "text": "design operating models,"
+   },
+   {
+    "t": 29.42,
+    "text": "align teams behind one direction,"
+   },
+   {
+    "t": 31.67,
+    "text": "and lead cultural change."
+   }
+  ],
+  "marks": {
+   "0": 25.59,
+   "1": 27.66,
+   "2": 29.42,
+   "3": 31.67
+  }
+ },
+ {
+  "id": "people",
+  "start": 34.7,
+  "end": 54.206,
+  "captions": true,
+  "segments": [
+   {
+    "t": 34.7,
+    "text": "People."
+   },
+   {
+    "t": 35.43,
+    "text": "Leadership Metamorphosis,"
+   },
+   {
+    "t": 37.28,
+    "text": "executive development,"
+   },
+   {
+    "t": 38.84,
+    "text": "team effectiveness,"
+   },
+   {
+    "t": 40.2,
+    "text": "workforce capability,"
+   },
+   {
+    "t": 41.61,
+    "text": "and behavioral change,"
+   },
+   {
+    "t": 43.17,
+    "text": "developed by our team of veteran experts."
+   },
+   {
+    "t": 46.24,
+    "text": "Explore the Leadership Metamorphosis program:"
+   },
+   {
+    "t": 49.19,
+    "text": "an executive leadership journey inspired by nature's most profound transformation."
+   }
+  ],
+  "marks": {
+   "0": 35.43,
+   "1": 37.28,
+   "2": 38.84,
+   "3": 40.2,
+   "4": 41.61,
+   "m": 46.24
+  }
+ },
+ {
+  "id": "performance",
+  "start": 56.7,
+  "end": 66.765,
+  "captions": true,
+  "segments": [
+   {
+    "t": 56.7,
+    "text": "Performance."
+   },
+   {
+    "t": 57.94,
+    "text": "We design HR systems,"
+   },
+   {
+    "t": 59.78,
+    "text": "build performance frameworks and reward systems,"
+   },
+   {
+    "t": 62.79,
+    "text": "align operations around them,"
+   },
+   {
+    "t": 64.84,
+    "text": "and stay to support implementation."
+   }
+  ],
+  "marks": {
+   "0": 57.94,
+   "1": 59.78,
+   "2": 62.79,
+   "3": 64.84
+  }
+ },
+ {
+  "id": "capability",
+  "start": 68.7,
+  "end": 83.362,
+  "captions": true,
+  "segments": [
+   {
+    "t": 68.7,
+    "text": "Capability."
+   },
+   {
+    "t": 70.01,
+    "text": "Bespoke learning programs,"
+   },
+   {
+    "t": 71.62,
+    "text": "psychometric and technical assessments,"
+   },
+   {
+    "t": 74.16,
+    "text": "LMS and e-learning curriculum development,"
+   },
+   {
+    "t": 77.28,
+    "text": "and talent succession."
+   },
+   {
+    "t": 79.09,
+    "text": "For Aramex,"
+   },
+   {
+    "t": 80.01,
+    "text": "we developed a learning management system and SCORM content."
+   }
+  ],
+  "marks": {
+   "0": 70.01,
+   "1": 71.62,
+   "2": 74.16,
+   "3": 77.28,
+   "q": 79.09
+  }
+ },
+ {
+  "id": "resilience",
+  "start": 92.7,
+  "end": 103.031,
+  "captions": true,
+  "segments": [
+   {
+    "t": 92.7,
+    "text": "Resilience."
+   },
+   {
+    "t": 93.95,
+    "text": "Emergency response planning,"
+   },
+   {
+    "t": 95.89,
+    "text": "drills and simulations,"
+   },
+   {
+    "t": 97.83,
+    "text": "business continuity,"
+   },
+   {
+    "t": 98.98,
+    "text": "and organizational readiness,"
+   },
+   {
+    "t": 100.99,
+    "text": "so a crisis meets a prepared team."
+   }
+  ],
+  "marks": {
+   "0": 93.95,
+   "1": 95.89,
+   "2": 97.83,
+   "3": 98.98
+  }
+ },
+ {
+  "id": "close-slogan",
+  "start": 106.3,
+  "end": 108.139,
+  "captions": false,
+  "segments": [
+   {
+    "t": 106.3,
+    "text": "Transform."
+   },
+   {
+    "t": 107.04,
+    "text": "Evolve."
+   },
+   {
+    "t": 107.7,
+    "text": "Lead."
+   }
+  ],
+  "marks": {}
+ },
+ {
+  "id": "close-brand",
+  "start": 108.6,
+  "end": 109.365,
+  "captions": false,
+  "segments": [
+   {
+    "t": 108.6,
     "text": "Mira-Clé."
    }
   ],
   "marks": {}
  },
  {
-  "start": 87.4,
-  "end": 90.186,
+  "id": "close-cta",
+  "start": 110.4,
+  "end": 113.186,
   "captions": false,
   "segments": [
    {
-    "t": 87.4,
+    "t": 110.4,
     "text": "Talk to our team,"
    },
    {
-    "t": 88.53,
+    "t": 111.53,
     "text": "or visit Mira-Clé dot com."
    }
   ],
