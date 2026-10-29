@@ -1,324 +1,286 @@
 window.VO = [
  {
   "id": "brand",
-  "start": 0.9,
-  "end": 1.665,
+  "start": 0.5,
+  "end": 1.233,
   "captions": false,
   "segments": [
    {
-    "t": 0.9,
+    "t": 0.5,
     "text": "Mira-Clé."
    }
   ],
   "marks": {}
  },
  {
-  "id": "slogan",
-  "start": 2.6,
-  "end": 4.511,
-  "captions": false,
-  "segments": [
-   {
-    "t": 2.6,
-    "text": "Transform."
-   },
-   {
-    "t": 3.37,
-    "text": "Evolve."
-   },
-   {
-    "t": 4.06,
-    "text": "Lead."
-   }
-  ],
-  "marks": {}
- },
- {
   "id": "title",
-  "start": 6.6,
-  "end": 8.47,
+  "start": 2.2,
+  "end": 4.011,
   "captions": false,
   "segments": [
    {
-    "t": 6.6,
+    "t": 2.2,
     "text": "The intelligence behind progress."
    }
   ],
   "marks": {}
  },
  {
-  "id": "intro",
-  "start": 9.0,
-  "end": 14.241,
-  "captions": true,
-  "segments": [
-   {
-    "t": 9.0,
-    "text": "Progress depends on the people who lead an organization,"
-   },
-   {
-    "t": 12.55,
-    "text": "and the structure that supports them."
-   }
-  ],
-  "marks": {}
- },
- {
   "id": "overview",
-  "start": 15.6,
-  "end": 21.609,
+  "start": 5.4,
+  "end": 11.206,
   "captions": true,
   "segments": [
    {
-    "t": 15.6,
+    "t": 5.4,
     "text": "We work across five areas of practice:"
    },
    {
-    "t": 17.33,
+    "t": 7.08,
     "text": "structure,"
    },
    {
-    "t": 18.05,
+    "t": 7.79,
     "text": "people,"
    },
    {
-    "t": 18.83,
+    "t": 8.54,
     "text": "performance,"
    },
    {
-    "t": 19.34,
+    "t": 9.06,
     "text": "capability,"
    },
    {
-    "t": 20.05,
+    "t": 9.69,
     "text": "and resilience."
    }
   ],
   "marks": {
-   "0": 17.33,
-   "1": 18.05,
-   "2": 18.83,
-   "3": 19.34,
-   "4": 20.05
+   "0": 7.08,
+   "1": 7.79,
+   "2": 8.54,
+   "3": 9.06,
+   "4": 9.69
   }
  },
  {
   "id": "structure",
-  "start": 24.7,
-  "end": 33.094,
+  "start": 12.3,
+  "end": 20.458,
   "captions": true,
   "segments": [
    {
-    "t": 24.7,
+    "t": 12.3,
     "text": "Structure."
    },
    {
-    "t": 25.59,
+    "t": 13.16,
     "text": "We restructure organizations,"
    },
    {
-    "t": 27.66,
+    "t": 15.15,
     "text": "design operating models,"
    },
    {
-    "t": 29.42,
+    "t": 16.86,
     "text": "align teams behind one direction,"
    },
    {
-    "t": 31.67,
+    "t": 19.06,
     "text": "and lead cultural change."
    }
   ],
   "marks": {
-   "0": 25.59,
-   "1": 27.66,
-   "2": 29.42,
-   "3": 31.67
+   "0": 13.16,
+   "1": 15.15,
+   "2": 16.86,
+   "3": 19.06
   }
  },
  {
   "id": "people",
-  "start": 34.7,
-  "end": 54.206,
+  "start": 21.6,
+  "end": 40.435,
   "captions": true,
   "segments": [
    {
-    "t": 34.7,
+    "t": 21.6,
     "text": "People."
    },
    {
-    "t": 35.43,
+    "t": 22.31,
     "text": "Leadership Metamorphosis,"
    },
    {
-    "t": 37.28,
+    "t": 24.08,
     "text": "executive development,"
    },
    {
-    "t": 38.84,
+    "t": 25.6,
     "text": "team effectiveness,"
    },
    {
-    "t": 40.2,
+    "t": 26.88,
     "text": "workforce capability,"
    },
    {
-    "t": 41.61,
+    "t": 28.26,
     "text": "and behavioral change,"
    },
    {
-    "t": 43.17,
+    "t": 29.75,
     "text": "developed by our team of veteran experts."
    },
    {
-    "t": 46.24,
+    "t": 32.71,
     "text": "Explore the Leadership Metamorphosis program:"
    },
    {
-    "t": 49.19,
+    "t": 35.58,
     "text": "an executive leadership journey inspired by nature's most profound transformation."
    }
   ],
   "marks": {
-   "0": 35.43,
-   "1": 37.28,
-   "2": 38.84,
-   "3": 40.2,
-   "4": 41.61,
-   "m": 46.24
+   "0": 22.31,
+   "1": 24.08,
+   "2": 25.6,
+   "3": 26.88,
+   "4": 28.26,
+   "m": 32.71
   }
  },
  {
   "id": "performance",
-  "start": 56.7,
-  "end": 66.765,
+  "start": 41.6,
+  "end": 51.39,
   "captions": true,
   "segments": [
    {
-    "t": 56.7,
+    "t": 41.6,
     "text": "Performance."
    },
    {
-    "t": 57.94,
+    "t": 42.78,
     "text": "We design HR systems,"
    },
    {
-    "t": 59.78,
+    "t": 44.66,
     "text": "build performance frameworks and reward systems,"
    },
    {
-    "t": 62.79,
+    "t": 47.51,
     "text": "align operations around them,"
    },
    {
-    "t": 64.84,
+    "t": 49.48,
     "text": "and stay to support implementation."
    }
   ],
   "marks": {
-   "0": 57.94,
-   "1": 59.78,
-   "2": 62.79,
-   "3": 64.84
+   "0": 42.78,
+   "1": 44.66,
+   "2": 47.51,
+   "3": 49.48
   }
  },
  {
   "id": "capability",
-  "start": 68.7,
-  "end": 83.362,
+  "start": 52.5,
+  "end": 66.68,
   "captions": true,
   "segments": [
    {
-    "t": 68.7,
+    "t": 52.5,
     "text": "Capability."
    },
    {
-    "t": 70.01,
+    "t": 53.73,
     "text": "Bespoke learning programs,"
    },
    {
-    "t": 71.62,
+    "t": 55.29,
     "text": "psychometric and technical assessments,"
    },
    {
-    "t": 74.16,
+    "t": 57.76,
     "text": "LMS and e-learning curriculum development,"
    },
    {
-    "t": 77.28,
+    "t": 60.83,
     "text": "and talent succession."
    },
    {
-    "t": 79.09,
+    "t": 62.57,
     "text": "For Aramex,"
    },
    {
-    "t": 80.01,
+    "t": 63.46,
     "text": "we developed a learning management system and SCORM content."
    }
   ],
   "marks": {
-   "0": 70.01,
-   "1": 71.62,
-   "2": 74.16,
-   "3": 77.28,
-   "q": 79.09
+   "0": 53.73,
+   "1": 55.29,
+   "2": 57.76,
+   "3": 60.83,
+   "q": 62.57
   }
  },
  {
   "id": "resilience",
-  "start": 92.7,
-  "end": 103.031,
+  "start": 71.5,
+  "end": 81.539,
   "captions": true,
   "segments": [
    {
-    "t": 92.7,
+    "t": 71.5,
     "text": "Resilience."
    },
    {
-    "t": 93.95,
+    "t": 72.72,
     "text": "Emergency response planning,"
    },
    {
-    "t": 95.89,
+    "t": 74.64,
     "text": "drills and simulations,"
    },
    {
-    "t": 97.83,
+    "t": 76.53,
     "text": "business continuity,"
    },
    {
-    "t": 98.98,
+    "t": 77.65,
     "text": "and organizational readiness,"
    },
    {
-    "t": 100.99,
+    "t": 79.59,
     "text": "so a crisis meets a prepared team."
    }
   ],
   "marks": {
-   "0": 93.95,
-   "1": 95.89,
-   "2": 97.83,
-   "3": 98.98
+   "0": 72.72,
+   "1": 74.64,
+   "2": 76.53,
+   "3": 77.65
   }
  },
  {
   "id": "close-slogan",
-  "start": 106.3,
-  "end": 108.139,
+  "start": 83.4,
+  "end": 85.239,
   "captions": false,
   "segments": [
    {
-    "t": 106.3,
+    "t": 83.4,
     "text": "Transform."
    },
    {
-    "t": 107.04,
+    "t": 84.14,
     "text": "Evolve."
    },
    {
-    "t": 107.7,
+    "t": 84.8,
     "text": "Lead."
    }
   ],
@@ -326,12 +288,12 @@ window.VO = [
  },
  {
   "id": "close-brand",
-  "start": 108.6,
-  "end": 109.365,
+  "start": 85.45,
+  "end": 86.183,
   "captions": false,
   "segments": [
    {
-    "t": 108.6,
+    "t": 85.45,
     "text": "Mira-Clé."
    }
   ],
@@ -339,16 +301,16 @@ window.VO = [
  },
  {
   "id": "close-cta",
-  "start": 110.4,
-  "end": 113.186,
+  "start": 86.5,
+  "end": 89.233,
   "captions": false,
   "segments": [
    {
-    "t": 110.4,
+    "t": 86.5,
     "text": "Talk to our team,"
    },
    {
-    "t": 111.53,
+    "t": 87.63,
     "text": "or visit Mira-Clé dot com."
    }
   ],

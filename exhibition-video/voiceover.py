@@ -23,7 +23,7 @@ from kokoro_onnx import Kokoro
 
 MODEL_DIR = sys.argv[1]
 VOICE = sys.argv[2] if len(sys.argv) > 2 else 'af_heart'
-SPEED = 0.95
+SPEED = 1.0
 SR = 44100
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -44,33 +44,30 @@ BRAND_PHONEMES = ('mˈɪɹə klˈeɪ', 'mˈiːɹə klˈɛ')
 # {n} marks the phrase that reveals item n on screen, {q} the testimonial and
 # {m} the Leadership Metamorphosis feature. (id, start, latest end, text, captions)
 LINES = [
-    ('brand', TL['reveal'][0] + 0.9, TL['reveal'][0] + 2.3, f'{BRAND}.', False),
-    ('slogan', TL['reveal'][0] + 2.6, TL['reveal'][1] - 0.4, 'Transform. Evolve. Lead.', False),
-    ('title', TL['title'][0] + 0.6, TL['title'][0] + 2.8, 'The intelligence behind progress.', False),
-    ('intro', TL['title'][0] + 3.0, TL['title'][1] - 0.2,
-     'Progress depends on the people who lead an organization, and the structure that supports them.', True),
-    ('overview', TL['overview'][0] + 0.6, TL['overview'][1] - 0.4,
+    ('brand', TL['open'][0] + 0.5, TL['open'][0] + 2.0, f'{BRAND}.', False),
+    ('title', TL['open'][0] + 2.2, TL['open'][1] - 0.1, 'The intelligence behind progress.', False),
+    ('overview', TL['overview'][0] + 0.4, TL['overview'][1] - 0.3,
      'We work across five areas of practice: {0}structure, {1}people, {2}performance, {3}capability, {4}and resilience.', True),
-    ('structure', TH[0][0] + 0.7, TH[0][1] - 0.4,
+    ('structure', TH[0][0] + 0.5, TH[0][1] - 0.3,
      'Structure. {0}We restructure organizations, {1}design operating models, {2}align teams behind one direction, '
      '{3}and lead cultural change.', True),
-    ('people', TH[1][0] + 0.7, TH[1][1] - 0.4,
+    ('people', TH[1][0] + 0.5, TH[1][1] - 0.3,
      'People. {0}Leadership Metamorphosis, {1}executive development, {2}team effectiveness, {3}workforce capability, '
      '{4}and behavioral change, developed by our team of veteran experts. '
      '{m}Explore the Leadership Metamorphosis program: an executive leadership journey inspired by nature\'s most profound transformation.', True),
-    ('performance', TH[2][0] + 0.7, TH[2][1] - 0.4,
+    ('performance', TH[2][0] + 0.5, TH[2][1] - 0.3,
      'Performance. {0}We design HR systems, {1}build performance frameworks and reward systems, '
      '{2}align operations around them, {3}and stay to support implementation.', True),
-    ('capability', TH[3][0] + 0.7, TH[3][1] - 0.4,
+    ('capability', TH[3][0] + 0.5, TH[3][1] - 0.3,
      'Capability. {0}Bespoke learning programs, {1}psychometric and technical assessments, '
      '{2}L M S and e-learning curriculum development, {3}and talent succession. '
      '{q}For Aramex, we developed a learning management system and SCORM content.', True),
-    ('resilience', TH[4][0] + 0.7, TH[4][1] - 0.4,
+    ('resilience', TH[4][0] + 0.5, TH[4][1] - 0.3,
      'Resilience. {0}Emergency response planning, {1}drills and simulations, {2}business continuity, '
      '{3}and organizational readiness, so a crisis meets a prepared team.', True),
-    ('close-slogan', TL['close'][0] + 2.3, TL['close'][0] + 4.3, 'Transform. Evolve. Lead.', False),
-    ('close-brand', TL['close'][0] + 4.6, TL['close'][0] + 6.0, f'{BRAND}.', False),
-    ('close-cta', TL['close'][0] + 6.4, TL['close'][1] - 1.0, f'Talk to our team, or visit {BRAND} dot com.', False),
+    ('close-slogan', TL['close'][0] + 1.4, TL['close'][0] + 3.35, 'Transform. Evolve. Lead.', False),
+    ('close-brand', TL['close'][0] + 3.45, TL['close'][0] + 4.35, f'{BRAND}.', False),
+    ('close-cta', TL['close'][0] + 4.5, TL['close'][1] - 0.5, f'Talk to our team, or visit {BRAND} dot com.', False),
 ]
 
 # How captions should spell what the voice is told to say.

@@ -54,18 +54,14 @@
   .logo2 .l-mark { left: 0; top: 0; width: 620px; height: 602px; }
   .logo2 .l-word { left: 620px; top: 100px; width: 1380px; height: 330px; }
   .logo2 .l-tag { left: 620px; top: 460px; width: 1380px; height: 120px; }
-  .layer > .logo2 { left: 260px; top: 300px; transform: scale(0.7); }
+  .layer > .logo2 { left: 410px; top: 200px; transform: scale(0.55); }
+  .open-title { top: 620px; font-size: 100px; color: var(--ink); letter-spacing: 3px; }
 
-  /* title */
-  .t-glow { left: 360px; top: 140px; width: 1200px; height: 800px; border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(240,176,40,0.22), rgba(240,176,40,0)); }
-  .t-mark { left: 900px; top: 150px; width: 120px; height: 117px; }
+  /* title words that rise into place */
   .t-line { left: 0; right: 0; text-align: center; font-weight: 700; line-height: 1.05; white-space: nowrap; }
   .t-line span { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 4px; }
   .t-line i { display: inline-block; font-style: normal; }
-  .t1 { top: 320px; font-size: 140px; color: #fff; letter-spacing: 4px; }
-  .t2 { top: 480px; font-size: 176px; color: #fff; letter-spacing: 4px; }
-  .t2 .prog { color: var(--gold);
+  .t-line .prog { color: var(--gold);
     background: linear-gradient(100deg, #f0b028 0%, #f0b028 40%, #fff3cf 50%, #f0b028 60%, #f0b028 100%);
     background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
@@ -133,10 +129,10 @@
   .s1 .root .ico { width: 46px; height: 46px; }
   .s1 svg.wires { left: 0; top: 0; }
   .s1 .node { top: 440px; width: 230px; height: 300px; background: #fff; border-radius: 10px; border-top: 6px solid var(--gold);
-    box-shadow: 0 8px 24px rgba(46,46,49,0.08); padding: 22px 20px; display: flex; flex-direction: column; }
+    box-shadow: 0 8px 24px rgba(46,46,49,0.08); padding: 22px 16px; display: flex; flex-direction: column; align-items: center; text-align: center; }
   .s1 .node .n { font-family: "Oswald", sans-serif; font-size: 24px; color: var(--gold-deep); font-weight: 600; }
   .s1 .node .ico { width: 76px; height: 76px; margin: 18px 0 20px; }
-  .s1 .node .s { font-size: 29px; font-weight: 700; line-height: 1.2; color: var(--ink); }
+  .s1 .node .s { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; line-height: 1.2; color: var(--ink); }
   .s1 .twig { width: 24px; height: 24px; border-radius: 50%; background: var(--bg); border: 3px solid var(--gold); }
 
   /* 02 people: team network + testimonial */
@@ -157,18 +153,20 @@
   .s2 .bub .bf svg { width: 100%; height: 100%; }
   sup.tm { font-size: 0.42em; vertical-align: super; line-height: 0; margin-left: 2px; letter-spacing: 0; }
   .s2 .meta { left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
-  .s2 .sky { inset: 0; background: linear-gradient(180deg, #1c1d29 0%, #3b2d3a 38%, #9a5a2c 68%, #e7a43a 88%, #f0b028 100%); }
-  .s2 .sun { left: 1260px; top: 560px; width: 380px; height: 380px; border-radius: 50%;
-    background: radial-gradient(circle, #fff3cf 0%, #f6c75a 35%, rgba(240,176,40,0) 70%); }
+  .s2 .scenery { left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 1300px 700px; }
+  .s2 .sky { inset: 0; background: linear-gradient(180deg, #15161f 0%, #2b2333 30%, #5d3a3a 52%, #b5682a 72%, #e7a43a 86%, #f0b028 100%); }
+  .s2 .sun { left: 1180px; top: 690px; width: 460px; height: 460px; border-radius: 50%;
+    background: radial-gradient(circle, #fff3cf 0%, #f6c75a 26%, rgba(240,176,40,0.35) 46%, rgba(240,176,40,0) 70%); }
   .s2 .meta-logo { right: 110px; top: 48px; height: 64px; }
   .s2 .meta-text { left: 120px; top: 150px; width: 860px; }
   .s2 .meta-text .k { font-size: 30px; letter-spacing: 10px; color: var(--gold); font-weight: 600; }
-  .s2 .meta-text .h { font-size: 118px; line-height: 1.0; color: #fff; font-weight: 700; margin-top: 8px; letter-spacing: 2px; }
+  .s2 .meta-text .h { font-size: 118px; line-height: 1.0; color: #fff; font-weight: 700; margin-top: 8px; letter-spacing: 2px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.35); }
   .s2 .meta-text .h sup.tm { color: var(--gold); }
   .s2 .meta-text .p { font-size: 66px; color: var(--gold); font-weight: 600; letter-spacing: 8px; margin-top: 6px; }
   .s2 .meta-text .d { font-size: 34px; line-height: 1.35; color: #fff; font-style: italic; margin-top: 22px; width: 780px;
-    text-shadow: 0 2px 14px rgba(0,0,0,0.5); }
-  .s2 .fly { left: 0; top: 0; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.35)); }
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6); }
+  .s2 .fly { left: 0; top: 0; filter: drop-shadow(0 10px 18px rgba(0,0,0,0.4)) drop-shadow(0 0 22px rgba(246,199,90,0.35)); }
   /* 03 performance: staircase chart */
   .s3 .pillar { left: 120px; top: 190px; color: var(--gold); }
   .s3 .theme { left: 120px; top: 330px; width: 560px; color: #fff; }
@@ -177,7 +175,7 @@
   .s3 svg.chart { left: 0; top: 0; }
   .s3 .bar { width: 236px; border-radius: 10px 10px 0 0; background: linear-gradient(180deg, #f6c75a 0%, #e6a420 100%);
     transform-origin: bottom center; overflow: hidden; }
-  .s3 .bar .in { position: absolute; left: 0; right: 0; top: 0; padding: 20px 16px; }
+  .s3 .bar .in { position: absolute; inset: 0; padding: 16px 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
   .s3 .bar .n { font-family: "Oswald", sans-serif; font-size: 26px; font-weight: 700; color: rgba(46,46,49,0.7); }
   .s3 .bar .s { font-size: 24px; font-weight: 800; line-height: 1.2; color: var(--ink); margin-top: 6px; }
 
@@ -195,7 +193,7 @@
   .s4 .tile .ic { width: 96px; height: 96px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; }
   .s4 .tile .ic svg { width: 52px; height: 52px; }
   .s4 .tile .n { font-family: "Oswald", sans-serif; font-size: 34px; color: var(--gold-deep); font-weight: 600; }
-  .s4 .tile .s { font-size: 30px; font-weight: 800; line-height: 1.2; color: var(--ink); }
+  .s4 .tile .s { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 10px; font-size: 30px; font-weight: 800; line-height: 1.2; color: var(--ink); }
   .s4 .qcard { left: 230px; top: 200px; width: 1460px; padding: 56px 70px 40px; background: #fff; border-radius: 14px;
     box-shadow: 0 30px 80px rgba(0,0,0,0.35); border-top: 8px solid var(--gold); }
   .s4 .qcard .qm { position: absolute; left: 40px; top: -40px; font-family: Georgia, serif; font-size: 170px; line-height: 1; color: var(--gold); font-weight: 700; }
@@ -210,9 +208,9 @@
   .s5 .theme { left: 0; right: 0; top: 300px; text-align: center; color: #fff; font-size: 36px; }
   .s5 svg.radar { left: 0; top: 0; }
   .s5 .shield { left: 860px; top: 530px; width: 200px; height: 220px; }
-  .s5 .stn { width: 500px; height: 120px; border-radius: 10px; background: var(--dark-2); display: flex; align-items: center; gap: 22px; padding: 0 30px; }
+  .s5 .stn { width: 500px; height: 120px; border-radius: 10px; background: var(--dark-2); display: flex; align-items: center; justify-content: center; gap: 20px; padding: 0 30px; text-align: center; }
   .s5 .stn.l { border-left: 6px solid var(--gold); }
-  .s5 .stn.r { border-right: 6px solid var(--gold); flex-direction: row-reverse; text-align: right; }
+  .s5 .stn.r { border-right: 6px solid var(--gold); flex-direction: row-reverse; }
   .s5 .stn .n { font-family: "Oswald", sans-serif; font-size: 28px; color: var(--gold); font-weight: 600; }
   .s5 .stn .s { font-size: 29px; font-weight: 700; color: #fff; line-height: 1.2; }
 
@@ -223,18 +221,20 @@
   #cap.dark span { background: rgba(255,255,255,0.14); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); }
   #cap.ar span { font-family: "Cairo", "Open Sans", sans-serif; font-size: 36px; font-weight: 700; line-height: 1.45; padding: 8px 32px 12px; }
 
-  /* closing */
-  .layer > .cl-logo2 { left: 210px; top: 250px; transform: scale(0.75); }
-  .cl-row { left: 0; right: 0; top: 120px; display: flex; justify-content: center; }
-  .cl-w { font-size: 46px; font-weight: 600; color: var(--char); padding: 0 34px; position: relative; letter-spacing: 2px; }
-  .cl-w + .cl-w::before { content: ""; position: absolute; left: -7px; top: 30px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); }
-  .cl-logo { left: 0; right: 0; top: 500px; display: flex; justify-content: center; }
-  .cl-logo img { height: 150px; }
-  .cl-cta { left: 0; right: 0; top: 760px; display: flex; justify-content: center; align-items: center; gap: 44px; }
-  .cl-cta .talk { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 34px; letter-spacing: 4px; color: var(--ink); font-weight: 600;
-    padding: 12px 28px; background: var(--gold); border-radius: 6px; }
-  .cl-cta .ig { display: flex; align-items: center; gap: 12px; font-size: 32px; font-weight: 600; color: var(--char); }
-  .cl-cta .ig svg { width: 40px; height: 40px; }
+  /* closing end card */
+  .end-card { background: var(--bg); }
+  .end-glow { left: 360px; top: 120px; width: 1200px; height: 700px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(240,176,40,0.16), rgba(240,176,40,0)); }
+  .cl-row { left: 0; right: 0; top: 150px; display: flex; justify-content: center; }
+  .cl-w { font-size: 26px; font-weight: 500; color: var(--muted); padding: 0 26px; position: relative; letter-spacing: 6px; }
+  .cl-w + .cl-w::before { content: ""; position: absolute; left: -4px; top: 17px; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+  .layer > .cl-logo2 { left: 480px; top: 330px; transform-origin: 0 0; transform: scale(0.48); }
+  .cl-rule { left: 900px; width: 120px; top: 708px; height: 3px; background: var(--gold); transform-origin: center; }
+  .cl-cta { left: 0; right: 0; top: 750px; display: flex; justify-content: center; align-items: center; gap: 40px; }
+  .cl-cta .talk { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 26px; letter-spacing: 5px; color: var(--ink); font-weight: 600;
+    padding: 10px 24px; border: 2px solid var(--gold); border-radius: 4px; }
+  .cl-cta .ig { display: flex; align-items: center; gap: 10px; font-size: 26px; font-weight: 600; color: var(--char); }
+  .cl-cta .ig svg { width: 32px; height: 32px; }
 
   /* wipe transition: its panel takes the colour of the incoming scene */
   #wipe { position: absolute; top: 0; left: 0; width: 2472px; height: 1080px; z-index: 10; display: flex; }
@@ -313,7 +313,7 @@ const VO_THEMES = THEMES.map(th => VO_BY_ID[th.key] || { marks: {}, segments: []
 window.DURATION = TL.close[1];
 const WIPE = 0.9;
 const TRANSITIONS = [
-  [TL.title[0], 'dark'], [TL.overview[0], 'light'],
+  [TL.overview[0], 'light'],
   ...TL.themes.map((s, i) => [s[0], THEMES[i].tone]),
   [TL.close[0], 'light']
 ];
@@ -415,14 +415,9 @@ const lgMark = img('assets/logo2-mark.png', 'abs l-mark', lg);
 const lgWord = img('assets/logo2-word.png', 'abs l-word', lg);
 const lgTag = img('assets/logo2-tag.png', 'abs l-tag', lg);
 
-// title: "The Intelligence Behind Progress"
-const titleL = el('div', 'layer grid-dark', null, root);
-const tGlow = el('div', 'abs t-glow', null, titleL);
-const tMark = img('assets/logo2-mark.png', 'abs t-mark', titleL);
-const tLine1 = el('div', 'abs t-line t1 head', '<span><i>The</i></span> <span><i>Intelligence</i></span>', titleL);
-const tLine2 = el('div', 'abs t-line t2 head', '<span><i>Behind</i></span> <span><i class="prog">Progress</i></span>', titleL);
-const tWords = [...titleL.querySelectorAll('.t-line i')];
-const tProg = titleL.querySelector('.prog');
+const openTitle = el('div', 'abs t-line open-title head', '<span><i>The</i></span> <span><i>Intelligence</i></span> <span><i>Behind</i></span> <span><i class="prog">Progress</i></span>', reveal);
+const tWords = [...openTitle.querySelectorAll('i')];
+const tProg = openTitle.querySelector('.prog');
 
 // overview, in English and Arabic
 const over = el('div', 'layer', null, root);
@@ -518,33 +513,71 @@ function buildStructure(th, idx) {
 // a butterfly crossing a developed city at dusk
 let seed = 11;
 const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-function skyline(svg, { fill, maxH, minH, windows, cap }) {
+const GROUND = 1000;  // waterline the city stands on
+
+// one skyline layer of modern towers; lit windows are collected so the
+// butterfly can light them up as it passes
+function cityLayer(svg, { fill, minH, maxH, windows, cap, cranes = 0, landmark = false, twisted = false, roofs = true, gap = 10 }, lights) {
   const g = svgEl('g', {}, svg);
-  let x = -40;
-  while (x < 2000) {
-    const w = 60 + rnd() * 90;
+  let x = -60, n = 0;
+  while (x < 2020) {
+    const w = 56 + rnd() * 96;
     let h = minH + rnd() * (maxH - minH);
     if (cap) h = Math.min(h, cap(x));
-    const top = 1080 - h;
-    svgEl('rect', { x, y: top, width: w, height: h + 2, fill }, g);
-    const r = rnd();
-    if (r < 0.25) svgEl('rect', { x: x + w * 0.2, y: top - 30, width: w * 0.6, height: 32, fill }, g);       // stepped crown
-    else if (r < 0.45) svgEl('rect', { x: x + w / 2 - 2, y: top - 70, width: 4, height: 72, fill }, g);     // spire
-    else if (r < 0.6) svgEl('path', { d: `M${x} ${top} L${x + w / 2} ${top - 40} L${x + w} ${top}Z`, fill }, g);
-    if (windows) {
-      for (let wy = top + 16; wy < 1070; wy += 22)
-        for (let wx = x + 10; wx < x + w - 12; wx += 16)
-          if (rnd() < windows) svgEl('rect', { x: wx, y: wy, width: 7, height: 10, fill: rnd() < 0.8 ? '#f6c75a' : '#fff3cf', opacity: 0.35 + rnd() * 0.6 }, g);
+    const top = GROUND - h;
+    const kind = roofs ? rnd() : 0.38 + rnd() * 0.62;
+    n++;
+    if (landmark && n === 7) {
+      // landmark tower: stacked setbacks and a needle
+      const cx = x + w / 2, H = Math.min(maxH * 1.35, cap ? cap(x) * 1.35 : 9e9);
+      [[1, 0], [0.78, 0.32], [0.56, 0.58], [0.36, 0.78]].forEach(([ww, f]) =>
+        svgEl('rect', { x: cx - w * ww / 2, y: GROUND - H * (1 - f), width: w * ww, height: H * (1 - f) + 2, fill }, g));
+      svgEl('rect', { x: cx - 2, y: GROUND - H - 90, width: 4, height: 92, fill }, g);
+    } else if (twisted && kind < 0.14) {
+      // twisted tower: sides that weave as they rise
+      const cx = x + w / 2, pts = [], ptsR = [];
+      for (let y = top; y <= GROUND; y += 12) {
+        const k = (y - top) / 60;
+        pts.push(`${cx - w / 2 * (0.62 + 0.38 * Math.cos(k))} ${y}`);
+        ptsR.unshift(`${cx + w / 2 * (0.62 + 0.38 * Math.cos(k + 1.4))} ${y}`);
+      }
+      svgEl('path', { d: 'M' + pts.join(' L') + ' L' + ptsR.join(' L') + 'Z', fill }, g);
+    } else {
+      svgEl('rect', { x, y: top, width: w, height: h + 2, fill }, g);
+      if (kind < 0.22) svgEl('path', { d: `M${x} ${top} L${x + w} ${top - w * 0.55} L${x + w} ${top}Z`, fill }, g);           // angled glass roof
+      else if (kind < 0.38) svgEl('path', { d: `M${x + w * 0.15} ${top} L${x + w / 2} ${top - 70} L${x + w * 0.85} ${top}Z`, fill }, g); // tapered crown
+      else if (kind < 0.52) svgEl('rect', { x: x + w * 0.2, y: top - 34, width: w * 0.6, height: 36, fill }, g);               // setback
+      else if (kind < 0.62) svgEl('rect', { x: x + w / 2 - 2, y: top - 64, width: 4, height: 66, fill }, g);                  // mast
     }
-    x += w + 6 + rnd() * 18;
+    if (cranes && rnd() < cranes) {
+      // a tower crane on the roof: the city is still being built
+      const mx = x + w * 0.3, my = top - 4;
+      const c = { stroke: fill, 'stroke-width': 4, fill: 'none', 'stroke-linecap': 'round' };
+      svgEl('path', { d: `M${mx} ${my} V${my - 120} M${mx - 50} ${my - 112} H${mx + 150} M${mx} ${my - 120} L${mx + 150} ${my - 112} M${mx} ${my - 120} L${mx - 50} ${my - 112} M${mx + 118} ${my - 112} V${my - 62}`, ...c }, g);
+      svgEl('rect', { x: mx - 48, y: my - 110, width: 18, height: 12, fill }, g);
+    }
+    if (windows) {
+      for (let wy = top + 14; wy < GROUND - 8; wy += 20)
+        for (let wx = x + 9; wx < x + w - 11; wx += 14) {
+          const on = rnd() < windows;
+          const r = svgEl('rect', { x: wx, y: wy, width: 6, height: 9, fill: '#f6c75a', opacity: on ? 0.3 + rnd() * 0.55 : 0.04 }, g);
+          if (lights) lights.push({ el: r, x: wx, y: wy, base: on ? +r.getAttribute('opacity') : 0.04, tw: rnd() * 6.28, dark: !on, pick: rnd() < 0.4 });
+        }
+    }
+    x += w + gap + rnd() * 16;
   }
   return g;
 }
 const BUTTERFLY_ICON = '<path d="M32 30C26 14 10 8 6 16s6 18 24 18z"/><path d="M32 30C38 14 54 8 58 16s-6 18-24 18z"/><path d="M30 34c-12 2-18 10-14 16s12 0 16-14z"/><path d="M34 34c12 2 18 10 14 16s-12 0-16-14z"/><path d="M32 22v26M32 22l-4-8M32 22l4-8"/>';
-const WING = `<path d="M0 -6 C -28 -72 -96 -78 -92 -30 C -88 6 -40 10 0 0 Z" fill="url(#wingG)" stroke="#2e2e31" stroke-width="4"/>
-  <path d="M0 2 C -40 10 -78 36 -62 64 C -46 82 -10 46 0 8 Z" fill="url(#wingG)" stroke="#2e2e31" stroke-width="4"/>
-  <path d="M-8 -6 C -30 -40 -60 -52 -78 -36" fill="none" stroke="#2e2e31" stroke-width="2.5" opacity="0.6"/>
-  <circle cx="-70" cy="-38" r="7" fill="#fff"/><circle cx="-52" cy="-52" r="4" fill="#fff"/><circle cx="-48" cy="50" r="5" fill="#fff"/>`;
+// one side of the butterfly: forewing and hindwing drawn separately so they can beat out of step
+const FOREWING = `<path d="M0 -4 C -18 -60 -70 -96 -108 -72 C -126 -58 -112 -18 -70 -6 C -42 2 -18 2 0 2 Z" fill="url(#fwG)" stroke="#2e2e31" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M-4 -4 C -30 -40 -62 -66 -96 -70 M-6 -2 C -40 -24 -70 -34 -104 -40 M-8 0 C -40 -8 -70 -10 -96 -18" fill="none" stroke="#2e2e31" stroke-width="2" opacity="0.45"/>
+  <path d="M-62 -84 C -86 -88 -108 -78 -110 -64 C -100 -74 -84 -80 -62 -84 Z" fill="#2e2e31"/>
+  <circle cx="-92" cy="-60" r="6" fill="#fff8e6"/><circle cx="-76" cy="-76" r="4" fill="#fff8e6"/><circle cx="-100" cy="-44" r="3.5" fill="#fff8e6"/>
+  <path class="sheen" d="M-10 -10 C -30 -50 -66 -76 -96 -70 C -70 -60 -40 -40 -10 -10 Z" fill="#fff8e6" opacity="0"/>`;
+const HINDWING = `<path d="M0 4 C -30 8 -76 22 -78 56 C -80 80 -50 92 -30 74 C -14 60 -4 30 0 8 Z" fill="url(#hwG)" stroke="#2e2e31" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M-4 8 C -26 26 -46 50 -54 74 M-6 6 C -34 18 -56 34 -70 56" fill="none" stroke="#2e2e31" stroke-width="2" opacity="0.45"/>
+  <circle cx="-52" cy="66" r="7" fill="#2e2e31"/><circle cx="-52" cy="66" r="3" fill="#f6c75a"/>`;
 
 function buildPeople(th, idx) {
   const L = el('div', 'layer grid-gold s2', null, root);
@@ -562,31 +595,93 @@ function buildPeople(th, idx) {
     (k === 0 ? `<div class="bf">${icon(BUTTERFLY_ICON, '#f0b028', 3)}</div>` : `<div class="n">0${k + 1}</div>`) + `<div class="s">${s}</div>`, net),
     pos[k][0] - 110, pos[k][1] - 110));
 
-  // Leadership Metamorphosis feature
+  // ---- Leadership Metamorphosis feature ----
   const meta = el('div', 'abs meta', null, L);
-  const sky = el('div', 'abs sky', null, meta);
-  const sun = el('div', 'abs sun', null, meta);
-  const city = canvasSvg('city', meta);
+  const scenery = el('div', 'abs scenery', null, meta);
+  el('div', 'abs sky', null, scenery);
+  const sky = canvasSvg('skyfx', scenery);
+  seed = 5;
+  const stars = Array.from({ length: 60 }, () => svgEl('circle', { cx: rnd() * 1920, cy: rnd() * 420, r: 0.8 + rnd() * 1.6, fill: '#fff8e6' }, sky));
+  stars.forEach(st => { st.tw = rnd() * 6.28; st.base = 0.25 + rnd() * 0.6; });
+  const defs = svgEl('defs', {}, sky);
+  defs.innerHTML = `<filter id="cloudBlur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+    <linearGradient id="cloudG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a3a4a"/><stop offset="1" stop-color="#e09a3e"/></linearGradient>`;
+  const clouds = [[300, 330, 360, 46], [1040, 270, 420, 40], [1640, 360, 320, 36], [700, 420, 300, 30]].map(([x, y, rx, ry]) =>
+    svgEl('ellipse', { cx: x, cy: y, rx, ry, fill: 'url(#cloudG)', opacity: 0.55, filter: 'url(#cloudBlur)' }, sky));
+  el('div', 'abs sun', null, scenery);
+  const city = canvasSvg('city', scenery);
+  const cdefs = svgEl('defs', {}, city);
+  cdefs.innerHTML = `<linearGradient id="haze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7a43a" stop-opacity="0"/><stop offset="1" stop-color="#e7a43a" stop-opacity="0.35"/></linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2226"/><stop offset="1" stop-color="#141216"/></linearGradient>`;
+  const lights = [];
   seed = 11;
-  const far = skyline(city, { fill: '#5a4038', minH: 260, maxH: 560, windows: 0 });
-  const mid = skyline(city, { fill: '#3a2c2c', minH: 200, maxH: 470, windows: 0.18, cap: x => x < 980 ? 340 : 470 });
-  const near = skyline(city, { fill: '#221d20', minH: 110, maxH: 300, windows: 0.32, cap: x => x < 980 ? 230 : 300 });
+  const layers = [
+    cityLayer(city, { fill: '#7a5440', minH: 260, maxH: 520, windows: 0, gap: 4 }),
+    cityLayer(city, { fill: '#5e4036', minH: 220, maxH: 560, windows: 0.04, landmark: true, cap: x => x < 1000 ? 300 : 600 }, lights),
+    cityLayer(city, { fill: '#42302e', minH: 170, maxH: 460, windows: 0.08, twisted: true, cranes: 0.12, cap: x => x < 1000 ? 250 : 470 }, lights),
+    cityLayer(city, { fill: '#2c2226', minH: 120, maxH: 340, windows: 0.12, twisted: true, roofs: false, cap: x => x < 1000 ? 210 : 360 }, lights),
+    cityLayer(city, { fill: '#1d181b', minH: 60, maxH: 190, windows: 0.16, cranes: 0.05, roofs: false, cap: x => x < 1000 ? 150 : 200 }, lights)
+  ];
+  // haze between the layers
+  layers.slice(0, 4).forEach(g => svgEl('rect', { x: -100, y: 520, width: 2120, height: GROUND - 520, fill: 'url(#haze)' }, g));
+  // waterfront: promenade, river, reflections, moving light trails
+  svgEl('rect', { x: 0, y: GROUND, width: 1920, height: 80, fill: 'url(#water)' }, city);
+  svgEl('rect', { x: 0, y: GROUND - 2, width: 1920, height: 4, fill: '#5e4036' }, city);
+  const refl = lights.filter(l => !l.dark && l.y > GROUND - 220).filter((_, i) => i % 3 === 0)
+    .map(l => svgEl('rect', { x: l.x, y: GROUND + 6 + rnd() * 10, width: 6, height: 26 + rnd() * 30, fill: '#f6c75a', opacity: 0.18 }, city));
+  const trails = Array.from({ length: 16 }, (_, k) => {
+    const lane = k % 2;
+    return { el: svgEl('rect', { y: GROUND - 10 + lane * 5, width: 40 + rnd() * 50, height: 3, rx: 1.5, fill: lane ? '#ff8a5c' : '#fff3cf', opacity: 0.85 }, city),
+             dir: lane ? -1 : 1, x0: rnd() * 2200, v: 260 + rnd() * 220 };
+  });
+
   const metaLogo = img('assets/mira-cle-logo-white.png', 'abs meta-logo', meta);
   const mText = el('div', 'abs meta-text', `<div class="k head">Explore</div>
     <div class="h head"><div>Leadership</div><div>Metamorphosis${TM}</div></div><div class="p head">Program</div>
     <div class="d">An executive leadership journey inspired by nature’s most profound transformation.</div>`, meta);
   const [mk, mh, mp, md] = ['.k', '.h', '.p', '.d'].map(q => mText.querySelector(q));
-  const trail = canvasSvg('trail', meta);
-  const dust = Array.from({ length: 18 }, () => svgEl('circle', { r: 4, fill: '#fff3cf' }, trail));
-  const fly = svgEl('svg', { class: 'abs fly', width: 200, height: 160, viewBox: '-100 -80 200 160' }, meta);
-  fly.innerHTML = `<defs><linearGradient id="wingG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6c75a"/><stop offset="1" stop-color="#d99a14"/></linearGradient></defs>
-    <g class="wl">${WING}</g><g class="wr"><g transform="scale(-1,1)">${WING}</g></g>
-    <ellipse cx="0" cy="4" rx="7" ry="34" fill="#2e2e31"/><path d="M0 -26 L-12 -52 M0 -26 L12 -52" stroke="#2e2e31" stroke-width="3" fill="none" stroke-linecap="round"/>`;
-  const wl = fly.querySelector('.wl'), wr = fly.querySelector('.wr');
-  const path = u => {
-    const e = easeInOut(clamp(u));
-    return [lerp(880, 1470, e) + 40 * Math.sin(u * Math.PI * 2), lerp(1010, 320, e) + 50 * Math.sin(u * Math.PI * 3)];
+
+  // chrysalis on a silk thread, then the butterfly
+  const fx = canvasSvg('fx', meta);
+  const CH = [1230, 470];
+  const thread = svgEl('line', { x1: CH[0], y1: 0, x2: CH[0], y2: CH[1] - 58, stroke: 'rgba(255,243,207,0.7)', 'stroke-width': 2 }, fx);
+  const glowC = svgEl('circle', { cx: CH[0], cy: CH[1], r: 90, fill: 'url(#chG)' }, fx);
+  svgEl('defs', {}, fx).innerHTML = `<radialGradient id="chG"><stop offset="0" stop-color="#fff3cf" stop-opacity="0.9"/><stop offset="1" stop-color="#f0b028" stop-opacity="0"/></radialGradient>
+    <linearGradient id="podG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b9831f"/><stop offset="0.5" stop-color="#f6c75a"/><stop offset="1" stop-color="#9c6a18"/></linearGradient>`;
+  const podL = svgEl('path', { d: `M${CH[0]} ${CH[1] - 60} C ${CH[0] - 34} ${CH[1] - 40} ${CH[0] - 34} ${CH[1] + 40} ${CH[0]} ${CH[1] + 64} Z`, fill: 'url(#podG)', stroke: '#2e2e31', 'stroke-width': 3 }, fx);
+  const podR = svgEl('path', { d: `M${CH[0]} ${CH[1] - 60} C ${CH[0] + 34} ${CH[1] - 40} ${CH[0] + 34} ${CH[1] + 40} ${CH[0]} ${CH[1] + 64} Z`, fill: 'url(#podG)', stroke: '#2e2e31', 'stroke-width': 3 }, fx);
+  const dust = Array.from({ length: 40 }, () => svgEl('circle', { r: 3, fill: '#fff3cf', opacity: 0 }, fx));
+  const fly = svgEl('svg', { class: 'abs fly', width: 260, height: 220, viewBox: '-130 -110 260 220' }, meta);
+  fly.innerHTML = `<defs>
+      <linearGradient id="fwG" x1="0" y1="0" x2="-1" y2="-1"><stop offset="0" stop-color="#d99a14"/><stop offset="0.55" stop-color="#f6c75a"/><stop offset="1" stop-color="#ffe7a6"/></linearGradient>
+      <linearGradient id="hwG" x1="0" y1="0" x2="-1" y2="1"><stop offset="0" stop-color="#c98a12"/><stop offset="1" stop-color="#f6c75a"/></linearGradient></defs>
+    <g class="hl">${HINDWING}</g><g class="hr"><g transform="scale(-1,1)">${HINDWING}</g></g>
+    <g class="fl">${FOREWING}</g><g class="fr"><g transform="scale(-1,1)">${FOREWING}</g></g>
+    <ellipse cx="0" cy="8" rx="8" ry="40" fill="#2e2e31"/><circle cx="0" cy="-34" r="9" fill="#2e2e31"/>
+    <path d="M-3 -40 C -10 -64 -22 -76 -30 -80 M3 -40 C 10 -64 22 -76 30 -80" stroke="#2e2e31" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="-30" cy="-80" r="4" fill="#2e2e31"/><circle cx="30" cy="-80" r="4" fill="#2e2e31"/>`;
+  const [wfl, wfr, whl, whr] = ['.fl', '.fr', '.hl', '.hr'].map(q => fly.querySelector(q));
+  const sheens = [...fly.querySelectorAll('.sheen')];
+  // flight: out of the chrysalis, a low pass over the city (clear of the text), then up to hover
+  const bez = (p0, p1, p2, p3, u) => {
+    const v = 1 - u;
+    return [0, 1].map(i => v * v * v * p0[i] + 3 * v * v * u * p1[i] + 3 * v * u * u * p2[i] + u * u * u * p3[i]);
   };
+  const legs = [
+    [[CH[0], CH[1]], [1290, 800], [960, 950], [560, 880]],
+    [[560, 880], [380, 920], [1150, 930], [1330, 660]],
+    [[1330, 660], [1470, 520], [1520, 420], [1560, 360]]
+  ];
+  const flight = u => {
+    const k = Math.min(2, Math.floor(clamp(u) * 3));
+    return bez(...legs[k], clamp(u) * 3 - k);
+  };
+  const FLIGHT = 5.4;
+  // when (as a share of the flight) the butterfly first passes over each window
+  for (let k = 0; k <= 240; k++) {
+    const [fx_, fy_] = flight(k / 240);
+    lights.forEach(l => { if (l.wake === undefined && l.pick && Math.abs(l.x - fx_) < 180 && l.y > fy_ - 40) l.wake = k / 240; });
+  }
 
   return (t, s, e, marks) => {
     hdr(t, s, e);
@@ -611,35 +706,70 @@ function buildPeople(th, idx) {
     meta.style.clipPath = `circle(${op * 2300}px at ${pos[0][0]}px ${pos[0][1]}px)`;
     if (op <= 0) return;
     const ft = t - (mt - 0.6);
-    far.setAttribute('transform', `translate(${-ft * 6} 0)`);
-    mid.setAttribute('transform', `translate(${-ft * 12} 0)`);
-    near.setAttribute('transform', `translate(${-ft * 22} 0)`);
-    sun.style.transform = `translateY(${-ft * 4}px)`;
+    scenery.style.transform = `scale(${1 + 0.05 * clamp(ft / 9)})`;
+    layers.forEach((g, i) => g.setAttribute('transform', `translate(${-ft * (3 + i * 5)} 0)`));
+    clouds.forEach((c, i) => c.setAttribute('transform', `translate(${ft * (6 + i * 3)} 0)`));
+    stars.forEach(st => st.setAttribute('opacity', st.base * (0.6 + 0.4 * Math.sin(t * 2.2 + st.tw))));
+    refl.forEach((r, i) => r.setAttribute('opacity', 0.12 + 0.12 * Math.sin(t * 5 + i)));
+    trails.forEach(tr => {
+      const x = ((tr.x0 + tr.dir * tr.v * ft) % 2300 + 2300) % 2300 - 200;
+      tr.el.setAttribute('x', x);
+    });
     rise(mk, prog(t, mt - 0.1, 0.6), 20);
     rise(mh, prog(t, mt + 0.2, 0.8), 40);
     rise(mp, prog(t, mt + 0.6, 0.7), 30);
-    const segs = (VO_THEMES[idx].segments || []);
+    const segs = VO_THEMES[idx].segments || [];
     rise(md, prog(t, (segs[8] ? segs[8].t : mt + 2.8) - 0.2, 0.8), 24);
     metaLogo.style.opacity = fade(t, mt + 0.4, 0.5);
-    // flight across the city, then a hover
-    const u = (t - mt) / 6.5;
-    let [x, y] = path(u);
-    if (u > 1) { x += 18 * Math.sin((t - mt) * 1.3); y += 14 * Math.sin((t - mt) * 1.9); }
-    const [x2, y2] = path(Math.min(u, 1) + 0.01);
-    const tilt = u < 1 ? Math.atan2(y2 - y, x2 - x) * 180 / Math.PI * 0.35 : 4 * Math.sin(t * 2);
-    const flap = 0.2 + 0.8 * Math.abs(Math.cos((t - mt) * Math.PI * 4.2));
-    fly.style.opacity = fade(t, mt, 0.3);
-    fly.style.transform = `translate(${x - 100}px, ${y - 80}px) rotate(${tilt + 12}deg) scale(${0.9 + 0.25 * clamp(u)})`;
-    wl.setAttribute('transform', `scale(${flap} 1)`);
-    wr.setAttribute('transform', `scale(${flap} 1)`);
+
+    // chrysalis: glows, trembles, splits open
+    const crack = mt + 1.1;
+    const shake = t < crack ? Math.sin(t * 40) * 2 * fade(t, crack - 0.6, 0.6) : 0;
+    const open = prog(t, crack, 0.6);
+    thread.setAttribute('opacity', fade(t, mt - 0.2, 0.4) * (1 - prog(t, crack + 0.6, 0.6)));
+    glowC.setAttribute('opacity', fade(t, mt - 0.2, 0.4) * (0.6 + 0.4 * Math.sin(t * 6)) * (1 - prog(t, crack + 0.3, 0.8)) + 0.9 * open * (1 - prog(t, crack + 0.2, 0.6)));
+    podL.setAttribute('transform', `translate(${shake - 40 * open} ${60 * open * open}) rotate(${-35 * open} ${CH[0]} ${CH[1] - 60})`);
+    podR.setAttribute('transform', `translate(${shake + 40 * open} ${60 * open * open}) rotate(${35 * open} ${CH[0]} ${CH[1] - 60})`);
+    [podL, podR].forEach(pd => pd.setAttribute('opacity', fade(t, mt - 0.2, 0.4) * (1 - prog(t, crack + 0.4, 0.5))));
+
+    // butterfly: unfolds out of the chrysalis, then flies
+    const born = prog(t, crack + 0.1, 0.6, easeBack);
+    const u = clamp((t - crack - 0.5) / FLIGHT);
+    let [x, y] = flight(u);
+    if (t > crack + 0.5 + FLIGHT) { const h = t - crack - 0.5 - FLIGHT; x += 16 * Math.sin(h * 1.4); y += 12 * Math.sin(h * 2.1); }
+    const [x2, y2] = flight(Math.min(1, u + 0.01));
+    const vx = x2 - x, vy = y2 - y;
+    const bank = u < 1 ? clamp(vx / 8, -1, 1) * 22 : 6 * Math.sin(t * 1.6);
+    const ph = (t - crack) * Math.PI * 2 * 3.6;
+    const fore = 0.12 + 0.88 * Math.abs(Math.cos(ph));
+    const hind = 0.18 + 0.82 * Math.abs(Math.cos(ph - 0.45));
+    const unfold = clamp(born);
+    fly.style.opacity = fade(t, crack + 0.05, 0.2);
+    fly.style.transform = `translate(${x - 130}px, ${y - 110}px) rotate(${bank}deg) scale(${(0.35 + 0.65 * unfold) * (0.95 + 0.15 * clamp(u))})`;
+    const wing = (g, sx) => g.setAttribute('transform', `scale(${sx} ${1 - 0.06 * (1 - sx)}) skewY(${(1 - sx) * 8})`);
+    wing(wfl, fore * unfold + (1 - unfold) * 0.1); wing(wfr, fore * unfold + (1 - unfold) * 0.1);
+    wing(whl, hind * unfold + (1 - unfold) * 0.1); wing(whr, hind * unfold + (1 - unfold) * 0.1);
+    sheens.forEach(sh => sh.setAttribute('opacity', 0.35 * (1 - fore)));
+
+    // golden dust shed along the path
     dust.forEach((d, k) => {
-      const back = (k + 1) * 0.022;
-      const [dx, dy] = path(Math.min(u, 1) - back);
-      const live = u - back > 0 ? 1 : 0;
-      d.setAttribute('cx', dx + 6 * Math.sin(k * 2.1 + t * 3));
-      d.setAttribute('cy', dy + 18 + 6 * Math.cos(k * 1.7 + t * 3));
-      d.setAttribute('opacity', live * (1 - k / dust.length) * 0.8);
-      d.setAttribute('r', 4.5 - k * 0.18);
+      const age = (k / dust.length) * 1.6;
+      const tu = clamp((t - crack - 0.5 - age) / FLIGHT);
+      const alive = t - crack - 0.5 - age > 0 ? 1 : 0;
+      const [dx, dy] = flight(tu);
+      d.setAttribute('cx', dx + 10 * Math.sin(k * 2.3 + t * 2));
+      d.setAttribute('cy', dy + 20 + age * 40);
+      d.setAttribute('opacity', alive * (1 - age / 1.6) * 0.85);
+      d.setAttribute('r', 3.6 * (1 - age / 2));
+    });
+    // windows wake up where the butterfly has flown
+    lights.forEach(l => {
+      let o = l.base;
+      if (l.wake !== undefined) {
+        const wv = fade(t, crack + 0.5 + l.wake * FLIGHT, 0.6);
+        if (wv > 0) o = Math.max(o, wv * (0.65 + 0.3 * Math.sin(t * 3 + l.tw)));
+      }
+      l.el.setAttribute('opacity', o);
     });
   };
 }
@@ -794,13 +924,15 @@ const themeScenes = THEMES.map((th, i) => {
   return { L, update, th };
 });
 
-const close = el('div', 'layer', null, root);
+const close = el('div', 'layer end-card', null, root);
+el('div', 'abs end-glow', null, close);
 const clRow = el('div', 'abs cl-row', null, close);
 const clWords = THEMES.map(th => el('div', 'cl-w head', th.pillar, clRow));
 const clLogo = el('div', 'abs logo2 cl-logo2', null, close);
 const clMark = img('assets/logo2-mark.png', 'abs l-mark', clLogo);
 const clWord = img('assets/logo2-word.png', 'abs l-word', clLogo);
 const clSlogan = img('assets/logo2-tag.png', 'abs l-tag', clLogo);
+const clRule = el('div', 'abs cl-rule', null, close);
 const clCta = el('div', 'abs cl-cta', `<div class="talk">Talk to our team</div><div class="ig">${WEB_ICON}<span>${WEBSITE}</span></div><div class="ig">${IG_ICON}<span>${INSTAGRAM}</span></div>`, close);
 
 const cap = document.querySelector('#cap span');
@@ -837,7 +969,7 @@ window.seek = function (t) {
   } else wipe.style.visibility = 'hidden';
 
   const inThemes = t >= TL.themes[0][0] && t < TL.close[0];
-  glow.style.visibility = inThemes || t < TL.reveal[0] ? 'hidden' : 'visible';
+  glow.style.visibility = inThemes || t >= TL.close[0] ? 'hidden' : 'visible';
   if (!inThemes) {
     wave1.setAttribute('d', wavePath(t, 40, 945, 0.0042, 0.5));
     wave2.setAttribute('d', wavePath(t, 26, 990, 0.006, -0.35));
@@ -849,33 +981,22 @@ window.seek = function (t) {
     });
   }
 
-  show(reveal, within(t, TL.reveal));
-  if (within(t, TL.reveal)) {
-    const s = TL.reveal[0];
-    const mp = prog(t, s + 0.3, 1.0, easeBack);
-    lgMark.style.opacity = fade(t, s + 0.3, 0.4);
+  // opening: the logo assembles, then the title rises under it as it is spoken
+  show(reveal, within(t, TL.open));
+  if (within(t, TL.open)) {
+    const s = TL.open[0];
+    const mp = prog(t, s + 0.1, 0.8, easeBack);
+    lgMark.style.opacity = fade(t, s + 0.1, 0.3);
     lgMark.style.transformOrigin = '300px 301px';
     lgMark.style.transform = `scale(${0.3 + 0.7 * mp}) rotate(${(1 - mp) * -120}deg)`;
-    lgWord.style.clipPath = `inset(0 ${(1 - prog(t, s + 1.1, 1.0, easeInOut)) * 100}% 0 0)`;
-    const st = (VO_BY_ID.slogan || { start: s + 2.6 }).start;
-    lgTag.style.clipPath = `inset(0 ${(1 - prog(t, st - 0.1, 1.7, x => x)) * 100}% 0 0)`;
-  }
-
-  show(titleL, within(t, TL.title));
-  if (within(t, TL.title)) {
-    const s = TL.title[0];
-    const t0 = (VO_BY_ID.title || { start: s + 0.6 }).start;
-    pop(tMark, prog(t, s + 0.2, 0.8, easeBack), 0.4);
-    tGlow.style.opacity = fade(t, s + 0.2, 1.0) * (0.8 + 0.2 * Math.sin(t * 1.5));
+    lgWord.style.clipPath = `inset(0 ${(1 - prog(t, s + 0.45, 0.8, easeInOut)) * 100}% 0 0)`;
+    lgTag.style.clipPath = `inset(0 ${(1 - prog(t, s + 0.95, 1.0, x => x)) * 100}% 0 0)`;
+    const t0 = (VO_BY_ID.title || { start: s + 2.2 }).start;
     tWords.forEach((w, k) => {
-      const p = prog(t, t0 - 0.15 + k * 0.38, 0.7);
+      const p = prog(t, t0 - 0.2 + k * 0.32, 0.6);
       w.style.transform = `translateY(${(1 - p) * 105}%)`;
     });
-    // a light sweep across "Progress" once the title has landed
-    const sw = prog(t, t0 + 1.8, 1.4, easeInOut);
-    tProg.style.backgroundPosition = `${100 - sw * 100}% 0`;
-    const z = prog(t, s, TL.title[1] - s, x => x);
-    tLine1.style.transform = tLine2.style.transform = `scale(${1 + 0.03 * z})`;
+    tProg.style.backgroundPosition = `${100 - prog(t, t0 + 1.4, 1.0, easeInOut) * 100}% 0`;
   }
 
   show(over, within(t, TL.overview));
@@ -891,7 +1012,7 @@ window.seek = function (t) {
     });
   }
 
-  let tone = within(t, TL.title) ? 'dark' : 'light';
+  let tone = 'light';
   themeScenes.forEach((S, i) => {
     const span = TL.themes[i];
     const on = within(t, span);
@@ -904,15 +1025,19 @@ window.seek = function (t) {
   show(close, t >= TL.close[0]);
   if (t >= TL.close[0]) {
     const s = TL.close[0];
-    clWords.forEach((w, i) => rise(w, prog(t, s + 0.5 + i * 0.25, 0.8), 30));
-    const mp = prog(t, s + 1.0, 0.9, easeBack);
-    clMark.style.opacity = fade(t, s + 1.0, 0.3);
+    clWords.forEach((w, i) => rise(w, prog(t, s + 0.2 + i * 0.12, 0.7), 16));
+    const mp = prog(t, s + 0.4, 0.9, easeBack);
+    clMark.style.opacity = fade(t, s + 0.4, 0.3);
     clMark.style.transformOrigin = '300px 301px';
     clMark.style.transform = `scale(${0.4 + 0.6 * mp}) rotate(${(1 - mp) * -90}deg)`;
-    clWord.style.clipPath = `inset(0 ${(1 - prog(t, s + 1.5, 0.9, easeInOut)) * 100}% 0 0)`;
-    const st = (VO_BY_ID['close-slogan'] || { start: s + 2.3 }).start;
-    clSlogan.style.clipPath = `inset(0 ${(1 - prog(t, st - 0.1, 1.7, x => x)) * 100}% 0 0)`;
-    rise(clCta, prog(t, s + 6.2, 0.9), 30);
+    clWord.style.clipPath = `inset(0 ${(1 - prog(t, s + 0.8, 0.9, easeInOut)) * 100}% 0 0)`;
+    const st = (VO_BY_ID['close-slogan'] || { start: s + 1.4 }).start;
+    clSlogan.style.clipPath = `inset(0 ${(1 - prog(t, st - 0.1, 1.6, x => x)) * 100}% 0 0)`;
+    const ct = (VO_BY_ID['close-cta'] || { start: s + 4.5 }).start;
+    clRule.style.transform = `scaleX(${prog(t, ct - 0.5, 0.7, easeInOut)})`;
+    rise(clCta, prog(t, ct - 0.3, 0.8), 20);
+    // a slow settle on the finished logo
+    clLogo.style.transform = `scale(${0.48 * (1.02 - 0.02 * prog(t, s + 0.4, TL.close[1] - s - 0.4, x => x))})`;
   }
 
   const cue = CUES.find(c => t >= c.t && t < c.end);

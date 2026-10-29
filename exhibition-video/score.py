@@ -27,8 +27,7 @@ def load_js(name):
 
 TL = load_js('timeline.js')
 VO = load_js('vo-timing.js')
-T_REVEAL = TL['reveal'][0]
-T_TITLE = TL['title'][0]
+T_REVEAL = TL['open'][0]
 T_OVER = TL['overview'][0]
 THEME_STARTS = [a for a, b in TL['themes']]
 T_CLOSE = TL['close'][0]
@@ -216,7 +215,7 @@ for bi, b0 in enumerate(bar_starts):
 
 # ---- accents synced to the animation ----
 # a soft whoosh under every wipe transition
-for t in [T_TITLE, T_OVER] + THEME_STARTS + [T_CLOSE]:
+for t in [T_OVER] + THEME_STARTS + [T_CLOSE]:
     add(sfx, t - 0.55, whoosh(0.9), 0.05, -0.2)
 
 # opening: the mark lands, then a bell for each word of the slogan
@@ -224,12 +223,11 @@ add(sfx, T_REVEAL + 0.4, boom(), 0.26)
 for m, d in ((74, 0), (78, 0.04), (81, 0.08), (86, 0.12)):
     add(sfx, T_REVEAL + 0.4 + d, bell(m) * 0.045, 1, (m - 80) / 10)
     add(send, T_REVEAL + 0.4 + d, bell(m) * 0.05)
-for k, seg in enumerate(VO_BY_ID['slogan']['segments']):
-    add(sfx, seg['t'], bell((78, 81, 86)[k % 3], 2.0) * 0.03, 1, -0.4 + 0.4 * k)
-    add(send, seg['t'], bell((78, 81, 86)[k % 3], 2.0) * 0.04)
+for k in range(3):  # the slogan writes on under the logo
+    add(sfx, T_REVEAL + 1.0 + k * 0.33, bell((78, 81, 86)[k], 2.0) * 0.03, 1, -0.4 + 0.4 * k)
+    add(send, T_REVEAL + 1.0 + k * 0.33, bell((78, 81, 86)[k], 2.0) * 0.04)
 
-# title: a low hit as the words rise
-add(sfx, T_TITLE + 0.5, boom(), 0.28)
+# title: a bell as "Progress" lands
 add(sfx, VO_BY_ID['title']['start'] + 1.4, bell(86, 3.0) * 0.04, 1, 0.3)
 add(send, VO_BY_ID['title']['start'] + 1.4, bell(86, 3.0) * 0.05)
 
@@ -257,9 +255,9 @@ for k, m in enumerate((74, 78, 81, 83, 86, 90, 93)):
 
 # closing: rise into the logo, final chord as the slogan writes on
 add(sfx, T_CLOSE - 1.6, riser(3.0), 0.07)
-add(sfx, T_CLOSE + 1.0, boom(), 0.30)
+add(sfx, T_CLOSE + 0.5, boom(), 0.30)
 for m in (50, 57, 62, 66, 69, 73, 76):
-    add(music, T_CLOSE + 1.0, pad_note(m, 9.5, 3.0) * 1.3)
+    add(music, T_CLOSE + 0.5, pad_note(m, DURATION - T_CLOSE, 3.0) * 1.3)
 cs = VO_BY_ID['close-slogan']['start']
 for m, d in ((74, 0), (78, 0.05), (81, 0.1), (85, 0.15), (86, 0.2)):
     add(sfx, cs + d, bell(m, 4.0) * 0.045, 1, (m - 80) / 10)
