@@ -1,5 +1,6 @@
-// Renders index.html frame by frame and encodes a 1920x1080 MP4 with ffmpeg.
-// Usage: node render.js [output.mp4] [--lang en|ar] [--stills t1,t2,...]
+// Renders index.html frame by frame and encodes an MP4 with ffmpeg: 1920x1080 by
+// default, 3840x2160 with --4k (same layout drawn at twice the pixel density).
+// Usage: node render.js [output.mp4] [--lang en|ar] [--4k] [--stills t1,t2,...]
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 const path = require('path');
@@ -12,10 +13,11 @@ const FPS = 30;
   const stills = stillsIdx >= 0 ? args[stillsIdx + 1].split(',').map(Number) : null;
   const langIdx = args.indexOf('--lang');
   const lang = langIdx >= 0 ? args[langIdx + 1] : 'en';
-  const out = args.find(a => a.endsWith('.mp4')) || path.join(__dirname, `mira-cle-exhibition-${lang}.mp4`);
+  const uhd = args.includes('--4k');
+  const out = args.find(a => a.endsWith('.mp4')) || path.join(__dirname, `mira-cle-exhibition-${lang}${uhd ? '-4k' : ''}.mp4`);
 
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
+  const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: uhd ? 2 : 1 });
   await page.goto('file://' + path.join(__dirname, 'index.html') + '?lang=' + lang);
   await page.evaluate(() => window.ready);
   const duration = await page.evaluate(() => window.DURATION);
@@ -37,7 +39,8 @@ const FPS = 30;
     : [];
   const ff = spawn('ffmpeg', [
     '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', ...audio,
-    '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p',
+    '-c:v', 'libx264', '-preset', uhd ? 'medium' : 'slow', '-crf', uhd ? '16' : '18', '-pix_fmt', 'yuv420p',
+    ...(uhd ? ['-profile:v', 'high', '-level', '5.1'] : []),
     '-movflags', '+faststart', out
   ], { stdio: ['pipe', 'inherit', 'inherit'] });
 
